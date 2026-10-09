@@ -19,7 +19,7 @@ img { max-width: 100%; }
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Shrikhand&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
 /* Layout: the portfolio is set out as Rea's own brand book. Full-bleed colour bands, a sticker-strewn hero, swappable brand palettes. */
 :root {
@@ -52,8 +52,20 @@ img { max-width: 100%; }
   --hl: var(--c3); --scrim: rgba(0, 0, 0, 0.65); color-scheme: dark;
 }
 /* Brand palettes (switched from the brand book) */
-body[data-palette="tomato"] { --c1: #f2452a; --c2: #b9a0ff; --c3: #c8f26b; --c4: #ffd6c9; }
-body[data-palette="garden"] { --c1: #0b7a4e; --c2: #ff9f6b; --c3: #9fd6ff; --c4: #f5c7df; }
+body[data-palette="tomato"] { --c1: #f2452a; --c2: #b9a0ff; --c3: #c8f26b; --c4: #ffd6c9; --display: "Shrikhand", "Arial Black", system-ui, sans-serif; font-synthesis: none; }
+body[data-palette="garden"] { --c1: #0b7a4e; --c2: #ff9f6b; --c3: #9fd6ff; --c4: #f5c7df; --display: "Cormorant Garamond", Georgia, "Times New Roman", serif; }
+/* Each palette is a full rebrand: typeface, letterforms and shape language change too */
+body[data-palette="tomato"] :is(.name, h2, .lede, .fig b, .case .big, .case h3, .voice, .d-big, .grade-card b, .ib-card b, .m-r, .sub-head h3, .school-head h3, .track span, .job h3, .book-note h4, .plate-card b, .logo-chip, .sticker) { letter-spacing: 0; }
+body[data-palette="tomato"] :is(.tile, .fig, .case, .grade-card, .ib-card, .table, .brand, .book-note, .tl-detail, .modules) { border-radius: 44px; }
+body[data-palette="tomato"] .sticker:not(.photo):not(.round) { border-radius: 999px; padding-inline: 22px; }
+body[data-palette="tomato"] .logo-chip { border-radius: 999px; }
+body[data-palette="tomato"] .swap { border-radius: 999px; }
+body[data-palette="garden"] :is(.name, h2, .lede, .fig b, .case .big, .case h3, .voice, .d-big, .grade-card b, .ib-card b, .sub-head h3, .school-head h3, .track span, .job h3, .book-note h4, .plate-card b, .logo-chip, .sticker) { letter-spacing: -0.01em; font-weight: 700; }
+body[data-palette="garden"] .name { font-weight: 600; font-style: italic; }
+body[data-palette="garden"] :is(.tile, .fig, .case, .grade-card, .ib-card, .table, .brand, .book-note, .tl-detail, .modules, .contact, .logo-chip) { border-radius: 4px; border-width: 1px; }
+body[data-palette="garden"] .sticker:not(.round) { border-radius: 4px; border-width: 1px; box-shadow: 0 12px 28px rgba(0,0,0,.14); }
+body[data-palette="garden"] :is(.fig:hover, .case:hover, .btn:hover, .sticker.dragging) { box-shadow: 0 16px 34px rgba(0,0,0,.14); }
+body[data-palette="garden"] .swap { border-radius: 2px; transform: none; }
 
 * { box-sizing: border-box; }
 html { overflow-x: clip; }
@@ -702,8 +714,8 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12
           <span class="label">Colour palette · pick one to rebrand this site</span>
           <div class="palettes" role="group" aria-label="Colour palettes">
             <button class="pal" type="button" data-pal="cobalt" aria-pressed="true"><span><strong>Cobalt Pop</strong><small>Confident, digital, a bit loud</small></span><span class="sw"><i style="background:#2f3cff"></i><i style="background:#ff5fa8"></i><i style="background:#ffd84a"></i><i style="background:#a8f0d8"></i></span></button>
-            <button class="pal" type="button" data-pal="tomato" aria-pressed="false"><span><strong>Tomato Club</strong><small>Warm, food-and-beauty energy</small></span><span class="sw"><i style="background:#f2452a"></i><i style="background:#b9a0ff"></i><i style="background:#c8f26b"></i><i style="background:#ffd6c9"></i></span></button>
-            <button class="pal" type="button" data-pal="garden" aria-pressed="false"><span><strong>Garden Party</strong><small>Fresh, premium, considered</small></span><span class="sw"><i style="background:#0b7a4e"></i><i style="background:#ff9f6b"></i><i style="background:#9fd6ff"></i><i style="background:#f5c7df"></i></span></button>
+            <button class="pal" type="button" data-pal="tomato" aria-pressed="false"><span><strong>Tomato Club</strong><small>Warm and retro: round shapes, a chunky script face</small></span><span class="sw"><i style="background:#f2452a"></i><i style="background:#b9a0ff"></i><i style="background:#c8f26b"></i><i style="background:#ffd6c9"></i></span></button>
+            <button class="pal" type="button" data-pal="garden" aria-pressed="false"><span><strong>Garden Party</strong><small>Fresh and premium: an editorial serif, crisp edges</small></span><span class="sw"><i style="background:#0b7a4e"></i><i style="background:#ff9f6b"></i><i style="background:#9fd6ff"></i><i style="background:#f5c7df"></i></span></button>
           </div>
         </div>
         <div class="tile t-voice">
