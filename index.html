@@ -1,0 +1,1448 @@
+<title>Rea Shah</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: the portfolio is set out as Rea's own brand book. Full-bleed colour bands, a sticker-strewn hero, swappable brand palettes. */
+:root {
+  --bg: #fbfaf7;
+  --surface: #ffffff;
+  --ink: #121118;
+  --muted: #5d5a66;
+  --line: #e6e3dc;
+  --c1: #2f3cff;  /* primary: deep, takes white text */
+  --c2: #ff5fa8;  /* pop: takes dark text */
+  --c3: #ffd84a;  /* highlight: takes dark text */
+  --c4: #a8f0d8;  /* soft: takes dark text */
+  --hl: var(--c1);
+  --on-dark: #ffffff;
+  --on-light: #121118;
+  --scrim: rgba(18, 17, 24, 0.5);
+  --display: "Bricolage Grotesque", "Arial Black", system-ui, sans-serif;
+  --serif: "Instrument Serif", Georgia, serif;
+  --body: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111015; --surface: #1b1a21; --ink: #f4f2ee; --muted: #a7a3b2; --line: #2c2a35;
+    --hl: var(--c3); --scrim: rgba(0, 0, 0, 0.65); color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111015; --surface: #1b1a21; --ink: #f4f2ee; --muted: #a7a3b2; --line: #2c2a35;
+  --hl: var(--c3); --scrim: rgba(0, 0, 0, 0.65); color-scheme: dark;
+}
+/* Brand palettes (switched from the brand book) */
+body[data-palette="tomato"] { --c1: #f2452a; --c2: #b9a0ff; --c3: #c8f26b; --c4: #ffd6c9; }
+body[data-palette="garden"] { --c1: #0b7a4e; --c2: #ff9f6b; --c3: #9fd6ff; --c4: #f5c7df; }
+
+* { box-sizing: border-box; }
+html { overflow-x: clip; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--body); font-size: 1.0625rem; line-height: 1.6;
+  -webkit-font-smoothing: antialiased; overflow-x: clip;
+  transition: background .3s, color .3s;
+}
+body.locked { overflow: hidden; }
+a { color: var(--hl); text-underline-offset: 3px; }
+button { font: inherit; color: inherit; }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--c2); outline-offset: 3px; border-radius: 8px; }
+.serif { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: 0; }
+
+.gutter { padding-inline: clamp(16px, 4vw, 56px); }
+.inner { max-width: 1200px; margin: 0 auto; }
+
+/* Progress + nav */
+.progress { position: fixed; top: 0; left: 0; right: 0; z-index: 60; padding-top: env(safe-area-inset-top, 0px); pointer-events: none; }
+.progress i { display: block; height: 4px; background: linear-gradient(90deg, var(--c1), var(--c2), var(--c3)); transform-origin: left; transform: scaleX(0); }
+.nav-wrap { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 12px); z-index: 50; display: flex; justify-content: center; padding-block: 12px 0; pointer-events: none; }
+.nav {
+  pointer-events: auto; display: flex; align-items: center; gap: 4px; max-width: 100%;
+  background: color-mix(in srgb, var(--surface) 88%, transparent); backdrop-filter: blur(12px);
+  border: 1px solid var(--line); border-radius: 999px; padding: 6px; box-shadow: 0 6px 24px rgba(0,0,0,.06);
+}
+.nav-links { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; min-width: 0; }
+.nav-links::-webkit-scrollbar { display: none; }
+.nav a {
+  color: var(--muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; white-space: nowrap;
+  padding: 6px 12px; border-radius: 999px; transition: background .2s, color .2s;
+}
+.nav a:hover { color: var(--ink); }
+.nav a[aria-current="true"] { background: var(--ink); color: var(--bg); }
+.nav-btn {
+  flex: none; width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line); background: var(--bg);
+  display: grid; place-items: center; cursor: pointer; font-size: 0.95rem;
+}
+.nav a.nav-btn.li { padding: 0; color: var(--on-dark); background: #0a66c2; border-color: #0a66c2; font-weight: 800; font-family: var(--display); font-size: 1rem; letter-spacing: -0.02em; }
+.nav a.nav-btn.li:hover { transform: rotate(-8deg); }
+.dots { width: 18px; height: 18px; border-radius: 50%; background: conic-gradient(var(--c1) 0 33%, var(--c2) 0 66%, var(--c3) 0); }
+
+/* Hero */
+.hero { position: relative; padding-block: clamp(40px, 8vw, 96px) clamp(48px, 7vw, 88px); }
+.hero .inner { position: relative; min-height: 520px; display: grid; align-content: center; gap: 28px; }
+.kicker { font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); display: flex; gap: 10px; align-items: center; }
+.kicker::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--c2); animation: pulse 2s ease-in-out infinite; }
+@keyframes pulse { 50% { transform: scale(.6); opacity: .5; } }
+.name {
+  font-family: var(--display); font-weight: 800; margin: 0;
+  font-size: clamp(4.2rem, 15vw, 12.5rem); line-height: 0.86; letter-spacing: -0.05em;
+}
+.name > span { display: block; }
+.name .r { color: var(--c1); }
+.name .dot { color: var(--c2); }
+.lede { font-family: var(--display); font-weight: 600; font-size: clamp(1.35rem, 2.8vw, 2rem); line-height: 1.2; max-width: 22ch; margin: 0; letter-spacing: -0.02em; }
+.swap { display: inline-block; background: var(--c3); color: var(--on-light); padding: 0 10px; border-radius: 10px; transform: rotate(-1.5deg); transition: opacity .25s, transform .25s; }
+.swap.out { opacity: 0; transform: rotate(-1.5deg) translateY(8px); }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; padding: 12px 22px; font-weight: 600;
+  text-decoration: none; border: 2px solid var(--ink); cursor: pointer; transition: transform .2s, box-shadow .2s;
+}
+.btn.primary { background: var(--ink); color: var(--bg); }
+.btn.ghost { background: transparent; color: var(--ink); }
+.btn:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--c2); }
+.drag-hint { font-family: var(--serif); font-style: italic; font-size: 1.15rem; color: var(--muted); }
+
+.stickers { position: absolute; inset: 0; pointer-events: none; }
+.sticker {
+  position: absolute; pointer-events: auto; touch-action: none; cursor: grab; user-select: none;
+  font-family: var(--display); font-weight: 800; font-size: 1.1rem; line-height: 1.1; letter-spacing: -0.01em;
+  padding: 14px 18px; border-radius: 18px; border: 2px solid var(--on-light);
+  box-shadow: 4px 4px 0 var(--on-light); transform: rotate(var(--r, 0deg)); transition: box-shadow .15s, transform .15s;
+  background: var(--bgc); color: var(--fg);
+}
+.sticker small { display: block; font-family: var(--body); font-weight: 500; font-size: 0.75rem; opacity: .85; letter-spacing: 0; }
+.sticker:hover { transform: rotate(var(--r, 0deg)) scale(1.05); }
+.sticker.dragging { cursor: grabbing; box-shadow: 10px 10px 0 var(--on-light); transform: rotate(0deg) scale(1.08); z-index: 5; }
+.sticker.photo { padding: 10px 10px 12px; border-radius: 10px; background: var(--on-dark); color: var(--on-light); width: 190px; text-align: center; font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 1.15rem; }
+.sticker.photo img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 4px; margin-bottom: 6px; pointer-events: none; -webkit-user-drag: none; }
+.sticker.round { border-radius: 50%; width: 132px; height: 132px; display: grid; place-content: center; text-align: center; padding: 10px; font-size: 2.2rem; }
+.badge { position: absolute; right: 2%; bottom: 0; width: 150px; height: 150px; pointer-events: none; }
+.badge svg { width: 100%; height: 100%; animation: spin 16s linear infinite; }
+.badge b { position: absolute; inset: 0; display: grid; place-items: center; font-size: 2rem; color: var(--c2); }
+.badge text { font-family: var(--mono); font-size: 11px; letter-spacing: 0; fill: var(--ink); text-transform: uppercase; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Marquee */
+.marquee { background: var(--c1); color: var(--on-dark); overflow: hidden; padding-block: 18px; transform: rotate(-1.2deg); margin-inline: -20px; border-block: 2px solid var(--on-light); }
+.marquee.alt { background: var(--c3); color: var(--on-light); transform: rotate(1deg); }
+.track { display: flex; width: max-content; animation: slide 32s linear infinite; }
+.marquee.alt .track { animation-direction: reverse; }
+.marquee:hover .track { animation-play-state: paused; }
+.track span { font-family: var(--display); font-weight: 800; font-size: clamp(1.4rem, 3vw, 2.2rem); white-space: nowrap; padding-right: 28px; letter-spacing: -0.02em; }
+.track span::after { content: "✦"; margin-left: 28px; color: var(--c2); }
+.marquee.alt .track span::after { color: var(--c1); }
+@keyframes slide { to { transform: translateX(-50%); } }
+
+/* Sections */
+section { padding-block: clamp(64px, 9vw, 120px); scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 12px; margin-bottom: clamp(28px, 4vw, 48px); max-width: 760px; }
+.eyebrow { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin: 0; display: flex; align-items: center; gap: 10px; }
+.eyebrow::before { content: ""; width: 26px; height: 3px; border-radius: 3px; background: var(--c2); }
+h2 { font-family: var(--display); font-weight: 800; font-size: clamp(2.2rem, 5.4vw, 4.2rem); line-height: 0.98; letter-spacing: -0.035em; margin: 0; text-wrap: balance; }
+h2 .serif { color: var(--hl); font-size: 1.08em; }
+h3 { font-size: 1.15rem; font-weight: 700; margin: 0; }
+p { margin: 0; }
+.hint { color: var(--muted); font-size: 0.95rem; }
+.muted { color: var(--muted); }
+
+/* Brand book */
+.book { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 16px; }
+.tile { border-radius: 24px; padding: clamp(22px, 3vw, 32px); display: grid; gap: 14px; align-content: start; border: 2px solid var(--on-light); min-width: 0; }
+.tile .label { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; opacity: .8; }
+.t-pos { grid-column: span 7; background: var(--c1); color: var(--on-dark); }
+.t-pos p { font-family: var(--display); font-weight: 600; font-size: clamp(1.25rem, 2.3vw, 1.75rem); line-height: 1.25; letter-spacing: -0.015em; }
+.t-pos p b { background: var(--c3); color: var(--on-light); padding: 0 6px; border-radius: 6px; font-weight: 600; }
+.t-logo { grid-column: span 5; background: var(--on-light); color: var(--on-dark); place-items: center; text-align: center; overflow: hidden; }
+.mark { position: relative; display: block; width: min(250px, 70vw); height: min(250px, 70vw); max-width: 100%; border: 0; padding: 0; background: none; cursor: pointer; }
+.mark > * { position: absolute; }
+.mark-aura { inset: 4%; border-radius: 50%; background: conic-gradient(var(--c1), var(--c2), var(--c3), var(--c4), var(--c1)); filter: blur(22px); opacity: .8; animation: spin 9s linear infinite; }
+.mark-ring { inset: 0; width: 100%; height: 100%; animation: spin 22s linear infinite reverse; overflow: visible; }
+.mark-ring text { font-family: var(--mono); font-size: 11.5px; letter-spacing: 1px; fill: var(--on-dark); text-transform: uppercase; }
+.mark-core {
+  inset: 18%; border-radius: 50%; background: var(--on-light); border: 3px solid var(--on-dark);
+  display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 7px var(--on-light);
+  transition: transform .5s cubic-bezier(.2,.8,.2,1.4);
+}
+.m-r { font-family: var(--display); font-weight: 800; font-size: 4.6rem; color: var(--on-dark); letter-spacing: -0.06em; line-height: 1; }
+.m-s { font-family: var(--serif); font-style: italic; font-size: 5.6rem; color: var(--c2); line-height: 1; margin-left: -0.08em; display: inline-block; transform: translateY(5px); transition: color .4s; }
+.m-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--c3); align-self: flex-end; margin: 0 0 22% 2px; transition: background .4s; }
+.mark:hover .mark-core { transform: scale(1.07) rotate(-8deg); }
+.mark.pop .mark-core { animation: pop .55s cubic-bezier(.2,.8,.2,1.4); }
+@keyframes pop { 35% { transform: scale(.82) rotate(14deg); } }
+.mark-lock { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; opacity: .75; }
+.t-palette { grid-column: span 5; background: var(--surface); color: var(--ink); border-color: var(--line); }
+.palettes { display: grid; gap: 10px; }
+.pal {
+  display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 12px; text-align: left;
+  border: 2px solid var(--line); background: var(--bg); border-radius: 16px; padding: 10px 14px; cursor: pointer; transition: border-color .2s, transform .2s;
+}
+.pal:hover { transform: translateX(4px); }
+.pal[aria-pressed="true"] { border-color: var(--ink); }
+.pal .sw { display: flex; }
+.pal .sw i { width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--bg); margin-left: -8px; }
+.pal .sw i:first-child { margin-left: 0; }
+.pal strong { font-size: 0.95rem; }
+.pal small { display: block; color: var(--muted); font-size: 0.8rem; }
+.t-voice { grid-column: span 7; background: var(--c2); color: var(--on-light); }
+.voice { display: flex; flex-wrap: wrap; gap: 4px 18px; font-family: var(--display); font-weight: 800; font-size: clamp(2.2rem, 5vw, 3.6rem); line-height: 1; letter-spacing: -0.04em; }
+.voice button { background: none; border: 0; padding: 0; cursor: pointer; transition: transform .2s; }
+.voice button:hover, .voice button[aria-pressed="true"] { transform: rotate(-3deg); text-decoration: underline wavy; text-decoration-thickness: 3px; text-underline-offset: 8px; }
+.voice-note { font-size: 1rem; min-height: 3.2em; }
+.t-fuel { grid-column: span 12; background: var(--c3); color: var(--on-light); grid-template-columns: minmax(0, 220px) minmax(0, 1fr); align-items: center; }
+.fuel { display: flex; flex-wrap: wrap; gap: 10px; }
+.fuel span { background: var(--on-light); color: var(--c3); border-radius: 999px; padding: 8px 16px; font-weight: 600; transition: transform .2s; }
+.fuel span:nth-child(odd):hover { transform: rotate(-4deg); }
+.fuel span:nth-child(even):hover { transform: rotate(4deg); }
+
+/* Numbers */
+.figs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.fig {
+  border-radius: 24px; border: 2px solid var(--on-light); padding: 24px; text-align: left; cursor: pointer;
+  display: grid; gap: 10px; align-content: space-between; min-height: 220px; background: var(--bgc); color: var(--fg);
+  transition: transform .25s cubic-bezier(.2,.8,.2,1.3), box-shadow .25s;
+}
+.fig:hover { transform: rotate(var(--r)) translateY(-6px); box-shadow: 6px 8px 0 var(--on-light); }
+.fig b { font-family: var(--display); font-weight: 800; font-size: clamp(3rem, 6vw, 4.6rem); line-height: 0.9; letter-spacing: -0.05em; font-variant-numeric: tabular-nums; }
+.fig span { font-weight: 500; line-height: 1.35; }
+.fig em { font-style: normal; font-family: var(--mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; opacity: .8; }
+
+/* Timeline */
+.tl-scroll { overflow-x: auto; padding-bottom: 6px; }
+.tl { min-width: 600px; display: grid; gap: 10px; position: relative; }
+.tl-years, .tl-row { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 16px; align-items: center; }
+.tl-axis { position: relative; height: 20px; font-family: var(--mono); font-size: 0.75rem; color: var(--muted); }
+.tl-axis span { position: absolute; transform: translateX(-50%); }
+.tl-label { font-weight: 600; font-size: 0.95rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: right; transition: color .2s; }
+.tl-track { position: relative; height: 40px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); }
+.tl-bar {
+  position: absolute; top: 5px; height: 28px; border-radius: 999px; border: 2px solid var(--on-light); cursor: pointer; padding: 0;
+  background: var(--c); transition: transform .2s, box-shadow .2s;
+}
+.tl-bar:hover { transform: translateY(-2px); }
+.tl-row.on .tl-bar { box-shadow: 3px 3px 0 var(--on-light); transform: translateY(-2px); }
+.tl-row.on .tl-label { color: var(--ink); }
+.tl-now { position: absolute; top: 0; bottom: 0; width: 0; border-left: 2px dashed var(--c2); pointer-events: none; }
+.tl-now span { position: absolute; top: -4px; left: 6px; font-family: var(--mono); font-size: 0.7rem; font-weight: 500; color: var(--ink); background: var(--c2); padding: 1px 6px; border-radius: 4px; white-space: nowrap; }
+.tl-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: 18px; }
+.tl-legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 0.88rem; color: var(--muted); }
+.tl-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.tl-legend span::before { content: ""; width: 12px; height: 12px; border-radius: 50%; background: var(--c); border: 1.5px solid var(--on-light); }
+.tl-detail { margin-top: 18px; background: var(--surface); border: 2px solid var(--ink); border-radius: 22px; padding: 22px 26px; display: grid; gap: 6px; box-shadow: 6px 6px 0 var(--c); max-width: 760px; transition: box-shadow .3s; }
+.when { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); line-height: 1.5; font-variant-numeric: tabular-nums; }
+
+/* Experience + filters */
+.filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 8px; }
+.filters .lbl { font-family: var(--serif); font-style: italic; font-size: 1.2rem; color: var(--muted); margin-right: 6px; }
+.pill {
+  border: 2px solid var(--ink); background: transparent; border-radius: 999px; padding: 6px 16px;
+  font-size: 0.92rem; font-weight: 600; cursor: pointer; transition: background .2s, color .2s, transform .2s;
+}
+.pill:hover { transform: translateY(-2px); }
+.pill[aria-pressed="true"] { background: var(--c2); color: var(--on-light); border-color: var(--on-light); }
+.match-count { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); min-height: 1.4em; margin-bottom: 18px; }
+.job { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 28px; padding-block: 32px; border-top: 2px solid var(--ink); }
+.job-side { display: grid; gap: 10px; align-content: start; }
+.logo-chip { width: fit-content; font-family: var(--display); font-weight: 800; font-size: 1.4rem; letter-spacing: -0.03em; padding: 6px 14px; border-radius: 12px; background: var(--bgc); color: var(--fg); border: 2px solid var(--on-light); transform: rotate(-2deg); }
+.job h3 { font-family: var(--display); font-size: clamp(1.3rem, 2.4vw, 1.7rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 4px; }
+.job .org { color: var(--muted); margin-bottom: 16px; display: block; }
+ul.points { margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; max-width: 68ch; }
+ul.points li { padding-left: 28px; position: relative; transition: opacity .25s, transform .25s; }
+ul.points li::before { content: "✦"; position: absolute; left: 0; top: 0; color: var(--c2); font-size: 0.95rem; }
+ul.points strong { font-weight: 700; background: linear-gradient(transparent 62%, color-mix(in srgb, var(--c3) 70%, transparent) 0); }
+.filtering ul.points li:not(.hit), .filtering .case:not(.hit) { opacity: 0.22; }
+.filtering ul.points li.hit { transform: translateX(6px); }
+
+ul.points li.flash { animation: flash 2.4s ease; border-radius: 8px; }
+@keyframes flash { 0%, 60% { background: color-mix(in srgb, var(--c3) 55%, transparent); box-shadow: 0 0 0 6px color-mix(in srgb, var(--c3) 55%, transparent); } }
+
+/* Case studies */
+.cases { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; perspective: 1200px; }
+.case {
+  border-radius: 28px; border: 2px solid var(--on-light); padding: clamp(24px, 3vw, 34px); min-height: 300px;
+  display: grid; gap: 14px; align-content: space-between; text-align: left; cursor: pointer;
+  background: var(--bgc); color: var(--fg); transform-style: preserve-3d;
+  transition: transform .2s ease-out, box-shadow .2s, opacity .25s;
+}
+.case:hover { box-shadow: 8px 10px 0 var(--on-light); }
+.case .tag { font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: .85; }
+.case.featured { grid-column: 1 / -1; min-height: 0; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); column-gap: 32px; align-items: end; }
+.case.featured .tag, .case.featured .big { grid-column: 1; }
+.case.featured > span:nth-child(3), .case.featured .open { grid-column: 2; }
+.case.featured .big { grid-row: 2 / span 2; font-size: clamp(3.4rem, 8vw, 6rem); }
+.case.featured p { margin-top: 8px; }
+@media (max-width: 760px) { .case.featured { grid-template-columns: minmax(0, 1fr); } .case.featured > * { grid-column: 1 !important; grid-row: auto !important; } }
+.case .big { font-family: var(--display); font-weight: 800; font-size: clamp(2.6rem, 5vw, 3.8rem); line-height: 0.9; letter-spacing: -0.05em; }
+.case h3 { font-family: var(--display); font-size: 1.35rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; }
+.case p { opacity: .88; font-size: 0.98rem; }
+.case .open { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; }
+.case .open i { font-style: normal; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--fg); color: var(--bgc); transition: transform .2s; }
+.case:hover .open i { transform: rotate(-45deg); }
+
+/* Drawer */
+.scrim { position: fixed; inset: 0; background: var(--scrim); z-index: 70; opacity: 0; transition: opacity .25s; }
+.scrim.show { opacity: 1; }
+.drawer {
+  position: fixed; top: 0; right: 0; bottom: 0; z-index: 71; width: min(600px, 100%); background: var(--bg);
+  border-left: 2px solid var(--on-light); overflow-y: auto; display: grid; align-content: start;
+  transform: translateX(100%); transition: transform .35s cubic-bezier(.2,.8,.2,1);
+}
+.drawer.show { transform: none; }
+.d-band { background: var(--bgc); color: var(--fg); padding: calc(env(safe-area-inset-top, 0px) + 24px) clamp(20px, 4vw, 40px) 32px; display: grid; gap: 16px; border-bottom: 2px solid var(--on-light); }
+.d-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.d-tag { font-family: var(--mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; }
+.close { border: 2px solid currentColor; background: transparent; color: inherit; border-radius: 999px; padding: 6px 14px; cursor: pointer; font-weight: 600; font-size: 0.85rem; }
+.d-band h2 { font-size: clamp(1.8rem, 4.5vw, 2.6rem); }
+.d-big { font-family: var(--display); font-weight: 800; font-size: clamp(3.4rem, 9vw, 5rem); line-height: .9; letter-spacing: -0.05em; }
+.d-body { padding: 28px clamp(20px, 4vw, 40px) calc(env(safe-area-inset-bottom, 0px) + 40px); display: grid; gap: 24px; }
+.d-shows { display: grid; gap: 8px; }
+.d-shows > span { font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+.d-shows div { display: flex; flex-wrap: wrap; gap: 8px; }
+.d-shows b { background: var(--ink); color: var(--bg); border-radius: 999px; padding: 6px 14px; font-weight: 700; font-size: 0.95rem; }
+.d-shows b:first-child { background: var(--c2); color: var(--on-light); }
+.star { margin: 0; display: grid; gap: 12px; }
+.star div { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 14px; align-items: start; }
+.star dt { width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; font-family: var(--display); font-weight: 800; font-size: 1.3rem; border: 2px solid var(--on-light); color: var(--on-light); }
+.star div:nth-child(1) dt { background: var(--c4); }
+.star div:nth-child(2) dt { background: var(--c3); }
+.star div:nth-child(3) dt { background: var(--c2); }
+.star div:nth-child(4) dt { background: var(--c1); color: var(--on-dark); }
+.star dd { margin: 0; }
+.star dd b { display: block; font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); font-weight: 500; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { border: 2px solid var(--ink); border-radius: 999px; padding: 4px 14px; font-size: 0.9rem; font-weight: 600; transition: background .2s, color .2s, transform .2s; }
+.chips .chip:nth-child(4n+1):hover { background: var(--c1); color: var(--on-dark); border-color: var(--on-light); }
+.chips .chip:nth-child(4n+2):hover { background: var(--c2); color: var(--on-light); border-color: var(--on-light); }
+.chips .chip:nth-child(4n+3):hover { background: var(--c3); color: var(--on-light); border-color: var(--on-light); }
+.chips .chip:nth-child(4n+4):hover { background: var(--c4); color: var(--on-light); border-color: var(--on-light); }
+.chip:hover { transform: rotate(-3deg); }
+.d-nav { display: flex; justify-content: space-between; gap: 12px; }
+.d-nav button { background: none; border: 0; color: var(--hl); cursor: pointer; font-weight: 700; padding: 4px 0; }
+.d-nav button:disabled { color: var(--line); cursor: default; }
+
+/* Education */
+.edu { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 20px; }
+.grade-card { background: var(--c1); color: var(--on-dark); border-radius: 28px; border: 2px solid var(--on-light); padding: 32px; display: grid; gap: 10px; align-content: space-between; min-height: 280px; }
+.grade-card b { font-family: var(--display); font-weight: 800; font-size: clamp(6rem, 14vw, 9rem); line-height: .8; letter-spacing: -0.06em; }
+.grade-card b span { color: var(--c3); }
+.modules { display: grid; gap: 14px; background: var(--surface); border: 2px solid var(--line); border-radius: 28px; padding: 28px; align-content: center; }
+.mod { display: grid; gap: 6px; }
+.mod-top { display: flex; justify-content: space-between; gap: 12px; font-weight: 600; font-size: 0.97rem; }
+.mod-top span:last-child { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.meter { height: 12px; border-radius: 999px; background: var(--line); overflow: hidden; }
+.meter i { display: block; height: 100%; width: var(--w); border-radius: 999px; background: linear-gradient(90deg, var(--c1), var(--c2)); }
+
+.school-head { display: grid; gap: 2px; margin: 0 0 16px; }
+.school-head h3 { font-family: var(--display); font-weight: 800; font-size: clamp(1.2rem, 2.4vw, 1.6rem); letter-spacing: -0.02em; line-height: 1.15; }
+.edu + .school-head { margin-top: 40px; }
+.ib-card { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 32px; background: var(--c3); color: var(--on-light); border: 2px solid var(--on-light); border-radius: 28px; padding: 28px 32px; }
+.ib-card b { font-family: var(--display); font-weight: 800; font-size: clamp(4.5rem, 10vw, 6.5rem); line-height: .85; letter-spacing: -0.06em; }
+.ib-card b span { font-size: .45em; letter-spacing: -0.02em; opacity: .7; }
+.ib-card div { display: grid; gap: 6px; max-width: 46ch; }
+.ib-card p { font-size: 1.02rem; }
+
+/* Leadership + skills */
+.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); }
+.log { display: grid; }
+.log-row { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 18px; padding: 16px 0; border-bottom: 1px solid var(--line); transition: padding .2s; }
+.log-row:hover { padding-left: 8px; }
+.log-row h3 { font-size: 1rem; }
+.log-row p { color: var(--muted); font-size: 0.95rem; }
+.skillset { display: grid; gap: 24px; }
+.skillset h3 { font-family: var(--mono); font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 10px; }
+
+/* Contact */
+.contact { background: var(--ink); color: var(--bg); border-radius: 36px; padding: clamp(32px, 6vw, 72px); display: grid; gap: 24px; position: relative; overflow: hidden; }
+.contact h2 { font-size: clamp(3rem, 9vw, 7rem); color: var(--bg); }
+.contact h2 .serif { color: var(--c3); }
+.contact p { max-width: 52ch; opacity: .8; }
+.contact .row { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
+.contact .email { font-family: var(--display); font-weight: 600; font-size: clamp(1.1rem, 3vw, 1.8rem); user-select: all; overflow-wrap: anywhere; letter-spacing: -0.01em; }
+.copy { border: 2px solid var(--c3); background: var(--c3); color: var(--on-light); border-radius: 999px; padding: 10px 20px; font-weight: 700; cursor: pointer; transition: transform .2s; }
+.li-link { background: var(--bg); color: var(--ink); text-decoration: none; border-radius: 999px; padding: 10px 20px; font-weight: 700; transition: transform .2s; }
+.li-link:hover { transform: rotate(3deg) scale(1.04); }
+.li-url { font-family: var(--mono); font-size: 0.85rem; opacity: .7; user-select: all; }
+.rtw { font-family: var(--mono); font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--c3); opacity: 1 !important; }
+.copy:hover { transform: rotate(-3deg) scale(1.04); }
+.blob { position: absolute; width: 280px; height: 280px; border-radius: 50%; filter: blur(60px); opacity: .5; pointer-events: none; }
+.blob.a { background: var(--c1); right: -60px; top: -80px; }
+.blob.b { background: var(--c2); right: 120px; bottom: -140px; }
+.contact > *:not(.blob) { position: relative; }
+.contact-head { display: flex; align-items: center; gap: clamp(16px, 3vw, 28px); flex-wrap: wrap; }
+.avatar { width: clamp(84px, 12vw, 128px); aspect-ratio: 1; max-width: 100%; border-radius: 50%; object-fit: cover; border: 4px solid var(--c3); transition: transform .3s; }
+.avatar:hover { transform: scale(1.05); }
+footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; color: var(--muted); font-size: 0.88rem; padding-block: 28px 40px; }
+
+
+/* About me */
+:root {
+  --bk1: #1d2a6b; --bk1-ink: #ffd36b;
+  --bk2: #6e1426; --bk2-ink: #f3c46b;
+  --bk3: #f6d8dc; --bk3-ink: #7a2140;
+  --bk4: #efe3cf; --bk4-ink: #4a2c1a;
+  --bk5: #2b2d33; --bk5-ink: #e8e6e1;
+  --paper: #fffdf8; --paper-ink: #2a2622;
+  /* Brand cards use each brand's own colours in both themes */
+  --ganni-bg: #ffffff; --ganni-fg: #1a1a1a;
+  --benefit-bg: #f7a8c9; --benefit-fg: #1a1a1a;
+  --prime-bg: #00050d; --prime-fg: #ffffff;
+  --poppi-bg: #ffe86b; --poppi-fg: #1a1a1a;
+  --mirchi-bg: #2c343d; --mirchi-fg: #ffffff;
+}
+.about-grid { display: grid; gap: clamp(48px, 7vw, 88px); }
+.sub { display: grid; gap: 18px; }
+.sub-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 20px; }
+.sub-head h3 { font-family: var(--display); font-weight: 800; font-size: clamp(1.6rem, 3.4vw, 2.4rem); letter-spacing: -0.03em; line-height: 1; }
+.sub-head h3 .serif { color: var(--hl); }
+
+.flip { perspective: 1000px; background: none; border: 0; padding: 0; cursor: pointer; text-align: left; display: block; width: 100%; }
+.flip-inner { display: grid; transition: transform .6s cubic-bezier(.2,.8,.2,1); transform-style: preserve-3d; }
+.flip.flipped .flip-inner { transform: rotateY(180deg); }
+.face { grid-area: 1 / 1; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.face.back, .face.pc-back { transform: rotateY(180deg); }
+
+/* Books */
+.shelf { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(150px, 1fr); gap: 18px; overflow-x: auto; padding: 8px 4px 22px; }
+.shelf-wrap { position: relative; }
+.shelf-wrap::after { content: ""; display: block; height: 14px; border-radius: 4px; background: var(--ink); margin-top: -14px; box-shadow: 0 8px 0 -2px var(--c2); }
+.novel .flip-inner { transition: transform .6s cubic-bezier(.2,.8,.2,1), translate .25s; }
+.novel:hover .flip-inner { translate: 0 -10px; }
+.cover, .novel .back { aspect-ratio: 2 / 3; border-radius: 4px 12px 12px 4px; border: 2px solid var(--on-light); overflow: hidden; position: relative; display: flex; flex-direction: column; justify-content: space-between; padding: 16px 14px 14px 20px; box-shadow: inset 8px 0 0 rgba(0,0,0,.18); }
+.cover .t { font-family: var(--display); font-weight: 800; font-size: 1.15rem; line-height: 1.02; letter-spacing: -0.02em; position: relative; z-index: 1; }
+.cover .a { font-family: var(--mono); font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.1em; position: relative; z-index: 1; opacity: .9; }
+.novel .back { background: var(--surface); color: var(--ink); border-color: var(--ink); gap: 10px; justify-content: flex-start; box-shadow: none; }
+.novel .back b { font-family: var(--display); font-size: 1rem; line-height: 1.1; }
+.novel .back .para { font-size: 0.86rem; line-height: 1.4; color: var(--muted); }
+.novel .back em { font-style: normal; font-family: var(--serif); font-style: italic; font-size: 1rem; color: var(--hl); margin-top: auto; }
+.cover-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 3; }
+.cover:has(.cover-img)::after { content: ""; position: absolute; inset: 0 auto 0 0; width: 8px; height: auto; border: 0; border-radius: 0; background: rgba(0,0,0,.22); z-index: 4; }
+.cv1 { background: var(--bk1); color: var(--bk1-ink); }
+.cv1::before { content: ""; position: absolute; width: 150%; aspect-ratio: 1; left: -25%; bottom: -70%; border-radius: 50%;
+  background: radial-gradient(circle, var(--bk1-ink) 0 18%, transparent 18.5%), repeating-conic-gradient(var(--bk1-ink) 0 4deg, transparent 4deg 15deg); opacity: .85; }
+.cv2 { background: var(--bk2); color: var(--bk2-ink); }
+.cv2::before { content: ""; position: absolute; left: 20%; right: 20%; bottom: 0; height: 58%; border: 3px solid var(--bk2-ink); border-bottom: 0; border-radius: 999px 999px 0 0; box-shadow: inset 0 0 0 10px var(--bk2), inset 0 0 0 12px var(--bk2-ink); }
+.cv3 { background: var(--bk3); color: var(--bk3-ink);
+  background-image: repeating-linear-gradient(0deg, rgba(122,33,64,.16) 0 12px, transparent 12px 24px), repeating-linear-gradient(90deg, rgba(122,33,64,.16) 0 12px, transparent 12px 24px); }
+.cv3 .t { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 1.6rem; background: var(--bk3); padding: 2px 6px; width: fit-content; border-radius: 4px; }
+.cv4 { background: var(--bk4); color: var(--bk4-ink); }
+.cv4::before { content: ""; position: absolute; width: 52%; aspect-ratio: 1; left: 24%; bottom: 18%; border-radius: 50%; background: radial-gradient(circle, #6b3e22 0 52%, var(--bk4-ink) 53% 62%, transparent 63%); }
+.cv4::after { content: ""; position: absolute; width: 18%; height: 12%; left: 72%; bottom: 32%; border: 4px solid var(--bk4-ink); border-left: 0; border-radius: 0 999px 999px 0; }
+.cv5 { background: var(--bk5); color: var(--bk5-ink); }
+.cv5::before { content: "“"; position: absolute; right: -6px; bottom: -70px; font-family: var(--serif); font-size: 15rem; line-height: 1; color: var(--c2); opacity: .9; }
+.cv5::after { content: ""; position: absolute; left: 20px; right: 40%; top: 55%; height: 4px; background: var(--bk5-ink); border-radius: 4px; }
+
+/* 3D bookshelf */
+:root { --wood: #9a6a3f; --wood-top: #c08a57; --wood-edge: #7a5030; --page: #fbf8f1; --page-line: #e4ddcf; --book-back: #2a2622; }
+.shelf3d-wrap { overflow-x: auto; overflow-y: hidden; padding: 36px 4px 26px; }
+.shelf3d { display: flex; gap: clamp(22px, 3vw, 40px); justify-content: center; align-items: flex-end; min-width: max-content; padding: 0 24px; perspective: 1500px; }
+.b3d { position: relative; width: 136px; height: 204px; padding: 0; border: 0; background: none; cursor: pointer; }
+.b3d::after { content: ""; position: absolute; left: 4%; right: -14%; bottom: -10px; height: 16px; border-radius: 50%; background: radial-gradient(ellipse at center, rgba(0,0,0,.38), transparent 70%); filter: blur(3px); transition: opacity .4s; }
+.b3d-book { position: absolute; inset: 0; transform-style: preserve-3d; transform: rotateY(-34deg); transition: transform .55s cubic-bezier(.2,.8,.2,1); }
+.b3d:hover .b3d-book { transform: rotateY(-20deg) translateY(-6px); }
+.b3d[aria-pressed="true"] .b3d-book { transform: rotateY(-6deg) translateY(-16px) translateZ(20px); }
+.b3d[aria-pressed="true"]::after { opacity: .55; }
+.b3d .front { position: absolute; inset: 0; transform: translateZ(13px); border-radius: 1px 4px 4px 1px; overflow: hidden; background: var(--book-back); }
+.b3d .front img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.b3d .front .cover { position: absolute; inset: 0; aspect-ratio: auto; border: 0; border-radius: 0; box-shadow: none; padding: 16px 12px 12px 18px; }
+.b3d .front::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(90deg, rgba(0,0,0,.35) 0, rgba(0,0,0,.08) 2.2%, rgba(255,255,255,.28) 3.6%, rgba(255,255,255,0) 7%, rgba(255,255,255,0) 62%, rgba(255,255,255,.1) 85%, rgba(0,0,0,.08) 100%),
+              linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,0) 30%, rgba(0,0,0,.06)); }
+.b3d-book::before { content: ""; position: absolute; left: calc(100% - 3px); top: 3px; width: 24px; height: calc(100% - 6px);
+  transform-origin: left center; transform: translateZ(12px) rotateY(90deg);
+  background: repeating-linear-gradient(90deg, var(--page) 0 2px, var(--page-line) 2px 3px); box-shadow: inset 0 0 6px rgba(0,0,0,.12); }
+.b3d-book::after { content: ""; position: absolute; inset: 0; transform: translateZ(-13px); border-radius: 1px 4px 4px 1px; background: var(--book-back); box-shadow: -14px 6px 40px rgba(0,0,0,.28); }
+.plank { position: relative; height: 22px; margin: 0 -4px; border-radius: 4px; background: linear-gradient(var(--wood-top) 0 5px, var(--wood) 5px calc(100% - 4px), var(--wood-edge) calc(100% - 4px)); box-shadow: 0 16px 22px -10px rgba(0,0,0,.4); }
+.plank::before { content: ""; position: absolute; inset: 5px 0 4px; background: repeating-linear-gradient(90deg, rgba(0,0,0,.05) 0 1px, transparent 1px 38px), repeating-linear-gradient(90deg, rgba(255,255,255,.06) 0 2px, transparent 2px 61px); }
+.book-note { margin-top: 26px; background: var(--surface); border: 2px solid var(--ink); border-radius: 22px; padding: 22px 26px; display: grid; gap: 6px; box-shadow: 6px 6px 0 var(--c2); max-width: 760px; }
+.book-note h4 { margin: 0; font-family: var(--display); font-weight: 800; font-size: 1.4rem; letter-spacing: -0.02em; }
+.book-note .note { font-family: var(--serif); font-style: italic; font-size: 1.15rem; color: var(--hl); }
+@media (max-width: 640px) { .b3d { width: 112px; height: 168px; } }
+
+/* Art wall */
+.art { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.frame { background: var(--surface); border: 10px solid var(--ink); padding: 12px; box-shadow: 6px 8px 0 var(--c2); transform: rotate(var(--r, 0deg)); transition: transform .3s; }
+.frame:hover { transform: rotate(0deg) scale(1.02); }
+.canvas { aspect-ratio: 4 / 5; border-radius: 2px; display: grid; place-items: center; text-align: center; padding: 16px; color: var(--muted); font-family: var(--serif); font-style: italic; font-size: 1.1rem;
+  background: repeating-linear-gradient(45deg, var(--bg) 0 10px, color-mix(in srgb, var(--line) 70%, var(--bg)) 10px 20px); }
+.canvas:has(img) { padding: 0; background: var(--paper); }
+.canvas img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.explore { display: grid; grid-template-columns: minmax(0, 1fr) repeat(2, minmax(0, 220px)); gap: 28px; align-items: center; margin-top: 28px; }
+.explore-label { font-family: var(--serif); font-style: italic; font-size: clamp(1.4rem, 3vw, 2rem); line-height: 1.15; color: var(--muted); max-width: 16ch; }
+.snap { background: var(--on-dark); padding: 10px 10px 12px; border: 2px solid var(--on-light); box-shadow: 5px 5px 0 var(--c1); transform: rotate(var(--r)); transition: transform .3s; }
+.snap:hover { transform: rotate(0deg) scale(1.04); }
+.snap img { display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover; }
+.snap figcaption { font-family: var(--serif); font-style: italic; color: var(--on-light); text-align: center; margin-top: 6px; font-size: 1rem; }
+@media (max-width: 640px) { .explore { grid-template-columns: repeat(2, minmax(0, 1fr)); } .explore-label { grid-column: 1 / -1; max-width: none; } }
+.frame figcaption { font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-top: 10px; }
+
+/* Postcards */
+.cards2 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+.postcard .face { aspect-ratio: 4 / 5; border-radius: 14px; border: 2px solid var(--on-light); overflow: hidden; position: relative; }
+.pc-front { display: flex; align-items: flex-end; padding: 18px 20px; }
+.pc-front.photo { background: var(--ink); }
+.pc-front.photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.pc-front.photo::after { content: ""; position: absolute; inset: 45% 0 0 0; background: linear-gradient(transparent, rgba(0,0,0,.55)); }
+.pc-front strong { position: relative; z-index: 1; font-family: var(--display); font-weight: 800; font-size: clamp(2rem, 5vw, 3.2rem); letter-spacing: -0.04em; line-height: .9; color: var(--on-dark); text-shadow: 3px 3px 0 var(--on-light); }
+.pc-front small { display: block; font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 1.1rem; letter-spacing: 0; text-shadow: none; }
+.surf { background: linear-gradient(#7fd3ff 0 52%, #2a8fd6 52% 100%); }
+.surf::before { content: ""; position: absolute; width: 70px; height: 70px; border-radius: 50%; background: #ffd84a; right: 12%; top: 10%; }
+.surf::after { content: ""; position: absolute; left: -10%; right: -10%; bottom: 0; height: 50%;
+  background: radial-gradient(60px 34px at 60px 0, transparent 98%, #ffffff 100%) 0 0 / 120px 40px repeat-x, linear-gradient(transparent 40px, #1f6fb0 40px); opacity: .9; }
+.safari { background: linear-gradient(#ff9e5a 0%, #ffcf6b 55%, #d98b3a 55% 100%); }
+.safari::before { content: ""; position: absolute; width: 110px; height: 110px; border-radius: 50%; background: #fff1b8; left: 48%; top: 16%; }
+.safari::after { content: ""; position: absolute; right: 14%; bottom: 44%; width: 38%; height: 30%;
+  background: radial-gradient(ellipse at 50% 30%, #2b1d14 0 60%, transparent 62%) top / 100% 50% no-repeat, linear-gradient(#2b1d14, #2b1d14) 50% 100% / 6% 70% no-repeat; }
+.pc-back { background: var(--paper); color: var(--paper-ink); display: grid; grid-template-rows: auto 1fr auto; gap: 14px; padding: 20px; }
+.pc-back .para { display: block; font-family: var(--serif); font-style: italic; font-size: clamp(1.05rem, 1.8vw, 1.3rem); line-height: 1.35; align-self: center; }
+.stamp { width: 52px; height: 62px; justify-self: end; border: 3px dotted #b8b0a2; background: var(--c2); display: grid; place-items: center; font-family: var(--display); font-weight: 800; color: var(--on-light); transform: rotate(4deg); }
+.pc-back .addr { display: block; border-top: 1px solid #d8d2c6; padding-top: 8px; font-family: var(--mono); font-size: 0.7rem; color: #6d665c; text-transform: uppercase; letter-spacing: 0.06em; }
+
+/* Brands */
+.brands { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; }
+.brand { border-radius: 20px; border: 2px solid var(--on-light); padding: 18px; min-height: 230px; display: grid; align-content: space-between; gap: 12px; text-align: left; cursor: pointer; background: var(--bgc); color: var(--fg); transition: transform .25s; }
+.brand:hover { transform: translateY(-4px) rotate(var(--r, -1deg)); }
+.brand .wm { font-size: 1.6rem; line-height: 1; }
+.brand .logo { display: block; max-width: 100%; height: auto; }
+.l-ganni { width: 150px; height: 46px !important; object-fit: cover; mix-blend-mode: multiply; }
+.l-benefit { height: 42px !important; width: auto; }
+.l-prime { height: 34px !important; width: auto; }
+.l-poppi { height: 44px !important; width: auto; }
+.l-mirchi { height: 64px !important; width: auto; }
+.brand .why { font-size: 0.9rem; line-height: 1.4; display: none; }
+.brand .peek { font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; opacity: .8; }
+.brand[aria-expanded="true"] .why { display: block; }
+.brand[aria-expanded="true"] .peek { display: none; }
+.wm-ganni { font-family: var(--display); font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; }
+.wm-benefit { font-family: var(--serif); font-style: italic; font-size: 2rem !important; }
+.wm-mirchi { font-family: var(--display); font-weight: 600; letter-spacing: -0.02em; }
+.wm-prime { font-family: var(--body); font-weight: 700; letter-spacing: -0.02em; text-transform: lowercase; }
+.wm-poppi { font-family: var(--display); font-weight: 800; font-size: 2rem !important; letter-spacing: -0.05em; text-transform: lowercase; }
+
+/* Cuisines table */
+:root { --cloth: #fff7ec; --cloth-line: rgba(226, 87, 44, .12); }
+.table { border: 2px solid var(--on-light); border-radius: 28px; padding: clamp(22px, 4vw, 40px); display: grid; gap: 26px;
+  background: repeating-linear-gradient(0deg, var(--cloth-line) 0 18px, transparent 18px 36px), repeating-linear-gradient(90deg, var(--cloth-line) 0 18px, transparent 18px 36px), var(--cloth); }
+.plates { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(14px, 3vw, 28px); }
+.plate-card { display: grid; justify-items: center; text-align: center; gap: 4px; color: var(--paper-ink); }
+.plate { width: 100%; max-width: 190px; aspect-ratio: 1; border-radius: 50%; padding: 6%; background: var(--pc); border: 2px solid var(--on-light); box-shadow: 6px 8px 0 rgba(0,0,0,.12); margin-bottom: 10px; transition: transform .6s cubic-bezier(.2,.8,.2,1.3), box-shadow .3s; }
+.plate svg { display: block; width: 100%; height: 100%; filter: drop-shadow(0 4px 6px rgba(0,0,0,.18)); }
+.plate-card:hover .plate { transform: rotate(-18deg) scale(1.04); }
+.plate-card b { font-family: var(--display); font-weight: 800; font-size: clamp(1.15rem, 2.2vw, 1.5rem); letter-spacing: -0.03em; }
+.plate-card span { font-family: var(--serif); font-style: italic; color: #6d665c; font-size: 1.02rem; }
+.plate-card.lit .plate { transform: scale(1.1) rotate(8deg); box-shadow: 0 0 0 6px var(--paper-ink), 10px 12px 0 rgba(0,0,0,.15); }
+.plate-card.lit b { color: #e2572c; }
+.pick-row { display: grid; justify-items: center; gap: 10px; }
+.pick-row .pick-out { color: var(--paper-ink); }
+@media (max-width: 760px) { .plates { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* Menu */
+.menu-card { background: var(--paper); color: var(--paper-ink); border: 2px solid var(--on-light); border-radius: 22px; padding: clamp(24px, 4vw, 40px); display: grid; gap: 18px; max-width: 720px; box-shadow: 8px 8px 0 var(--c3); }
+.menu-card .label { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; text-align: center; color: #6d665c; }
+.dishes { display: grid; }
+.dish { display: flex; align-items: baseline; gap: 10px; padding: 12px 10px; border-radius: 12px; transition: background .15s, transform .15s; }
+.dish b { font-family: var(--display); font-weight: 800; font-size: clamp(1.3rem, 3vw, 1.8rem); letter-spacing: -0.03em; }
+.dish i { flex: 1; border-bottom: 2px dotted #c9c1b3; transform: translateY(-6px); }
+.dish span { font-family: var(--serif); font-style: italic; font-size: 1.05rem; color: #6d665c; }
+.dish.lit { background: var(--c3); transform: scale(1.02); }
+.dish.lit span { color: var(--paper-ink); }
+.pick { justify-self: center; background: var(--paper-ink); color: var(--paper); border: 0; border-radius: 999px; padding: 12px 22px; font-weight: 700; cursor: pointer; transition: transform .2s; }
+.pick:hover { transform: rotate(-2deg) scale(1.04); }
+.pick-out { text-align: center; font-family: var(--serif); font-style: italic; font-size: 1.15rem; min-height: 1.5em; }
+.food-split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 22px; align-items: start; }
+
+@media (max-width: 960px) {
+  .cards2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cards2 > :last-child { grid-column: 1 / -1; }
+  .cards2 > :last-child .face { aspect-ratio: 16 / 9; }
+  .brands { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .brand:last-child { grid-column: 1 / -1; min-height: 0; }
+  .food-split { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 640px) {
+  .art, .cards2 { grid-template-columns: minmax(0, 1fr); }
+  .postcard .face { aspect-ratio: 5 / 4; }
+  .brands { grid-template-columns: minmax(0, 1fr); }
+  .brand { min-height: 0; }
+  .pc-back .para { display: block; border-right: 0; padding-right: 0; }
+}
+
+/* Cursor ring (fine pointers only) */
+.cursor { position: fixed; left: 0; top: 0; width: 34px; height: 34px; margin: -17px 0 0 -17px; border-radius: 50%; border: 2px solid var(--c2); pointer-events: none; z-index: 90; transition: width .2s, height .2s, margin .2s, background .2s; display: none; }
+.cursor.big { width: 64px; height: 64px; margin: -32px 0 0 -32px; background: color-mix(in srgb, var(--c2) 25%, transparent); }
+@media (pointer: fine) { .cursor { display: block; } }
+
+/* Responsive */
+@media (max-width: 960px) {
+  .figs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .t-pos, .t-logo, .t-palette, .t-voice { grid-column: span 12; }
+  .t-fuel { grid-template-columns: minmax(0, 1fr); }
+  .edu, .split { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 1000px) {
+  .hero .inner { min-height: 0; }
+  .stickers { position: static; display: flex; flex-wrap: wrap; gap: 12px; pointer-events: auto; }
+  .sticker { position: static; cursor: default; touch-action: auto; }
+  .sticker.round { width: 112px; height: 112px; }
+  .sticker.photo { width: 150px; order: -1; }
+  .badge, .drag-hint { display: none; }
+}
+@media (max-width: 760px) {
+  .cases { grid-template-columns: minmax(0, 1fr); }
+  .job { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .job-side { grid-auto-flow: column; justify-content: start; align-items: center; gap: 14px; }
+  .tl-years, .tl-row { grid-template-columns: 130px minmax(0, 1fr); }
+  .log-row { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .nav { gap: 2px; }
+}
+@media (max-width: 480px) {
+  .figs { grid-template-columns: minmax(0, 1fr); }
+  .fig { min-height: 0; }
+}
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+  .cursor { display: none !important; }
+}
+</style>
+
+<div class="progress" aria-hidden="true"><i id="bar"></i></div>
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+
+<div class="nav-wrap gutter">
+  <nav class="nav" aria-label="Sections">
+    <div class="nav-links">
+      <a href="#top">Rea</a>
+      <a href="#brand">Brand</a>
+      <a href="#numbers">Numbers</a>
+      <a href="#journey">Journey</a>
+      <a href="#experience">Experience</a>
+      <a href="#work">Cases</a>
+      <a href="#education">Education</a>
+      <a href="#about">About me</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a class="nav-btn li" href="https://www.linkedin.com/in/reashah/" target="_blank" rel="noopener" aria-label="Rea Shah on LinkedIn" title="LinkedIn">in</a>
+    <button class="nav-btn" type="button" id="pal-cycle" aria-label="Change colour palette" title="Change palette"><span class="dots"></span></button>
+    <button class="nav-btn" type="button" id="theme-toggle" aria-label="Switch light or dark mode" title="Light / dark">◐</button>
+  </nav>
+</div>
+
+<header class="hero gutter" id="top">
+  <div class="inner">
+    <p class="kicker">Brand strategy · London · Eligible to work in the UK</p>
+    <h1 class="name"><span class="r">Rea</span><span>Shah<span class="dot">.</span></span></h1>
+    <p class="lede">I turn <span class="swap" id="swap">messy research</span> into one clear brand idea.</p>
+    <div class="hero-actions">
+      <a class="btn primary" href="#work">See my work →</a>
+      <a class="btn ghost" href="https://www.linkedin.com/in/reashah/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a class="btn ghost" href="#contact">Say hello</a>
+      <span class="drag-hint">psst, the stickers move</span>
+    </div>
+    <div class="stickers" id="stickers">
+      <div class="sticker photo" style="--r: 0deg; left: 55%; top: 17%"><img src="rea.jpg" alt="Rea Shah" draggable="false">that's me ✦</div>
+      <div class="sticker" style="--bgc: var(--c1); --fg: var(--on-dark); --r: -6deg; left: 55%; top: 1%">Unilever<small>Portfolio strategy placement</small></div>
+      <div class="sticker round" style="--bgc: var(--c3); --fg: var(--on-light); --r: 8deg; left: 80%; top: 0%">1:1<small>at Bayes</small></div>
+      <div class="sticker" style="--bgc: var(--c2); --fg: var(--on-light); --r: 4deg; left: 78%; top: 33%">200+ users<small>on a tool I co-built</small></div>
+      <div class="sticker" style="--bgc: var(--surface); --fg: var(--ink); --r: 5deg; left: 80%; top: 54%">EN · HI · GU<small>+ un peu de français</small></div>
+      <div class="sticker" style="--bgc: var(--c4); --fg: var(--on-light); --r: -3deg; left: 55%; top: 68%">London Fashion Week<small>Black PR volunteer</small></div>
+      <div class="sticker" style="--bgc: var(--ink); --fg: var(--bg); --r: -4deg; left: 58%; top: 86%">10 new clients<small>in 2 months, via referrals</small></div>
+    </div>
+    <div class="badge" aria-hidden="true">
+      <svg viewBox="0 0 150 150"><defs><path id="circ" d="M75,75 m-58,0 a58,58 0 1,1 116,0 a58,58 0 1,1 -116,0"/></defs><text><textPath href="#circ" textLength="362" lengthAdjust="spacing">Open to 2027 grad schemes ✦ Brand strategy ✦</textPath></text></svg>
+      <b>✦</b>
+    </div>
+  </div>
+</header>
+
+<div class="marquee" aria-hidden="true"><div class="track" id="m1"></div></div>
+
+<main>
+  <section id="brand" class="gutter">
+    <div class="inner">
+      <div class="sec-head">
+        <p class="eyebrow">Brand book, vol. 1</p>
+        <h2>If I were a brand, <span class="serif">here are the guidelines.</span></h2>
+      </div>
+      <div class="book">
+        <div class="tile t-pos">
+          <span class="label">Positioning statement</span>
+          <p>For brands that want to get closer to people, Rea Shah is the <b>2027 strategy graduate</b> who turns messy research into one clear idea. Unlike a pure analyst, Rea gets ideas adopted: a social lens now <b>standard at Unilever</b> and a tool 200+ people use.</p>
+        </div>
+        <div class="tile t-logo">
+          <span class="label">Primary mark · tap to rebrand</span>
+          <button class="mark" type="button" id="mark" aria-label="Change the site's colour palette">
+            <span class="mark-aura"></span>
+            <svg class="mark-ring" viewBox="0 0 200 200" aria-hidden="true"><defs><path id="ring" d="M100,100 m-88,0 a88,88 0 1,1 176,0 a88,88 0 1,1 -176,0"/></defs><text><textPath href="#ring" textLength="548" lengthAdjust="spacing">Rea Shah ✦ Brand &amp; Strategy ✦ London ✦ Consumer insight ✦</textPath></text></svg>
+            <span class="mark-core"><span class="m-r">r</span><span class="m-s">s</span><span class="m-dot"></span></span>
+          </button>
+          <span class="mark-lock">rea shah · brand &amp; strategy</span>
+        </div>
+        <div class="tile t-palette">
+          <span class="label">Colour palette · pick one to rebrand this site</span>
+          <div class="palettes" role="group" aria-label="Colour palettes">
+            <button class="pal" type="button" data-pal="cobalt" aria-pressed="true"><span><strong>Cobalt Pop</strong><small>Confident, digital, a bit loud</small></span><span class="sw"><i style="background:#2f3cff"></i><i style="background:#ff5fa8"></i><i style="background:#ffd84a"></i><i style="background:#a8f0d8"></i></span></button>
+            <button class="pal" type="button" data-pal="tomato" aria-pressed="false"><span><strong>Tomato Club</strong><small>Warm, food-and-beauty energy</small></span><span class="sw"><i style="background:#f2452a"></i><i style="background:#b9a0ff"></i><i style="background:#c8f26b"></i><i style="background:#ffd6c9"></i></span></button>
+            <button class="pal" type="button" data-pal="garden" aria-pressed="false"><span><strong>Garden Party</strong><small>Fresh, premium, considered</small></span><span class="sw"><i style="background:#0b7a4e"></i><i style="background:#ff9f6b"></i><i style="background:#9fd6ff"></i><i style="background:#f5c7df"></i></span></button>
+          </div>
+        </div>
+        <div class="tile t-voice">
+          <span class="label">How I work · tap a word</span>
+          <div class="voice" role="group" aria-label="How I work">
+            <button type="button" data-voice="0" aria-pressed="true">Curious.</button>
+            <button type="button" data-voice="1" aria-pressed="false">Commercial.</button>
+            <button type="button" data-voice="2" aria-pressed="false">Cut-through.</button>
+            <button type="button" data-voice="3" aria-pressed="false">Compelling.</button>
+          </div>
+          <p class="voice-note" id="voice-note" aria-live="polite"></p>
+        </div>
+        <div class="tile t-fuel">
+          <span class="label">Brand inspiration</span>
+          <div class="fuel"><span>Painting</span><span>Art galleries</span><span>Fiction</span><span>Travel</span><span>Fashion Week</span><span>Supermarket shelves</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="numbers" class="gutter" style="padding-top: 0">
+    <div class="inner">
+      <div class="sec-head">
+        <p class="eyebrow">Proof points</p>
+        <h2>The numbers <span class="serif">behind the story.</span></h2>
+      </div>
+      <div class="figs">
+        <button class="fig" type="button" data-case="tool" style="--bgc: var(--c1); --fg: var(--on-dark); --r: -2deg"><b>200+</b><span>people using a strategy tool I co-built and rolled out</span><em>Open case →</em></button>
+        <button class="fig" type="button" data-case="data" style="--bgc: var(--c2); --fg: var(--on-light); --r: 2deg"><b>95%</b><span>fewer data errors after I redesigned the standards</span><em>Open case →</em></button>
+        <button class="fig" type="button" data-case="prereads" style="--bgc: var(--c3); --fg: var(--on-light); --r: -1.5deg"><b>8</b><span>country-visit pre-reads with my social media lens, now standard practice</span><em>Open case →</em></button>
+        <button class="fig" type="button" data-case="competitors" style="--bgc: var(--c4); --fg: var(--on-light); --r: 2.5deg"><b>4</b><span>competitor deep-dives shown to president-level leaders</span><em>Open case →</em></button>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee alt" aria-hidden="true"><div class="track" id="m2"></div></div>
+
+  <section id="journey" class="gutter">
+    <div class="inner">
+      <div class="sec-head">
+        <p class="eyebrow">Journey</p>
+        <h2>2021 to now, <span class="serif">at a glance.</span></h2>
+        <p class="hint">Tap a bar to see what I did there.</p>
+      </div>
+      <div class="tl-scroll"><div class="tl" id="tl"></div></div>
+      <div class="tl-foot">
+        <div class="tl-legend">
+          <span style="--c: var(--c1)">Work</span>
+          <span style="--c: var(--c4)">Education</span>
+          <span style="--c: var(--c2)">Leadership &amp; volunteering</span>
+        </div>
+      </div>
+      <div class="tl-detail" id="tl-detail" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section id="experience" class="gutter">
+    <div class="inner">
+      <div class="sec-head">
+        <p class="eyebrow">Experience</p>
+        <h2>Where I've <span class="serif">done the work.</span></h2>
+      </div>
+      <div class="filters" role="group" aria-label="Filter by skill">
+        <span class="lbl">show me…</span>
+        <button class="pill" type="button" data-tag="research" aria-pressed="false">Research &amp; insight</button>
+        <button class="pill" type="button" data-tag="data" aria-pressed="false">Data &amp; tooling</button>
+        <button class="pill" type="button" data-tag="stakeholders" aria-pressed="false">Senior stakeholders</button>
+        <button class="pill" type="button" data-tag="automation" aria-pressed="false">Automation</button>
+        <button class="pill" type="button" data-tag="content" aria-pressed="false">Writing &amp; storytelling</button>
+        <button class="pill" type="button" data-tag="growth" aria-pressed="false">Brand &amp; growth</button>
+      </div>
+      <p class="match-count" id="match-count" aria-live="polite"></p>
+
+      <article class="job">
+        <div class="job-side">
+          <span class="logo-chip" style="--bgc: var(--c1); --fg: var(--on-dark)">Unilever</span>
+          <span class="when">Jun 2025 – 2026<br>London</span>
+        </div>
+        <div>
+          <h3>Associate Portfolio Transformation Strategy Manager</h3>
+          <span class="org">Placement year, Portfolio Transformation Strategy</span>
+          <ul class="points">
+            <li data-tags="research stakeholders"><strong>Led 4 competitor analyses</strong> and turned the findings into recommendations for president-level stakeholders, feeding the Home Care category prioritisation strategy.</li>
+            <li data-tags="data stakeholders">Co-developed and led rollout of a <strong>strategy tool adopted by 200+ users</strong> to track project status at monthly investor board meetings.</li>
+            <li data-tags="data">Took ownership of a new <strong>innovation-performance tracker spanning 50+ projects in 15+ countries</strong> and expanded what it could do with cross-functional teams.</li>
+            <li data-tags="data">Redesigned data standards across <strong>75+ projects, cutting data errors by 95%</strong> in company-wide performance reporting.</li>
+            <li data-tags="content stakeholders growth">Added a social media lens to <strong>8 strategic pre-reads</strong> for senior country visits, now standard practice for future visits.</li>
+            <li data-tags="automation data">Helped automate the tracker's manual monthly KPI process and ran working sessions with tech teams.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="job">
+        <div class="job-side">
+          <span class="logo-chip" style="--bgc: var(--c2); --fg: var(--on-light)">Rediffusion</span>
+          <span class="when">Jun – Jul 2023<br>Mumbai</span>
+        </div>
+        <div>
+          <h3>Brand &amp; Research Intern</h3>
+          <span class="org">Advertising agency · my first role, at 18, supporting the team behind the scenes</span>
+          <ul class="points">
+            <li data-tags="research growth">Supported research on consumer, market and competitor trends for brands including <strong>Nerolac Paints and Taj Hotels</strong>, finding insights to inform brand and marketing strategy.</li>
+            <li data-tags="research">Pulled together <strong>50+ industry and competitor sources</strong> into presentations and reports for the team.</li>
+            <li data-tags="content">Wrote for <strong>Rediffusion's newsletter</strong>, explaining industry trends and brand perspectives to a professional audience.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="job">
+        <div class="job-side">
+          <span class="logo-chip" style="--bgc: var(--c3); --fg: var(--on-light)">Marsh McLennan</span>
+          <span class="when">Jul – Aug 2024<br>Mumbai</span>
+        </div>
+        <div>
+          <h3>Marketing Strategy Intern</h3>
+          <span class="org">B2B marketing, energy sector</span>
+          <ul class="points">
+            <li data-tags="research">Analysed <strong>30+ reports and 20+ interviews</strong> to find retention and acquisition opportunities in the oil sector, then shaped them into a B2B campaign strategy.</li>
+            <li data-tags="research stakeholders">Wrote an oil-sector marketing thesis and presented recommendations across teams to set client outreach priorities.</li>
+            <li data-tags="content growth">Built a <strong>20+ post content strategy</strong> across LinkedIn and email, still in use 8 months after the internship ended.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="job">
+        <div class="job-side">
+          <span class="logo-chip" style="--bgc: var(--ink); --fg: var(--bg)">Family business</span>
+          <span class="when">Independent project<br>Nutrition practice</span>
+        </div>
+        <div>
+          <h3>Referral programme for a nutrition practice</h3>
+          <span class="org">Growth project for my mum's nutritionist business</span>
+          <ul class="points">
+            <li data-tags="research growth">Noticed that clients already recommended the practice to friends on their own, and set out to turn that word of mouth into a <strong>structured referral programme</strong>.</li>
+            <li data-tags="growth content">Designed the programme around how clients naturally talked about the practice, making it easy to refer someone or <strong>bring a friend along</strong>.</li>
+            <li data-tags="research growth">Gathered client feedback: the response was positive, and <strong>1 in 2 clients said they were more likely to refer</strong> or bring friends.</li>
+            <li data-tags="growth">Brought in <strong>10 new clients through referrals in 2 months</strong>, growing the practice's client base.</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="work" class="gutter" style="padding-top: 0">
+    <div class="inner">
+      <div class="sec-head">
+        <p class="eyebrow">Case studies</p>
+        <h2>Seven projects, <span class="serif">the full story.</span></h2>
+        <p class="hint">Open a card for the situation, task, action and result.</p>
+      </div>
+      <div class="cases">
+        <button class="case featured" type="button" data-case="prereads" data-tags="content stakeholders growth" style="--bgc: var(--c4); --fg: var(--on-light)">
+          <span class="tag">Unilever · Social &amp; consumer insight</span>
+          <span class="big">8 pre-reads</span>
+          <span><h3>Bringing social media into leadership country visits</h3><p>Unilever's country-visit briefings had no view of social media. I added one, and senior stakeholders made it standard practice.</p></span>
+          <span class="open"><i>→</i> Read the case</span>
+        </button>
+        <button class="case" type="button" data-case="competitors" data-tags="research stakeholders" style="--bgc: var(--c1); --fg: var(--on-dark)">
+          <span class="tag">Unilever · Home Care</span>
+          <span class="big">4 deep-dives</span>
+          <span><h3>Competitor analysis for category prioritisation</h3></span>
+          <span class="open"><i>→</i> Read the case</span>
+        </button>
+        <button class="case" type="button" data-case="referral" data-tags="growth research content" style="--bgc: var(--ink); --fg: var(--bg)">
+          <span class="tag">Family business · Word-of-mouth marketing</span>
+          <span class="big">10 new clients</span>
+          <span><h3>Turning word of mouth into a referral programme</h3></span>
+          <span class="open"><i>→</i> Read the case</span>
+        </button>
+        <button class="case" type="button" data-case="rediffusion" data-tags="research content growth" style="--bgc: var(--c2); --fg: var(--on-light)">
+          <span class="tag">Rediffusion · Mumbai · Jun – Jul 2023</span>
+          <span class="big">50+ sources</span>
+          <span><h3>Brand research for Nerolac Paints and Taj Hotels</h3></span>
+          <span class="open"><i>→</i> Read the case</span>
+        </button>
+        <button class="case" type="button" data-case="marsh" data-tags="research content" style="--bgc: var(--c3); --fg: var(--on-light)">
+          <span class="tag">Marsh McLennan · Mumbai</span>
+          <span class="big">8 months</span>
+          <span><h3>An oil-sector go-to-market thesis</h3></span>
+          <span class="open"><i>→</i> Read the case</span>
+        </button>
+        <button class="case" type="button" data-case="tool" data-tags="data stakeholders" style="--bgc: var(--c1); --fg: var(--on-dark)">
+          <span class="tag">Unilever · Governance</span>
+          <span class="big">200+ users</span>
+          <span><h3>A board-level project tracking tool</h3></span>
+          <span class="open"><i>→</i> Read the case</span>
+        </button>
+        <button class="case" type="button" data-case="data" data-tags="data automation" style="--bgc: var(--c4); --fg: var(--on-light)">
+          <span class="tag">Unilever · Data &amp; reporting</span>
+          <span class="big">−95% errors</span>
+          <span><h3>Rebuilding innovation data standards</h3></span>
+          <span class="open"><i>→</i> Read the case</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section id="education" class="gutter" style="padding-top: 0">
+    <div class="inner">
+      <div class="sec-head">
+        <p class="eyebrow">Education</p>
+        <h2>Where I've <span class="serif">studied.</span></h2>
+      </div>
+      <div class="school-head"><h3>Bayes Business School, City St George's, University of London</h3><span class="hint">BSc Business Management with Year in Industry · Sept 2023 – 2027</span></div>
+      <div class="edu">
+        <div class="grade-card">
+          <span class="d-tag">Current average</span>
+          <b>1:1<span>.</span></b>
+          <span>73% so far, on track for a First.</span>
+        </div>
+        <div class="modules" role="list" aria-label="Relevant modules">
+          <div class="mod" role="listitem"><div class="mod-top"><span>Quantitative Methods &amp; Analytics</span><span>89%</span></div><div class="meter"><i style="--w:89%"></i></div></div>
+          <div class="mod" role="listitem"><div class="mod-top"><span>Business Economics</span><span>83%</span></div><div class="meter"><i style="--w:83%"></i></div></div>
+          <div class="mod" role="listitem"><div class="mod-top"><span>Introduction to Finance</span><span>77%</span></div><div class="meter"><i style="--w:77%"></i></div></div>
+          <div class="mod" role="listitem"><div class="mod-top"><span>Marketing Strategy</span><span>73%</span></div><div class="meter"><i style="--w:73%"></i></div></div>
+          <div class="mod" role="listitem"><div class="mod-top"><span>Technology &amp; Innovation Management</span><span>72%</span></div><div class="meter"><i style="--w:72%"></i></div></div>
+          <div class="mod" role="listitem"><div class="mod-top"><span>Business Strategy Analysis</span><span>68%</span></div><div class="meter"><i style="--w:68%"></i></div></div>
+        </div>
+      </div>
+      <div class="school-head"><h3>Hill Spring International School</h3><span class="hint">International Baccalaureate Diploma Programme · Jun 2021 – 2023</span></div>
+      <div class="ib-card">
+        <b>40<span>/45</span></b>
+        <div><span class="d-tag">IB Diploma score</span><p>The International Baccalaureate Diploma, finished before starting at Bayes.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="more" class="gutter" style="padding-top: 0">
+    <div class="inner split">
+      <div>
+        <div class="sec-head">
+          <p class="eyebrow">Leadership</p>
+          <h2>Off the <span class="serif">clock.</span></h2>
+        </div>
+        <div class="log">
+          <div class="log-row"><span class="when">Mar 2026</span><div><h3>Top 20 Judge, Enactus UK</h3><p>Assessed student-led entrepreneurial projects.</p></div></div>
+          <div class="log-row"><span class="when">Jan 2026</span><div><h3>Guest Panelist, Enactus UK</h3><p>Spoke about moving from university into industry.</p></div></div>
+          <div class="log-row"><span class="when">2025 – 2026</span><div><h3>Volunteer, Unilever initiatives</h3><p>Dove &amp; Domestos Day and a half-marathon charity walk.</p></div></div>
+          <div class="log-row"><span class="when">2023 – now</span><div><h3>Member, Bayes Marketing and Strategy Club</h3></div></div>
+          <div class="log-row"><span class="when">Feb 2024</span><div><h3>London Fashion Week, Black PR</h3><p>A week of fast-paced event delivery.</p></div></div>
+          <div class="log-row"><span class="when">Jun 2021 – 2023</span><div><h3>Volunteer Teacher, Yasham Foundation</h3><p>Taught maths and English to underserved children in India.</p></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="sec-head">
+          <p class="eyebrow">Toolkit</p>
+          <h2>What I <span class="serif">work with.</span></h2>
+        </div>
+        <div class="skillset">
+          <div><h3>Analysis</h3><div class="chips"><span class="chip">Advanced Excel</span><span class="chip">PowerPoint</span><span class="chip">Data visualisation</span><span class="chip">AI-assisted analysis</span><span class="chip">Workflow automation</span><span class="chip">Microsoft Copilot</span></div></div>
+          <div><h3>Consumer &amp; market data</h3><div class="chips"><span class="chip">Nielsen</span><span class="chip">Kantar</span><span class="chip">PenTrack</span></div></div>
+          <div><h3>Languages</h3><div class="chips"><span class="chip">English · native</span><span class="chip">Hindi · proficient</span><span class="chip">Gujarati · proficient</span><span class="chip">French · beginner</span></div></div>
+          <div><h3>Certified</h3><div class="chips"><span class="chip">CAPM project management</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee alt" aria-hidden="true"><div class="track" id="m3"></div></div>
+
+  <section id="about" class="gutter">
+    <div class="inner">
+      <div class="sec-head">
+        <p class="eyebrow">About me</p>
+        <h2>The person <span class="serif">behind the slides.</span></h2>
+        <p class="hint">What I read, paint, travel for, buy and eat. Most of it is clickable.</p>
+      </div>
+      <div class="about-grid">
+
+        <div class="sub">
+          <div class="sub-head"><h3>On my <span class="serif">bookshelf</span></h3><span class="hint">Tap a book to pull it off the shelf</span></div>
+          <div class="shelf3d-wrap">
+            <div class="shelf3d" role="group" aria-label="My books">
+              <button class="b3d" type="button" data-book="0" aria-pressed="true" aria-label="A Thousand Splendid Suns by Khaled Hosseini"><span class="b3d-book"><span class="front"><img src="cover-suns.jpg" alt=""></span></span></button>
+              <button class="b3d" type="button" data-book="1" aria-pressed="false" aria-label="The Palace of Illusions by Chitra Banerjee Divakaruni"><span class="b3d-book"><span class="front"><img src="cover-palace.jpg" alt=""></span></span></button>
+              <button class="b3d" type="button" data-book="2" aria-pressed="false" aria-label="Yesteryear by Caro Claire Burke"><span class="b3d-book"><span class="front"><img src="cover-yesteryear.jpg" alt=""></span></span></button>
+              <button class="b3d" type="button" data-book="3" aria-pressed="false" aria-label="Before the Coffee Gets Cold by Toshikazu Kawaguchi"><span class="b3d-book"><span class="front"><span class="cover cv4"><span class="t">Before the Coffee Gets Cold</span><span class="a">Toshikazu Kawaguchi</span></span></span></span></button>
+              <button class="b3d" type="button" data-book="4" aria-pressed="false" aria-label="The Silent Patient by Alex Michaelides"><span class="b3d-book"><span class="front"><img src="cover-silent.jpg" alt=""></span></span></button>
+            </div>
+            <div class="plank" aria-hidden="true"></div>
+          </div>
+          <div class="book-note" id="book-note" aria-live="polite"></div>
+        </div>
+
+        <div class="sub">
+          <div class="sub-head"><h3>Some of <span class="serif">my art</span></h3></div>
+          <div class="art" id="art">
+            <figure class="frame" style="--r: -2deg; margin: 0"><div class="canvas"><img src="art-lotus.jpg" alt="Painting of pink lotus flowers inside a scalloped arch on a deep blue background"></div></figure>
+            <figure class="frame" style="--r: 1.5deg; margin: 0"><div class="canvas"><img src="art-arches.jpg" alt="Painting of pink and red arches, a vase, a palm tree, mountains, waves, sun and moon"></div></figure>
+            <figure class="frame" style="--r: -1deg; margin: 0"><div class="canvas"><img src="art-sunset.jpg" alt="Painting of a domed building in black silhouette against an orange and yellow sunset with birds"></div></figure>
+          </div>
+          <div class="explore">
+            <p class="explore-label">…and out exploring other people's</p>
+            <figure class="snap" style="--r: 3deg; margin: 0"><img src="explore-gallery.jpg" alt="Rea turning a large hinged panel of orange floral prints in a gallery"><figcaption>hands-on with print panels</figcaption></figure>
+            <figure class="snap" style="--r: -3deg; margin: 0"><img src="explore-flowers.jpg" alt="Rea standing in a room filled with hanging dried flowers"><figcaption>lost in a dried-flower installation</figcaption></figure>
+          </div>
+        </div>
+
+        <div class="sub">
+          <div class="sub-head"><h3>Time <span class="serif">away</span></h3><span class="hint">Tap a postcard to turn it over</span></div>
+          <div class="cards2">
+            <button class="flip postcard" type="button" aria-pressed="false"><span class="flip-inner">
+              <span class="face pc-front photo"><img src="travel-surf.jpg" alt="Surfers carrying boards along a busy beach at golden hour"><strong><small>summers in the</small>Surf</strong></span>
+              <span class="face pc-back"><span class="stamp">✦</span><span class="para">Summers are for surfing. Mostly falling off, occasionally standing up, always going back in for one more wave.</span><span class="addr">To: whoever's hiring</span></span>
+            </span></button>
+            <button class="flip postcard" type="button" aria-pressed="false"><span class="flip-inner">
+              <span class="face pc-front photo"><img src="travel-ski.jpg" alt="Rea skiing with two friends under a blue sky"><strong><small>first time on the</small>Slopes</strong></span>
+              <span class="face pc-back"><span class="stamp">✦</span><span class="para">My first time on skis. Plenty of falls, a lot of laughing and very patient friends. Not good yet, but I'm hooked.</span><span class="addr">To: whoever's hiring</span></span>
+            </span></button>
+            <button class="flip postcard" type="button" aria-pressed="false"><span class="flip-inner">
+              <span class="face pc-front photo"><img src="travel-safari.jpg" alt="View from the back of an open safari jeep on a dusty track"><strong><small>greetings from the</small>Safari</strong></span>
+              <span class="face pc-back"><span class="stamp">✦</span><span class="para">Early starts, long dusty drives and a lot of patience. Safaris taught me the best things are worth waiting quietly for.</span><span class="addr">To: whoever's hiring</span></span>
+            </span></button>
+          </div>
+        </div>
+
+        <div class="sub">
+          <div class="sub-head"><h3>Brands I <span class="serif">can't stop studying</span></h3><span class="hint">Tap one for why it works</span></div>
+          <div class="brands">
+            <button class="brand b-ganni" type="button" aria-expanded="false" style="--bgc: var(--ganni-bg); --fg: var(--ganni-fg); --r: -1.5deg"><img class="logo l-ganni" src="logo-ganni.jpg" alt="GANNI"><span class="peek">Why it works →</span><span class="why">Copenhagen cool that feels like a friend group, not a fashion house. Playful prints, a loyal community and very shareable collabs.</span></button>
+            <button class="brand" type="button" aria-expanded="false" style="--bgc: var(--benefit-bg); --fg: var(--benefit-fg); --r: 1.5deg"><img class="logo l-benefit" src="logo-benefit.svg" alt="Benefit"><span class="peek">Why it works →</span><span class="why">Cheeky retro packaging and product names you remember, plus brow bars that turn a product into a service people come back for.</span></button>
+            <button class="brand" type="button" aria-expanded="false" style="--bgc: var(--mirchi-bg); --fg: var(--mirchi-fg); --r: -1deg"><img class="logo l-mirchi" src="logo-mirchi.png" alt="Mirchi by Kim"><span class="peek">Why it works →</span><span class="why">Handmade in India &ldquo;for the wild spirited&rdquo;. A name that means chilli, artisan craft on every piece, and collections released as chapters, so each drop feels like the next part of a story.</span></button>
+            <button class="brand" type="button" aria-expanded="false" style="--bgc: var(--prime-bg); --fg: var(--prime-fg); --r: 1deg"><img class="logo l-prime" src="logo-prime.svg" alt="Prime Video"><span class="peek">Why it works →</span><span class="why">It comes bundled with Prime, so the hardest part of streaming, getting people to sign up, is already done. The originals give people a reason to stay.</span></button>
+            <button class="brand" type="button" aria-expanded="false" style="--bgc: var(--poppi-bg); --fg: var(--poppi-fg); --r: -1.5deg"><img class="logo l-poppi" src="logo-poppi.svg" alt="poppi"><span class="peek">Why it works →</span><span class="why">Took prebiotic soda out of the health aisle with bright cans and a social-first voice. Proof that packaging can make a whole category feel new.</span></button>
+          </div>
+        </div>
+
+        <div class="sub">
+          <div class="sub-head"><h3>Favourite <span class="serif">cuisines</span></h3><span class="hint">Can't decide? Let the table pick</span></div>
+          <div class="table">
+            <div class="plates">
+              <div class="plate-card" style="--pc: var(--c2)">
+                <div class="plate"><svg viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="96" fill="#cfd4db" stroke="#aeb5bf" stroke-width="3"/><circle cx="100" cy="100" r="82" fill="#e6e9ee"/>
+<circle cx="64" cy="66" r="22" fill="#e3a72a" stroke="#c3c9d1" stroke-width="5"/><circle cx="60" cy="62" r="5" fill="#f3c65a"/>
+<circle cx="104" cy="50" r="22" fill="#4f7d2c" stroke="#c3c9d1" stroke-width="5"/><circle cx="99" cy="46" r="4" fill="#7aa64c"/>
+<circle cx="142" cy="70" r="22" fill="#c8461f" stroke="#c3c9d1" stroke-width="5"/><circle cx="137" cy="66" r="5" fill="#e0703f"/>
+<circle cx="150" cy="114" r="18" fill="#f6f2e8" stroke="#c3c9d1" stroke-width="5"/><circle cx="146" cy="110" r="2" fill="#5f8f3a"/><circle cx="153" cy="117" r="2" fill="#5f8f3a"/>
+<ellipse cx="74" cy="124" rx="32" ry="22" fill="#fbf8ef"/><path d="M58 120h6M70 128h6M82 118h6M66 134h5M86 130h5" stroke="#e8e0cc" stroke-width="2" stroke-linecap="round"/>
+<circle cx="116" cy="148" r="28" fill="#d39a4f"/><circle cx="108" cy="140" r="3" fill="#a8692a"/><circle cx="124" cy="152" r="4" fill="#a8692a"/><circle cx="112" cy="158" r="2.5" fill="#a8692a"/>
+<path d="M92 148a28 28 0 0 1 22-27" stroke="#e3b46e" stroke-width="3" fill="none"/></svg></div>
+                <b>North Indian</b><span>home comfort</span>
+              </div>
+              <div class="plate-card" style="--pc: var(--c4)">
+                <div class="plate"><svg viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="96" fill="#f4ecdf" stroke="#2f5d8a" stroke-width="5" stroke-dasharray="10 6"/><circle cx="100" cy="100" r="82" fill="#f8f2e7"/>
+<circle cx="96" cy="92" r="44" fill="#e7cb94"/><path d="M96 62c22 0 32 18 22 32s-34 10-34-4 14-16 22-8" stroke="#d2ad6c" stroke-width="5" fill="none" stroke-linecap="round"/>
+<ellipse cx="98" cy="94" rx="12" ry="8" fill="#c9a127" opacity=".85"/><circle cx="84" cy="80" r="2.5" fill="#b5371f"/><circle cx="110" cy="104" r="2.5" fill="#b5371f"/><circle cx="104" cy="76" r="2" fill="#b5371f"/>
+<circle cx="90" cy="100" r="4" fill="#d9b46a"/><circle cx="100" cy="106" r="4" fill="#d9b46a"/>
+<circle cx="150" cy="80" r="12" fill="#7a4a22"/><circle cx="154" cy="104" r="12" fill="#7a4a22"/><circle cx="140" cy="122" r="12" fill="#7a4a22"/><circle cx="146" cy="76" r="3" fill="#a06a3a"/><circle cx="150" cy="100" r="3" fill="#a06a3a"/><circle cx="136" cy="118" r="3" fill="#a06a3a"/>
+<g fill="#4c8a2b"><circle cx="48" cy="96" r="4"/><circle cx="56" cy="88" r="3"/><circle cx="44" cy="108" r="3.5"/><circle cx="58" cy="104" r="3"/><circle cx="50" cy="118" r="3"/><circle cx="40" cy="96" r="2.5"/></g><g fill="#d6442b"><circle cx="52" cy="110" r="2.5"/><circle cx="46" cy="88" r="2"/></g>
+<path d="M70 150l26-12 4 26z" fill="#e2bb7b"/><path d="M104 158l28-6-6 26z" fill="#e7c48b"/><path d="M84 168l20-4-8 18z" fill="#dcae66"/></svg></div>
+                <b>Lebanese</b><span>for sharing</span>
+              </div>
+              <div class="plate-card" style="--pc: var(--c3)">
+                <div class="plate"><svg viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="96" fill="#d4ac68" stroke="#a37a3a" stroke-width="6"/><circle cx="100" cy="100" r="84" fill="none" stroke="#b88d4c" stroke-width="3"/>
+<circle cx="100" cy="100" r="78" fill="#f2e8d2"/><path d="M30 100h140M100 30v140" stroke="#e6d8b8" stroke-width="2"/>
+<g fill="#fbf6ea" stroke="#e2d6bd" stroke-width="2"><circle cx="72" cy="72" r="22"/><circle cx="128" cy="72" r="22"/><circle cx="66" cy="126" r="22"/><circle cx="122" cy="128" r="22"/></g>
+<g stroke="#d8cab0" stroke-width="2" fill="none" stroke-linecap="round"><path d="M64 66q8-6 16 0M66 74q6-4 12 0"/><path d="M120 66q8-6 16 0M122 74q6-4 12 0"/><path d="M58 120q8-6 16 0M60 128q6-4 12 0"/><path d="M114 122q8-6 16 0M116 130q6-4 12 0"/></g>
+<rect x="20" y="152" width="170" height="7" rx="3.5" fill="#6b3f1f" transform="rotate(-24 105 155)"/><rect x="26" y="166" width="170" height="7" rx="3.5" fill="#7d4a25" transform="rotate(-20 111 169)"/></svg></div>
+                <b>Asian</b><span>any night of the week</span>
+              </div>
+              <div class="plate-card" style="--pc: var(--c1)">
+                <div class="plate"><svg viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="96" fill="#fff3d6" stroke="#e2572c" stroke-width="5"/><circle cx="100" cy="100" r="84" fill="none" stroke="#2f7fa8" stroke-width="3" stroke-dasharray="4 8"/>
+<g><path d="M40 108a34 34 0 0 1 68 0z" fill="#e8b04a"/><path d="M48 106q10-16 26-10t26 10" fill="#5fa03a"/><circle cx="62" cy="96" r="4" fill="#d6442b"/><circle cx="80" cy="92" r="4" fill="#d6442b"/><circle cx="94" cy="100" r="3.5" fill="#d6442b"/><path d="M54 100q20-8 40 2" stroke="#fffaf0" stroke-width="3" fill="none"/></g>
+<g><path d="M92 132a34 34 0 0 1 68 0z" fill="#e3a63f"/><path d="M100 130q10-16 26-10t26 10" fill="#5fa03a"/><circle cx="114" cy="120" r="4" fill="#d6442b"/><circle cx="132" cy="116" r="4" fill="#d6442b"/><circle cx="146" cy="124" r="3.5" fill="#d6442b"/><path d="M106 124q20-8 40 2" stroke="#fffaf0" stroke-width="3" fill="none"/></g>
+<g><path d="M52 160a30 30 0 0 1 60 0z" fill="#ecb954"/><path d="M58 158q9-14 23-9t23 9" fill="#5fa03a"/><circle cx="72" cy="150" r="3.5" fill="#d6442b"/><circle cx="90" cy="146" r="3.5" fill="#d6442b"/><path d="M62 154q18-7 36 2" stroke="#fffaf0" stroke-width="3" fill="none"/></g>
+<path d="M126 52a24 24 0 0 1 34 30z" fill="#6cb33e"/><path d="M130 56a19 19 0 0 1 26 24z" fill="#c9e88a"/><path d="M143 60l7 16M136 64l14 12" stroke="#a6d65e" stroke-width="2"/></svg></div>
+                <b>Mexican</b><span>with friends</span>
+              </div>
+            </div>
+            <div class="pick-row"><button class="pick" type="button" id="pick">Where should we get lunch?</button><p class="pick-out" id="pick-out" aria-live="polite"></p></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="gutter" style="padding-top: 0">
+    <div class="inner">
+      <div class="contact">
+        <span class="blob a"></span><span class="blob b"></span>
+        <p class="eyebrow" style="color: var(--bg)">Contact</p>
+        <div class="contact-head"><img class="avatar" src="rea.jpg" alt="Rea Shah"><h2>Let's talk <span class="serif">brands.</span></h2></div>
+        <p>I'm applying for brand strategy roles at consultancies and 2027 graduate strategy schemes in London, especially across beauty, fashion, food and tech. If you're hiring, I'd love to hear from you.</p>
+        <p class="rtw">✦ Eligible to work in the UK on a Graduate visa</p>
+        <div class="row"><span class="email" id="email">reashahcareers@gmail.com</span><button class="copy" type="button" id="copy">Copy email</button></div>
+        <div class="row"><a class="li-link" href="https://www.linkedin.com/in/reashah/" target="_blank" rel="noopener">Connect on LinkedIn ↗</a><span class="li-url">linkedin.com/in/reashah</span></div>
+      </div>
+      <footer><span>© 2026 Rea Shah</span><span>Designed as a brand book. Made in London.</span></footer>
+    </div>
+  </section>
+</main>
+
+<div class="scrim" id="scrim" hidden></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="d-title" hidden>
+  <div class="d-band" id="d-band">
+    <div class="d-top"><span class="d-tag" id="d-tag"></span><button class="close" type="button" id="d-close">Close ✕</button></div>
+    <div class="d-big" id="d-big"></div>
+    <h2 id="d-title"></h2>
+  </div>
+  <div class="d-body">
+    <div class="d-shows"><span>What this shows</span><div id="d-shows"></div></div>
+    <dl class="star" id="d-star"></dl>
+    <div class="chips" id="d-skills"></div>
+    <div class="d-nav"><button type="button" id="d-prev">← Previous</button><button type="button" id="d-next">Next case →</button></div>
+  </div>
+</aside>
+
+<script>
+(function () {
+  var EMAIL = 'reashahcareers@gmail.com';
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine = window.matchMedia('(pointer: fine)').matches;
+  var root = document.documentElement, body = document.body;
+  function store(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  function load(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+
+  /* Theme */
+  var mq = window.matchMedia('(prefers-color-scheme: dark)');
+  function isDark() { return root.dataset.theme ? root.dataset.theme === 'dark' : mq.matches; }
+  var savedTheme = load('rs-theme'); if (savedTheme) root.dataset.theme = savedTheme;
+  document.getElementById('theme-toggle').addEventListener('click', function () {
+    root.dataset.theme = isDark() ? 'light' : 'dark'; store('rs-theme', root.dataset.theme);
+  });
+
+  /* Palettes */
+  var PALS = ['cobalt', 'tomato', 'garden'];
+  function setPal(p) {
+    if (p === 'cobalt') delete body.dataset.palette; else body.dataset.palette = p;
+    document.querySelectorAll('.pal').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.pal === p)); });
+    store('rs-pal', p);
+  }
+  setPal(PALS.indexOf(load('rs-pal')) >= 0 ? load('rs-pal') : 'cobalt');
+  document.querySelectorAll('.pal').forEach(function (b) { b.addEventListener('click', function () { setPal(b.dataset.pal); }); });
+  document.getElementById('pal-cycle').addEventListener('click', function () {
+    var cur = body.dataset.palette || 'cobalt'; setPal(PALS[(PALS.indexOf(cur) + 1) % PALS.length]);
+  });
+
+  /* Logo spin */
+  var mark = document.getElementById('mark');
+  mark.addEventListener('click', function () {
+    var cur = body.dataset.palette || 'cobalt'; setPal(PALS[(PALS.indexOf(cur) + 1) % PALS.length]);
+    mark.classList.remove('pop'); void mark.offsetWidth; mark.classList.add('pop');
+  });
+
+  /* Tone of voice */
+  var VOICE = [
+    "Curious: Unilever's country-visit pre-reads said nothing about what consumers were saying online, so I added a social media lens. Senior leaders made it standard practice.",
+    'Commercial: portfolio strategy at Unilever taught me that every insight has to end in a business choice, like which part of the Home Care category to prioritise.',
+    'Cut-through: four competitor deep-dives became one set of recommendations for president-level leaders. Most of the job is deciding what to leave out.',
+    "Compelling: from Rediffusion's newsletter to board-level pre-reads, I write so busy people get the point on the first read."
+  ];
+  var note = document.getElementById('voice-note');
+  document.querySelectorAll('[data-voice]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      document.querySelectorAll('[data-voice]').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      note.textContent = VOICE[+b.dataset.voice];
+    });
+  });
+  note.textContent = VOICE[0];
+
+  /* Marquees */
+  var m1 = ['Brand strategy', 'Consumer insight', 'Social & culture', 'Portfolio strategy', 'Competitor analysis', 'One clear idea'];
+  var m2 = ['Fashion', 'Beauty', 'Food', 'Tech', 'Home care', 'Consulting', 'London'];
+  function fillTrack(id, words) { var h = words.map(function (w) { return '<span>' + w + '</span>'; }).join(''); document.getElementById(id).innerHTML = h + h; }
+  fillTrack('m1', m1); fillTrack('m2', m2);
+
+
+  /* Bookshelf */
+  var BOOKS = [
+    ['A Thousand Splendid Suns', 'Khaled Hosseini', 'Two women, decades of Kabul history, and a friendship that holds everything together.', 'The one that stayed with me longest.'],
+    ['The Palace of Illusions', 'Chitra Banerjee Divakaruni', "The Mahabharata retold through Draupadi's eyes.", 'A story I grew up with, from a new angle.'],
+    ['Yesteryear', 'Caro Claire Burke', "A tradwife influencer wakes up actually living the life she's been selling online.", 'Basically a novel about personal brands.'],
+    ['Before the Coffee Gets Cold', 'Toshikazu Kawaguchi', "A Tokyo café where you can travel back in time, as long as you're back before your coffee cools.", 'Short, quiet and very moving.'],
+    ['The Silent Patient', 'Alex Michaelides', 'A painter stops speaking after a crime, and a psychotherapist sets out to find out why.', 'A thriller with a painter at its centre, so obviously.']
+  ];
+  var bookNote = document.getElementById('book-note'), bookBtns = document.querySelectorAll('.b3d');
+  function showBook(i) {
+    bookBtns.forEach(function (b) { b.setAttribute('aria-pressed', String(+b.dataset.book === i)); });
+    var bk = BOOKS[i];
+    bookNote.innerHTML = '<span class="when">' + bk[1] + '</span><h4>' + bk[0] + '</h4><p class="muted">' + bk[2] + '</p><p class="note">' + bk[3] + '</p>';
+  }
+  bookBtns.forEach(function (b) { b.addEventListener('click', function () { showBook(+b.dataset.book); }); });
+  showBook(0);
+
+  /* About me: flips, brands, lunch picker */
+  fillTrack('m3', ['Reading', 'Painting', 'Surfing', 'Learning to ski', 'Safaris', 'Galleries', 'Good food']);
+  document.querySelectorAll('.flip').forEach(function (f) {
+    f.addEventListener('click', function () { var on = !f.classList.contains('flipped'); f.classList.toggle('flipped', on); f.setAttribute('aria-pressed', String(on)); });
+  });
+  document.querySelectorAll('.brand').forEach(function (b) {
+    b.addEventListener('click', function () { b.setAttribute('aria-expanded', String(b.getAttribute('aria-expanded') !== 'true')); });
+  });
+  var dishes = document.querySelectorAll('.plate-card'), pickOut = document.getElementById('pick-out'), picking = false;
+  var LINES = ['North Indian it is. Comfort food wins.', 'Lebanese. Order lots and share it all.', 'Asian. You pick the place, I\'ll pick the order.', 'Mexican. Bring friends, it\'s more fun.'];
+  document.getElementById('pick').addEventListener('click', function () {
+    if (picking) return; picking = true; pickOut.textContent = '';
+    var target = Math.floor(Math.random() * dishes.length), steps = reduce ? target : 8 + target, i = reduce ? target : 0;
+    (function tick() {
+      dishes.forEach(function (d, k) { d.classList.toggle('lit', k === i % dishes.length); });
+      if (i >= steps) { var k = i % dishes.length; dishes.forEach(function (d, j) { d.classList.toggle('lit', j === k); }); pickOut.textContent = LINES[k]; picking = false; return; }
+      i++; setTimeout(tick, 70 + i * 12);
+    })();
+  });
+
+  /* Rotating phrase */
+  var phrases = ['messy research', 'social chatter', 'competitor data', 'consumer behaviour'];
+  var swap = document.getElementById('swap'), pi = 0;
+  if (!reduce) setInterval(function () {
+    swap.classList.add('out');
+    setTimeout(function () { pi = (pi + 1) % phrases.length; swap.textContent = phrases[pi]; swap.classList.remove('out'); }, 250);
+  }, 2600);
+
+  /* Draggable stickers (desktop layout only) */
+  var wide = window.matchMedia('(min-width: 1001px)');
+  document.querySelectorAll('.sticker').forEach(function (s) {
+    var sx, sy, ox, oy, dragging = false;
+    s.addEventListener('pointerdown', function (e) {
+      if (!wide.matches) return;
+      dragging = true; s.setPointerCapture(e.pointerId); s.classList.add('dragging');
+      sx = e.clientX; sy = e.clientY; ox = s.offsetLeft; oy = s.offsetTop;
+      s.style.zIndex = String(Date.now() % 100000);
+    });
+    s.addEventListener('pointermove', function (e) {
+      if (!dragging) return;
+      s.style.left = (ox + e.clientX - sx) + 'px'; s.style.top = (oy + e.clientY - sy) + 'px';
+    });
+    function end() { dragging = false; s.classList.remove('dragging'); }
+    s.addEventListener('pointerup', end); s.addEventListener('pointercancel', end);
+  });
+
+  /* Cursor ring */
+  if (fine && !reduce) {
+    var cur = document.getElementById('cursor'), tx = -100, ty = -100, cx = -100, cy = -100;
+    window.addEventListener('pointermove', function (e) { tx = e.clientX; ty = e.clientY; });
+    document.addEventListener('pointerover', function (e) { cur.classList.toggle('big', !!e.target.closest('a, button, .sticker')); });
+    (function loop() { cx += (tx - cx) * 0.2; cy += (ty - cy) * 0.2; cur.style.transform = 'translate(' + cx + 'px,' + cy + 'px)'; requestAnimationFrame(loop); })();
+  }
+
+  /* Card tilt */
+  if (fine && !reduce) document.querySelectorAll('.case').forEach(function (c) {
+    c.addEventListener('pointermove', function (e) {
+      var r = c.getBoundingClientRect(), px = (e.clientX - r.left) / r.width - 0.5, py = (e.clientY - r.top) / r.height - 0.5;
+      c.style.transform = 'rotateY(' + (px * 10) + 'deg) rotateX(' + (-py * 10) + 'deg) translateY(-4px)';
+    });
+    c.addEventListener('pointerleave', function () { c.style.transform = ''; });
+  });
+
+  /* Copy email */
+  var copyBtn = document.getElementById('copy');
+  copyBtn.addEventListener('click', function () {
+    var reset = function () { setTimeout(function () { copyBtn.textContent = 'Copy email'; }, 1800); };
+    var fallback = function () {
+      var r = document.createRange(); r.selectNodeContents(document.getElementById('email'));
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); copyBtn.textContent = 'Selected, press ⌘C'; reset();
+    };
+    try { navigator.clipboard.writeText(EMAIL).then(function () { copyBtn.textContent = 'Copied ✦'; reset(); }, fallback); } catch (e) { fallback(); }
+  });
+
+  /* Progress + nav spy */
+  var bar = document.getElementById('bar');
+  function onScroll() { var h = root.scrollHeight - window.innerHeight; bar.style.transform = 'scaleX(' + (h > 0 ? Math.min(1, window.scrollY / h) : 0) + ')'; }
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  var links = {};
+  document.querySelectorAll('.nav-links a').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
+  function setActive(id) {
+    if (!links[id]) return;
+    Object.keys(links).forEach(function (k) { links[k].removeAttribute('aria-current'); });
+    links[id].setAttribute('aria-current', 'true');
+  }
+  setActive('top');
+  if ('IntersectionObserver' in window) {
+    var spy = new IntersectionObserver(function (es) { es.forEach(function (en) { if (en.isIntersecting) setActive(en.target.id === 'more' ? 'education' : en.target.id); }); }, { rootMargin: '-45% 0px -50% 0px' });
+    document.querySelectorAll('#top, main section').forEach(function (s) { spy.observe(s); });
+  }
+
+  /* Timeline */
+  var START = 2021, YEARS = 7, TOTAL = YEARS * 12, NOW = [2026, 10];
+  var TL = [
+    { id: 'bayes', label: 'Bayes Business School', c: 'var(--c4)', s: [2023, 9], e: [2027, 6], when: 'Sept 2023 – 2027', title: 'BSc Business Management with Year in Industry', text: 'First-class average (73%) so far. Strongest in Quantitative Methods & Analytics (89%) and Business Economics (83%).' },
+    { id: 'hillspring', label: 'Hill Spring Intl School', c: 'var(--c4)', s: [2021, 6], e: [2023, 5], when: 'Jun 2021 – 2023', title: 'Hill Spring International School · IB Diploma Programme', text: 'International Baccalaureate Diploma: 40/45.' },
+    { id: 'unilever', label: 'Unilever', c: 'var(--c1)', s: [2025, 6], e: [2026, 6], when: 'Jun 2025 – 2026', title: 'Associate Portfolio Transformation Strategy Manager · London', text: 'Competitor analyses for Home Care, a board-level tracking tool used by 200+ people, and new data standards that cut reporting errors by 95%.', caseId: 'tool' },
+    { id: 'rediffusion', label: 'Rediffusion', c: 'var(--c1)', s: [2023, 6], e: [2023, 7], when: 'Jun – Jul 2023', title: 'Brand & Research Intern · Rediffusion, Mumbai', text: 'My first role, at 18, at an advertising agency: supporting the team with consumer and competitor research for brands including Nerolac Paints and Taj Hotels, and writing for the agency newsletter.', caseId: 'rediffusion' },
+    { id: 'marsh', label: 'Marsh McLennan', c: 'var(--c1)', s: [2024, 7], e: [2024, 8], when: 'Jul – Aug 2024', title: 'Marketing Strategy Intern · Mumbai', text: 'Built an oil-sector B2B campaign strategy from 30+ reports and 20+ interviews, plus a content plan used for 8 months afterwards.', caseId: 'marsh' },
+    { id: 'enactus', label: 'Enactus UK', c: 'var(--c2)', s: [2026, 1], e: [2026, 3], when: 'Jan – Mar 2026', title: 'Guest Panelist and Top 20 Judge · Enactus UK', text: 'Spoke on a panel about moving from university into industry, then judged the top 20 student-led entrepreneurial projects.' },
+    { id: 'lfw', label: 'London Fashion Week', c: 'var(--c2)', s: [2024, 2], e: [2024, 2], when: 'Feb 2024', title: 'Volunteer · Black PR, London Fashion Week', text: 'A week of fast-paced event delivery behind the scenes.' },
+    { id: 'yasham', label: 'Yasham Foundation', c: 'var(--c2)', s: [2021, 6], e: [2023, 5], when: 'Jun 2021 – 2023', title: 'Volunteer Teacher · Yasham Foundation, India', text: 'Taught maths and English to underserved children.' }
+  ];
+  function idx(d) { return (d[0] - START) * 12 + (d[1] - 1); }
+  var tl = document.getElementById('tl');
+  var yrs = '<div class="tl-years"><span></span><div class="tl-axis">';
+  for (var y = 0; y < YEARS; y++) yrs += '<span style="left:' + ((y + 0.5) / YEARS * 100) + '%">' + (START + y) + '</span>';
+  tl.innerHTML = yrs + '</div></div>';
+  TL.forEach(function (it) {
+    var left = idx(it.s) / TOTAL * 100, width = Math.max((idx(it.e) - idx(it.s) + 1) / TOTAL * 100, 2.4);
+    var row = document.createElement('div');
+    row.className = 'tl-row'; row.dataset.id = it.id;
+    row.innerHTML = '<span class="tl-label">' + it.label + '</span><div class="tl-track"><button type="button" class="tl-bar" style="--c:' + it.c + ';left:' + left + '%;width:' + width + '%" aria-label="' + it.label + ', ' + it.when + '"></button></div>';
+    row.querySelector('button').addEventListener('click', function () { pick(it.id); });
+    tl.appendChild(row);
+  });
+  var nowEl = document.createElement('div');
+  nowEl.className = 'tl-now'; nowEl.innerHTML = '<span>you are here</span>';
+  tl.appendChild(nowEl);
+  function placeNow() { var t = tl.querySelector('.tl-track'); if (t) nowEl.style.left = (t.offsetLeft + t.offsetWidth * idx(NOW) / TOTAL) + 'px'; }
+  placeNow(); window.addEventListener('resize', placeNow);
+  var detail = document.getElementById('tl-detail');
+  function pick(id) {
+    var it = TL.filter(function (t) { return t.id === id; })[0];
+    tl.querySelectorAll('.tl-row').forEach(function (r) { r.classList.toggle('on', r.dataset.id === id); });
+    detail.style.setProperty('--c', it.c);
+    detail.innerHTML = '<span class="when">' + it.when + '</span><h3>' + it.title + '</h3><p class="muted">' + it.text + '</p>' +
+      (it.caseId ? '<p><a href="#work" data-open="' + it.caseId + '">Read the case study →</a></p>' : '');
+    var a = detail.querySelector('[data-open]');
+    if (a) a.addEventListener('click', function (e) { e.preventDefault(); openCase(a.dataset.open); });
+  }
+  pick('unilever');
+
+  /* Skill filters */
+  var active = new Set(), countEl = document.getElementById('match-count');
+  var targets = document.querySelectorAll('ul.points li, .case');
+  var mainEl = document.querySelector('main');
+  document.querySelectorAll('.pill').forEach(function (p) {
+    p.addEventListener('click', function () {
+      var on = p.getAttribute('aria-pressed') !== 'true';
+      p.setAttribute('aria-pressed', String(on));
+      on ? active.add(p.dataset.tag) : active.delete(p.dataset.tag);
+      mainEl.classList.toggle('filtering', active.size > 0);
+      var n = 0;
+      targets.forEach(function (el) {
+        var hit = active.size > 0 && (el.dataset.tags || '').split(' ').some(function (t) { return active.has(t); });
+        el.classList.toggle('hit', hit); if (hit) n++;
+      });
+      countEl.textContent = active.size ? n + ' matches across experience and case studies. Tap a filter again to clear it.' : '';
+    });
+  });
+
+  /* Case drawer */
+  var CASES = {
+    rediffusion: {
+      shows: ['Research & discovery', 'Agency foundations'],
+      c: ['var(--c2)', 'var(--on-light)'], tag: 'Rediffusion · Mumbai · Jun – Jul 2023', title: 'Brand research for Nerolac Paints and Taj Hotels', big: '50+ sources',
+      s: 'At 18, my first experience was at Rediffusion, an advertising agency in Mumbai, working alongside teams on brands including Nerolac Paints and Taj Hotels.',
+      t: 'Support the team in understanding consumer, market and competitor trends to inform brand and marketing strategy.',
+      a: 'Supported the team behind the scenes: researched consumer, market and competitor trends, pulled together 50+ industry and competitor sources into presentations and reports, and wrote for the agency newsletter.',
+      r: 'A first look at how an agency builds brand strategy, and the research habits I have built on since, from Marsh McLennan to Unilever.',
+      skills: ['Consumer insight', 'Competitor analysis', 'Brand strategy', 'Writing']
+    },
+    referral: {
+      shows: ['Commercial sense', 'Behaviour into one idea'],
+      c: ['var(--ink)', 'var(--bg)'], tag: 'Family business · Nutrition practice', title: 'Turning word of mouth into a referral programme', big: '10 new clients',
+      s: 'My mum runs a nutrition practice. Many new clients already came through recommendations, but it happened by chance, with nothing in place to encourage or build on it.',
+      t: 'Take something clients were already doing naturally and turn it into a referral programme that converts more of those conversations into new clients.',
+      a: 'Designed a referral programme around the way clients already talked about the practice, made it easy for them to refer someone or bring a friend along, and gathered client feedback on it.',
+      r: '10 new clients came through referrals in 2 months. Clients responded positively, and 1 in 2 said they were more likely to refer or bring friends, building a bigger client base.',
+      skills: ['Word-of-mouth marketing', 'Referral programme design', 'Client conversion', 'Small business growth']
+    },
+    competitors: {
+      shows: ['Cut-through', 'Competitive analysis'],
+      c: ['var(--c1)', 'var(--on-dark)'], tag: 'Unilever · Home Care', title: 'Competitor analysis for category prioritisation', big: '4 deep-dives',
+      s: 'Home Care leadership was deciding which parts of the category to prioritise and needed a clear picture of what competitors were doing.',
+      t: 'Lead the competitor analyses and turn them into recommendations a president-level audience could act on.',
+      a: 'Ran four competitor analyses, pulled the market insights together and shaped them into a clear set of recommendations.',
+      r: 'Presented to president-level stakeholders and contributed to the Home Care category prioritisation strategy.',
+      skills: ['Competitor analysis', 'Market insight', 'Executive storytelling', 'PowerPoint']
+    },
+    tool: {
+      shows: ['Getting ideas adopted', 'Stakeholder buy-in'],
+      c: ['var(--c1)', 'var(--on-dark)'], tag: 'Unilever · Governance', title: 'A board-level project tracking tool', big: '200+ users',
+      s: 'Monthly investor board meetings needed a reliable, shared view of where each project stood.',
+      t: 'Help build a strategy tool for tracking project status and get people across the business using it.',
+      a: 'Co-developed the tool, then led its rollout to the teams who would feed it and the leaders who would read it.',
+      r: 'Adopted by 200+ users, giving the board better visibility of projects and improving decision-making.',
+      skills: ['Tool design', 'Change management', 'Stakeholder management', 'Excel']
+    },
+    prereads: {
+      shows: ['Curiosity', 'Social & cultural insight'],
+      c: ['var(--c4)', 'var(--on-light)'], tag: 'Unilever · Social & consumer insight', title: 'Bringing social media into leadership country visits', big: '8 pre-reads',
+      s: 'Before senior leaders visited country markets, they were briefed with strategic pre-reads. These followed a traditional format focused on business performance, with no view of what was happening on social media.',
+      t: 'Out of curiosity, I wanted to show how a social lens could make these briefings more relevant to how consumers engage with brands today, in a business that is traditionally run on performance data.',
+      a: 'Built a social media lens into 8 strategic pre-reads for senior stakeholder country visits, sitting alongside the usual performance view.',
+      r: 'I got buy-in from senior stakeholders to make the social media lens standard practice for future country-visit documents, so a traditional briefing now includes social as a matter of course.',
+      skills: ['Social media insight', 'Consumer insight', 'Executive briefing', 'Stakeholder buy-in']
+    },
+    data: {
+      shows: ['Simplifying the complex', 'Rigour'],
+      c: ['var(--c4)', 'var(--on-light)'], tag: 'Unilever · Data & reporting', title: 'Rebuilding innovation data standards', big: '−95% errors',
+      s: 'A newly launched innovation-performance tracker covered 50+ projects across 15+ countries, and inconsistent data made company-wide reporting hard to trust.',
+      t: 'Take ownership of the tracker, make its data reliable and reduce the manual monthly work behind it.',
+      a: 'Redesigned the data standards across 75+ projects, expanded the tracker with cross-functional teams, and ran working sessions with tech teams to automate the monthly KPI process.',
+      r: 'Data errors fell by 95%, making project performance reporting reliable across the company.',
+      skills: ['Data governance', 'Process automation', 'Cross-functional leadership', 'Data visualisation']
+    },
+    marsh: {
+      shows: ['Insight to campaign', 'Compelling communication'],
+      c: ['var(--c3)', 'var(--on-light)'], tag: 'Marsh McLennan · Mumbai', title: 'An oil-sector go-to-market thesis', big: '8 months',
+      s: 'The team wanted to grow its oil-sector client base but lacked a clear view of where the retention and acquisition opportunities were.',
+      t: 'Research the segment and turn the findings into a B2B campaign strategy.',
+      a: 'Analysed 30+ reports and 20+ interviews, wrote a marketing thesis with strategic recommendations, and built a 20+ post content strategy for LinkedIn and email.',
+      r: 'The recommendations shaped client outreach priorities, and the content plan was still in use 8 months after the internship.',
+      skills: ['Primary research', 'B2B marketing', 'Content strategy', 'Presenting']
+    }
+  };
+  var ORDER = Array.prototype.map.call(document.querySelectorAll('.case'), function (c) { return c.dataset.case; });
+  var drawer = document.getElementById('drawer'), scrim = document.getElementById('scrim'), band = document.getElementById('d-band');
+  var current = null, lastFocus = null;
+  function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+  function fill(id) {
+    var c = CASES[id]; current = id;
+    band.style.setProperty('--bgc', c.c[0]); band.style.setProperty('--fg', c.c[1]);
+    document.getElementById('d-tag').textContent = c.tag;
+    document.getElementById('d-big').textContent = c.big;
+    document.getElementById('d-title').textContent = c.title;
+    document.getElementById('d-star').innerHTML = [['S', 'Situation', c.s], ['T', 'Task', c.t], ['A', 'Action', c.a], ['R', 'Result', c.r]]
+      .map(function (p) { return '<div><dt aria-label="' + p[1] + '">' + p[0] + '</dt><dd><b>' + p[1] + '</b>' + esc(p[2]) + '</dd></div>'; }).join('');
+    document.getElementById('d-shows').innerHTML = c.shows.map(function (x) { return '<b>' + esc(x) + '</b>'; }).join('');
+    document.getElementById('d-skills').innerHTML = c.skills.map(function (s) { return '<span class="chip">' + esc(s) + '</span>'; }).join('');
+    var i = ORDER.indexOf(id);
+    document.getElementById('d-prev').disabled = i === 0;
+    document.getElementById('d-next').disabled = i === ORDER.length - 1;
+    drawer.scrollTop = 0;
+  }
+  function openCase(id) {
+    if (!CASES[id]) return;
+    lastFocus = document.activeElement; fill(id);
+    drawer.hidden = false; scrim.hidden = false; body.classList.add('locked');
+    requestAnimationFrame(function () { drawer.classList.add('show'); scrim.classList.add('show'); });
+    document.getElementById('d-close').focus();
+  }
+  function closeCase() {
+    drawer.classList.remove('show'); scrim.classList.remove('show'); body.classList.remove('locked');
+    setTimeout(function () { drawer.hidden = true; scrim.hidden = true; }, reduce ? 0 : 350);
+    current = null; if (lastFocus) lastFocus.focus();
+  }
+  document.querySelectorAll('[data-jump]').forEach(function (el) {
+    el.addEventListener('click', function () {
+      var t = document.getElementById(el.dataset.jump);
+      t.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
+      t.classList.remove('flash'); void t.offsetWidth; t.classList.add('flash');
+    });
+  });
+  document.querySelectorAll('[data-case]').forEach(function (el) { el.addEventListener('click', function () { openCase(el.dataset.case); }); });
+  document.getElementById('d-close').addEventListener('click', closeCase);
+  scrim.addEventListener('click', closeCase);
+  document.getElementById('d-prev').addEventListener('click', function () { fill(ORDER[ORDER.indexOf(current) - 1]); });
+  document.getElementById('d-next').addEventListener('click', function () { fill(ORDER[ORDER.indexOf(current) + 1]); });
+  document.addEventListener('keydown', function (e) {
+    if (!current) return;
+    if (e.key === 'Escape') closeCase();
+    if (e.key === 'ArrowRight' && ORDER.indexOf(current) < ORDER.length - 1) fill(ORDER[ORDER.indexOf(current) + 1]);
+    if (e.key === 'ArrowLeft' && ORDER.indexOf(current) > 0) fill(ORDER[ORDER.indexOf(current) - 1]);
+    if (e.key === 'Tab') {
+      var f = drawer.querySelectorAll('button:not(:disabled)'), first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+  var hash = location.hash.slice(1);
+  if (hash.indexOf('case-') === 0) openCase(hash.slice(5));
+})();
+</script>
