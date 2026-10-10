@@ -272,6 +272,10 @@ p { margin: 0; }
 }
 .pill:hover { transform: translateY(-2px); }
 .pill[aria-pressed="true"] { background: var(--c2); color: var(--on-light); border-color: var(--on-light); }
+.role-cases { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 18px; perspective: 1200px; }
+.role-cases .case { min-height: 210px; padding: 22px; gap: 10px; }
+.role-cases .case .big { font-size: clamp(2.2rem, 4vw, 3rem); }
+.role-cases .case h3 { font-size: 1.15rem; }
 .job-summary { max-width: 64ch; font-size: 1.05rem; }
 .job-summary strong { font-weight: 700; background: linear-gradient(transparent 62%, color-mix(in srgb, var(--c3) 70%, transparent) 0); }
 .case-links { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 16px; }
@@ -625,7 +629,7 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12
   .badge, .drag-hint { display: none; }
 }
 @media (max-width: 760px) {
-  .cases { grid-template-columns: minmax(0, 1fr); }
+  .cases, .role-cases { grid-template-columns: minmax(0, 1fr); }
   .job { grid-template-columns: minmax(0, 1fr); gap: 12px; }
   .job-side { grid-auto-flow: column; justify-content: start; align-items: center; gap: 14px; }
   .tl-years, .tl-row { grid-template-columns: 130px minmax(0, 1fr); }
@@ -652,10 +656,8 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12
     <div class="nav-links">
       <a href="#top">Rea</a>
       <a href="#brand">Brand</a>
-      <a href="#numbers">Numbers</a>
       <a href="#journey">Journey</a>
       <a href="#experience">Experience</a>
-      <a href="#work">Cases</a>
       <a href="#education">Education</a>
       <a href="#about">About me</a>
       <a href="#contact">Contact</a>
@@ -672,7 +674,7 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12
     <h1 class="name"><span class="r">Rea</span><span>Shah<span class="dot">.</span></span></h1>
     <p class="lede">I turn <span class="swap" id="swap">messy research</span> into one clear brand idea.</p>
     <div class="hero-actions">
-      <a class="btn primary" href="#work">See my work →</a>
+      <a class="btn primary" href="#experience">See my work →</a>
       <a class="btn ghost" href="https://www.linkedin.com/in/reashah/" target="_blank" rel="noopener">LinkedIn ↗</a>
       <a class="btn ghost" href="#contact">Say hello</a>
       <span class="drag-hint">psst, the stickers move</span>
@@ -742,21 +744,6 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12
     </div>
   </section>
 
-  <section id="numbers" class="gutter" style="padding-top: 0">
-    <div class="inner">
-      <div class="sec-head">
-        <p class="eyebrow">Proof points</p>
-        <h2>The numbers <span class="serif">behind the story.</span></h2>
-      </div>
-      <div class="figs">
-        <button class="fig" type="button" data-case="tool" style="--bgc: var(--c1); --fg: var(--on-dark); --r: -2deg"><b>200+</b><span>people using a strategy tool I co-built and rolled out</span><em>Open case →</em></button>
-        <button class="fig" type="button" data-case="data" style="--bgc: var(--c2); --fg: var(--on-light); --r: 2deg"><b>95%</b><span>fewer data errors after I redesigned the standards</span><em>Open case →</em></button>
-        <button class="fig" type="button" data-case="prereads" style="--bgc: var(--c3); --fg: var(--on-light); --r: -1.5deg"><b>8</b><span>country-visit pre-reads with my social media lens, now standard practice</span><em>Open case →</em></button>
-        <button class="fig" type="button" data-case="competitors" style="--bgc: var(--c4); --fg: var(--on-light); --r: 2.5deg"><b>4</b><span>competitor deep-dives shown to president-level leaders</span><em>Open case →</em></button>
-      </div>
-    </div>
-  </section>
-
   <div class="marquee alt" aria-hidden="true"><div class="track" id="m2"></div></div>
 
   <section id="journey" class="gutter">
@@ -783,8 +770,19 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12
       <div class="sec-head">
         <p class="eyebrow">Experience</p>
         <h2>Where I've <span class="serif">done the work.</span></h2>
-        <p class="hint">The short version. Each role links to its case studies for the detail.</p>
+        <p class="hint">Each role, then the projects behind it. Open a project for the situation, task, action and result.</p>
       </div>
+      <div class="filters" role="group" aria-label="Filter by skill">
+        <span class="lbl">show me…</span>
+        <button class="pill" type="button" data-tag="research" aria-pressed="false">Research &amp; insight</button>
+        <button class="pill" type="button" data-tag="data" aria-pressed="false">Data &amp; tooling</button>
+        <button class="pill" type="button" data-tag="stakeholders" aria-pressed="false">Senior stakeholders</button>
+        <button class="pill" type="button" data-tag="automation" aria-pressed="false">Automation</button>
+        <button class="pill" type="button" data-tag="content" aria-pressed="false">Writing &amp; storytelling</button>
+        <button class="pill" type="button" data-tag="growth" aria-pressed="false">Brand &amp; growth</button>
+      </div>
+      <p class="match-count" id="match-count" aria-live="polite"></p>
+
 
       <article class="job">
         <div class="job-side">
@@ -795,7 +793,32 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12
           <h3>Associate Portfolio Transformation Strategy Manager</h3>
           <span class="org">Placement year, Portfolio Transformation Strategy</span>
           <p class="job-summary">I briefed senior leaders, analysed competitors for the Home Care category and owned the performance tracker for <strong>50+ innovation projects across 15+ countries</strong>.</p>
-          <div class="case-links"><span>Case studies</span><button class="case-link" type="button" data-case="prereads">Social media lens for leadership visits →</button><button class="case-link" type="button" data-case="competitors">Competitor analysis →</button><button class="case-link" type="button" data-case="tool">Board tracking tool →</button><button class="case-link" type="button" data-case="data">Data standards →</button></div>
+          <div class="role-cases">
+          <button class="case" type="button" data-case="prereads" data-tags="content stakeholders growth" style="--bgc: var(--c4); --fg: var(--on-light)">
+            <span class="tag">Social &amp; consumer insight</span>
+            <span class="big">8 pre-reads</span>
+            <span><h3>Bringing social media into leadership country visits</h3></span>
+            <span class="open"><i>→</i> Read the case</span>
+          </button>
+          <button class="case" type="button" data-case="competitors" data-tags="research stakeholders" style="--bgc: var(--c1); --fg: var(--on-dark)">
+            <span class="tag">Home Care category</span>
+            <span class="big">4 deep-dives</span>
+            <span><h3>Competitor analysis for category prioritisation</h3></span>
+            <span class="open"><i>→</i> Read the case</span>
+          </button>
+          <button class="case" type="button" data-case="tool" data-tags="data stakeholders" style="--bgc: var(--c2); --fg: var(--on-light)">
+            <span class="tag">Governance</span>
+            <span class="big">200+ users</span>
+            <span><h3>A board-level project tracking tool</h3></span>
+            <span class="open"><i>→</i> Read the case</span>
+          </button>
+          <button class="case" type="button" data-case="data" data-tags="data automation" style="--bgc: var(--c3); --fg: var(--on-light)">
+            <span class="tag">Data &amp; reporting</span>
+            <span class="big">−95% errors</span>
+            <span><h3>Rebuilding innovation data standards</h3></span>
+            <span class="open"><i>→</i> Read the case</span>
+          </button>
+          </div>
         </div>
       </article>
 
@@ -808,7 +831,14 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12
           <h3>Marketing Strategy Intern</h3>
           <span class="org">B2B marketing, energy sector</span>
           <p class="job-summary">I researched the oil sector through <strong>30+ reports and 20+ sales-team interviews</strong> and turned it into a B2B campaign strategy and a content plan built on Marsh McLennan's brand values.</p>
-          <div class="case-links"><span>Case studies</span><button class="case-link" type="button" data-case="marsh">Oil-sector go-to-market thesis →</button></div>
+          <div class="role-cases">
+          <button class="case" type="button" data-case="marsh" data-tags="research content" style="--bgc: var(--c3); --fg: var(--on-light)">
+            <span class="tag">B2B marketing · energy</span>
+            <span class="big">8 months</span>
+            <span><h3>An oil-sector go-to-market thesis</h3></span>
+            <span class="open"><i>→</i> Read the case</span>
+          </button>
+          </div>
         </div>
       </article>
 
@@ -821,7 +851,14 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12
           <h3>Brand &amp; Research Intern</h3>
           <span class="org">Advertising agency · my first role, at 18, supporting the team behind the scenes</span>
           <p class="job-summary">I supported the team with consumer and competitor research for brands including <strong>Nerolac Paints and Taj Hotels</strong>, and wrote for the agency newsletter.</p>
-          <div class="case-links"><span>Case studies</span><button class="case-link" type="button" data-case="rediffusion">Brand research →</button></div>
+          <div class="role-cases">
+          <button class="case" type="button" data-case="rediffusion" data-tags="research content growth" style="--bgc: var(--c2); --fg: var(--on-light)">
+            <span class="tag">Brand research</span>
+            <span class="big">50+ sources</span>
+            <span><h3>Brand research for Nerolac Paints and Taj Hotels</h3></span>
+            <span class="open"><i>→</i> Read the case</span>
+          </button>
+          </div>
         </div>
       </article>
 
@@ -834,73 +871,16 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12
           <h3>Referral programme for a nutrition practice</h3>
           <span class="org">Growth project for my mum's nutritionist business</span>
           <p class="job-summary">I turned word-of-mouth recommendations into a referral programme, bringing in <strong>10 new clients in 2 months</strong>.</p>
-          <div class="case-links"><span>Case studies</span><button class="case-link" type="button" data-case="referral">Referral programme →</button></div>
+          <div class="role-cases">
+          <button class="case" type="button" data-case="referral" data-tags="growth research content" style="--bgc: var(--ink); --fg: var(--bg)">
+            <span class="tag">Word-of-mouth marketing</span>
+            <span class="big">10 new clients</span>
+            <span><h3>Turning word of mouth into a referral programme</h3></span>
+            <span class="open"><i>→</i> Read the case</span>
+          </button>
+          </div>
         </div>
       </article>
-    </div>
-  </section>
-
-  <section id="work" class="gutter" style="padding-top: 0">
-    <div class="inner">
-      <div class="sec-head">
-        <p class="eyebrow">Case studies</p>
-        <h2>Seven projects, <span class="serif">the full story.</span></h2>
-        <p class="hint">Open a card for the situation, task, action and result.</p>
-      </div>
-      <div class="filters" role="group" aria-label="Filter by skill">
-        <span class="lbl">show me…</span>
-        <button class="pill" type="button" data-tag="research" aria-pressed="false">Research &amp; insight</button>
-        <button class="pill" type="button" data-tag="data" aria-pressed="false">Data &amp; tooling</button>
-        <button class="pill" type="button" data-tag="stakeholders" aria-pressed="false">Senior stakeholders</button>
-        <button class="pill" type="button" data-tag="automation" aria-pressed="false">Automation</button>
-        <button class="pill" type="button" data-tag="content" aria-pressed="false">Writing &amp; storytelling</button>
-        <button class="pill" type="button" data-tag="growth" aria-pressed="false">Brand &amp; growth</button>
-      </div>
-      <p class="match-count" id="match-count" aria-live="polite"></p>
-      <div class="cases">
-        <button class="case featured" type="button" data-case="prereads" data-tags="content stakeholders growth" style="--bgc: var(--c4); --fg: var(--on-light)">
-          <span class="tag">Unilever · Social &amp; consumer insight</span>
-          <span class="big">8 pre-reads</span>
-          <span><h3>Bringing social media into leadership country visits</h3><p>Unilever's country-visit briefings had no view of social media. I added one, and senior stakeholders made it standard practice.</p></span>
-          <span class="open"><i>→</i> Read the case</span>
-        </button>
-        <button class="case" type="button" data-case="competitors" data-tags="research stakeholders" style="--bgc: var(--c1); --fg: var(--on-dark)">
-          <span class="tag">Unilever · Home Care</span>
-          <span class="big">4 deep-dives</span>
-          <span><h3>Competitor analysis for category prioritisation</h3></span>
-          <span class="open"><i>→</i> Read the case</span>
-        </button>
-        <button class="case" type="button" data-case="referral" data-tags="growth research content" style="--bgc: var(--ink); --fg: var(--bg)">
-          <span class="tag">Family business · Word-of-mouth marketing</span>
-          <span class="big">10 new clients</span>
-          <span><h3>Turning word of mouth into a referral programme</h3></span>
-          <span class="open"><i>→</i> Read the case</span>
-        </button>
-        <button class="case" type="button" data-case="rediffusion" data-tags="research content growth" style="--bgc: var(--c2); --fg: var(--on-light)">
-          <span class="tag">Rediffusion · Mumbai · Jun – Jul 2023</span>
-          <span class="big">50+ sources</span>
-          <span><h3>Brand research for Nerolac Paints and Taj Hotels</h3></span>
-          <span class="open"><i>→</i> Read the case</span>
-        </button>
-        <button class="case" type="button" data-case="marsh" data-tags="research content" style="--bgc: var(--c3); --fg: var(--on-light)">
-          <span class="tag">Marsh McLennan · Mumbai</span>
-          <span class="big">8 months</span>
-          <span><h3>An oil-sector go-to-market thesis</h3></span>
-          <span class="open"><i>→</i> Read the case</span>
-        </button>
-        <button class="case" type="button" data-case="tool" data-tags="data stakeholders" style="--bgc: var(--c1); --fg: var(--on-dark)">
-          <span class="tag">Unilever · Governance</span>
-          <span class="big">200+ users</span>
-          <span><h3>A board-level project tracking tool</h3></span>
-          <span class="open"><i>→</i> Read the case</span>
-        </button>
-        <button class="case" type="button" data-case="data" data-tags="data automation" style="--bgc: var(--c4); --fg: var(--on-light)">
-          <span class="tag">Unilever · Data &amp; reporting</span>
-          <span class="big">−95% errors</span>
-          <span><h3>Rebuilding innovation data standards</h3></span>
-          <span class="open"><i>→</i> Read the case</span>
-        </button>
-      </div>
     </div>
   </section>
 
@@ -1319,7 +1299,7 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12
     tl.querySelectorAll('.tl-row').forEach(function (r) { r.classList.toggle('on', r.dataset.id === id); });
     detail.style.setProperty('--c', it.c);
     detail.innerHTML = '<span class="when">' + it.when + '</span><h3>' + it.title + '</h3><p class="muted">' + it.text + '</p>' +
-      (it.caseId ? '<p><a href="#work" data-open="' + it.caseId + '">Read the case study →</a></p>' : '');
+      (it.caseId ? '<p><a href="#experience" data-open="' + it.caseId + '">Read the case study →</a></p>' : '');
     var a = detail.querySelector('[data-open]');
     if (a) a.addEventListener('click', function (e) { e.preventDefault(); openCase(a.dataset.open); });
   }
@@ -1340,7 +1320,7 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12
         var hit = active.size > 0 && (el.dataset.tags || '').split(' ').some(function (t) { return active.has(t); });
         el.classList.toggle('hit', hit); if (hit) n++;
       });
-      countEl.textContent = active.size ? n + ' matching case studies. Tap a filter again to clear it.' : '';
+      countEl.textContent = active.size ? n + ' matching projects. Tap a filter again to clear it.' : '';
     });
   });
 
@@ -1375,7 +1355,7 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12
     },
     tool: {
       shows: ['Getting ideas adopted', 'Stakeholder buy-in'],
-      c: ['var(--c1)', 'var(--on-dark)'], tag: 'Unilever · Governance', title: 'A board-level project tracking tool', big: '200+ users',
+      c: ['var(--c2)', 'var(--on-light)'], tag: 'Unilever · Governance', title: 'A board-level project tracking tool', big: '200+ users',
       s: 'Monthly investor board meetings needed a reliable, shared view of where each project stood.',
       t: 'Help build a strategy tool for tracking project status and get people across the business using it.',
       a: 'Co-developed the tool, then led its rollout to the teams who would feed it and the leaders who would read it.',
@@ -1393,7 +1373,7 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12
     },
     data: {
       shows: ['Simplifying the complex', 'Rigour'],
-      c: ['var(--c4)', 'var(--on-light)'], tag: 'Unilever · Data & reporting', title: 'Rebuilding innovation data standards', big: '−95% errors',
+      c: ['var(--c3)', 'var(--on-light)'], tag: 'Unilever · Data & reporting', title: 'Rebuilding innovation data standards', big: '−95% errors',
       s: 'A newly launched innovation-performance tracker covered 50+ projects across 15+ countries, and inconsistent data made company-wide reporting hard to trust.',
       t: 'Take ownership of the tracker, make its data reliable and reduce the manual monthly work behind it.',
       a: 'Redesigned the data standards across 75+ projects, expanded the tracker with cross-functional teams, and ran working sessions with tech teams to automate the monthly KPI process.',
