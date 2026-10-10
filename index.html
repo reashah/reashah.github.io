@@ -254,6 +254,12 @@ p { margin: 0; }
 }
 .pill:hover { transform: translateY(-2px); }
 .pill[aria-pressed="true"] { background: var(--c2); color: var(--on-light); border-color: var(--on-light); }
+.job-summary { max-width: 64ch; font-size: 1.05rem; }
+.job-summary strong { font-weight: 700; background: linear-gradient(transparent 62%, color-mix(in srgb, var(--c3) 70%, transparent) 0); }
+.case-links { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 16px; }
+.case-links > span { font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-right: 4px; }
+.case-link { border: 2px solid var(--ink); background: transparent; border-radius: 999px; padding: 5px 14px; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: background .2s, color .2s, transform .2s; }
+.case-link:hover { background: var(--ink); color: var(--bg); transform: translateY(-2px); }
 .match-count { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); min-height: 1.4em; margin-bottom: 18px; }
 .job { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 28px; padding-block: 32px; border-top: 2px solid var(--ink); }
 .job-side { display: grid; gap: 10px; align-content: start; }
@@ -758,17 +764,8 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12
       <div class="sec-head">
         <p class="eyebrow">Experience</p>
         <h2>Where I've <span class="serif">done the work.</span></h2>
+        <p class="hint">The short version. Each role links to its case studies for the detail.</p>
       </div>
-      <div class="filters" role="group" aria-label="Filter by skill">
-        <span class="lbl">show me…</span>
-        <button class="pill" type="button" data-tag="research" aria-pressed="false">Research &amp; insight</button>
-        <button class="pill" type="button" data-tag="data" aria-pressed="false">Data &amp; tooling</button>
-        <button class="pill" type="button" data-tag="stakeholders" aria-pressed="false">Senior stakeholders</button>
-        <button class="pill" type="button" data-tag="automation" aria-pressed="false">Automation</button>
-        <button class="pill" type="button" data-tag="content" aria-pressed="false">Writing &amp; storytelling</button>
-        <button class="pill" type="button" data-tag="growth" aria-pressed="false">Brand &amp; growth</button>
-      </div>
-      <p class="match-count" id="match-count" aria-live="polite"></p>
 
       <article class="job">
         <div class="job-side">
@@ -778,13 +775,8 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12
         <div>
           <h3>Associate Portfolio Transformation Strategy Manager</h3>
           <span class="org">Placement year, Portfolio Transformation Strategy</span>
-          <ul class="points">
-            <li data-tags="content stakeholders growth">Added a social media lens to <strong>8 strategic pre-reads</strong> for senior leaders' country visits, and got senior stakeholder buy-in to make it <strong>standard practice</strong> for future visits.</li>
-            <li data-tags="research stakeholders">Led <strong>4 competitor analyses</strong> and turned the findings into recommendations for president-level stakeholders, which fed into the <strong>Home Care category prioritisation strategy</strong>.</li>
-            <li data-tags="data stakeholders">Co-developed and led the rollout of a strategy tool used by <strong>200+ people</strong> to track project status at monthly investor board meetings.</li>
-            <li data-tags="data">Took ownership of an innovation-performance tracker covering <strong>50+ projects in 15+ countries</strong>, and expanded what it could do with cross-functional teams.</li>
-            <li data-tags="data automation">Redesigned data standards across <strong>75+ projects</strong>, cutting data errors by <strong>95%</strong>, and ran working sessions with tech teams to automate the monthly KPI process.</li>
-          </ul>
+          <p class="job-summary">I briefed senior leaders, analysed competitors for the Home Care category and owned the performance tracker for <strong>50+ innovation projects across 15+ countries</strong>.</p>
+          <div class="case-links"><span>Case studies</span><button class="case-link" type="button" data-case="prereads">Social media lens for leadership visits →</button><button class="case-link" type="button" data-case="competitors">Competitor analysis →</button><button class="case-link" type="button" data-case="tool">Board tracking tool →</button><button class="case-link" type="button" data-case="data">Data standards →</button></div>
         </div>
       </article>
 
@@ -796,11 +788,8 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12
         <div>
           <h3>Marketing Strategy Intern</h3>
           <span class="org">B2B marketing, energy sector</span>
-          <ul class="points">
-            <li data-tags="content growth">Built a <strong>20+ post LinkedIn and email plan</strong> that tied seasonal moments to Marsh McLennan's brand values, still in use <strong>8 months</strong> after the internship ended.</li>
-            <li data-tags="research">Analysed <strong>30+ reports and 20+ sales-team interviews</strong> to find retention and acquisition opportunities in the oil sector, and turned them into a B2B campaign strategy.</li>
-            <li data-tags="research stakeholders">Wrote an oil-sector marketing thesis and presented recommendations across teams to set client outreach priorities.</li>
-          </ul>
+          <p class="job-summary">I researched the oil sector through <strong>30+ reports and 20+ sales-team interviews</strong> and turned it into a B2B campaign strategy and a content plan built on Marsh McLennan's brand values.</p>
+          <div class="case-links"><span>Case studies</span><button class="case-link" type="button" data-case="marsh">Oil-sector go-to-market thesis →</button></div>
         </div>
       </article>
 
@@ -812,11 +801,8 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12
         <div>
           <h3>Brand &amp; Research Intern</h3>
           <span class="org">Advertising agency · my first role, at 18, supporting the team behind the scenes</span>
-          <ul class="points">
-            <li data-tags="research growth">Supported research on consumer, market and competitor trends for brands including <strong>Nerolac Paints and Taj Hotels</strong>, finding insights to inform brand and marketing strategy.</li>
-            <li data-tags="research">Pulled together <strong>50+ industry and competitor sources</strong> into presentations and reports for the team.</li>
-            <li data-tags="content">Wrote for <strong>Rediffusion's newsletter</strong>, explaining industry trends and brand perspectives to a professional audience.</li>
-          </ul>
+          <p class="job-summary">I supported the team with consumer and competitor research for brands including <strong>Nerolac Paints and Taj Hotels</strong>, and wrote for the agency newsletter.</p>
+          <div class="case-links"><span>Case studies</span><button class="case-link" type="button" data-case="rediffusion">Brand research →</button></div>
         </div>
       </article>
 
@@ -828,12 +814,8 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12
         <div>
           <h3>Referral programme for a nutrition practice</h3>
           <span class="org">Growth project for my mum's nutritionist business</span>
-          <ul class="points">
-            <li data-tags="research growth">Noticed that clients already recommended the practice to friends on their own, and set out to turn that word of mouth into a <strong>structured referral programme</strong>.</li>
-            <li data-tags="growth content">Designed the programme around how clients naturally talked about the practice, making it easy to refer someone or <strong>bring a friend along</strong>.</li>
-            <li data-tags="research growth">Gathered client feedback: the response was positive, and <strong>1 in 2 clients said they were more likely to refer</strong> or bring friends.</li>
-            <li data-tags="growth">Brought in <strong>10 new clients through referrals in 2 months</strong>, growing the practice's client base.</li>
-          </ul>
+          <p class="job-summary">I turned word-of-mouth recommendations into a referral programme, bringing in <strong>10 new clients in 2 months</strong>.</p>
+          <div class="case-links"><span>Case studies</span><button class="case-link" type="button" data-case="referral">Referral programme →</button></div>
         </div>
       </article>
     </div>
@@ -846,6 +828,16 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12
         <h2>Seven projects, <span class="serif">the full story.</span></h2>
         <p class="hint">Open a card for the situation, task, action and result.</p>
       </div>
+      <div class="filters" role="group" aria-label="Filter by skill">
+        <span class="lbl">show me…</span>
+        <button class="pill" type="button" data-tag="research" aria-pressed="false">Research &amp; insight</button>
+        <button class="pill" type="button" data-tag="data" aria-pressed="false">Data &amp; tooling</button>
+        <button class="pill" type="button" data-tag="stakeholders" aria-pressed="false">Senior stakeholders</button>
+        <button class="pill" type="button" data-tag="automation" aria-pressed="false">Automation</button>
+        <button class="pill" type="button" data-tag="content" aria-pressed="false">Writing &amp; storytelling</button>
+        <button class="pill" type="button" data-tag="growth" aria-pressed="false">Brand &amp; growth</button>
+      </div>
+      <p class="match-count" id="match-count" aria-live="polite"></p>
       <div class="cases">
         <button class="case featured" type="button" data-case="prereads" data-tags="content stakeholders growth" style="--bgc: var(--c4); --fg: var(--on-light)">
           <span class="tag">Unilever · Social &amp; consumer insight</span>
@@ -1329,7 +1321,7 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12
         var hit = active.size > 0 && (el.dataset.tags || '').split(' ').some(function (t) { return active.has(t); });
         el.classList.toggle('hit', hit); if (hit) n++;
       });
-      countEl.textContent = active.size ? n + ' matches across experience and case studies. Tap a filter again to clear it.' : '';
+      countEl.textContent = active.size ? n + ' matching case studies. Tap a filter again to clear it.' : '';
     });
   });
 
