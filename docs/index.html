@@ -773,6 +773,56 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12
   .reader-label { display: none; }
 }
 
+
+/* Concept mockup of a redesigned Eventbrite site (fixed illustration colours) */
+:root { --eb-orange: #f05537; --eb-navy: #1e0a3c; --eb-cream: #fff7f2; --eb-pink: #ff8fb1; --eb-lime: #d4f56a; --eb-sky: #8fd3ff; }
+.site-mock { margin: 0 0 48px; display: grid; gap: 12px; }
+.site-mock figcaption { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); text-align: center; }
+.sm-window { border: 2px solid var(--on-light); border-radius: 18px; overflow: hidden; background: var(--eb-cream); color: var(--eb-navy); box-shadow: 10px 12px 0 var(--c2); font-family: var(--body); }
+.sm-chrome { display: flex; align-items: center; gap: 6px; padding: 10px 14px; background: #ece6e1; border-bottom: 1.5px solid rgba(0,0,0,.1); }
+.sm-chrome i { width: 10px; height: 10px; border-radius: 50%; background: #c9c2bb; }
+.sm-chrome i:nth-child(1) { background: #ff6159; } .sm-chrome i:nth-child(2) { background: #ffbd2e; } .sm-chrome i:nth-child(3) { background: #28c941; }
+.sm-chrome span { margin-left: 12px; background: #fff; border-radius: 999px; padding: 3px 14px; font-size: 0.72rem; color: #6b6158; }
+.sm-nav { display: flex; align-items: center; gap: 20px; padding: 14px 22px; flex-wrap: wrap; }
+.eb-logo { font-family: "Hanken Grotesk", system-ui, sans-serif; font-weight: 800; font-size: 1.35rem; letter-spacing: -0.04em; color: var(--eb-orange); }
+img.eb-logo { height: 24px; width: auto; }
+.sm-links { display: flex; gap: 16px; font-size: 0.85rem; flex-wrap: wrap; }
+.sm-links b { border-bottom: 3px solid var(--eb-orange); }
+.sm-friends { margin-left: auto; display: flex; align-items: center; font-size: 0.75rem; font-weight: 600; }
+.sm-friends i, .sm-going i { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--eb-cream); margin-right: -6px; background: var(--eb-pink); }
+.sm-friends i:nth-child(2), .sm-going i:nth-child(2) { background: var(--eb-sky); } .sm-friends i:nth-child(3), .sm-going i:nth-child(3) { background: var(--eb-lime); }
+.sm-friends small { margin-left: 12px; }
+.sm-hero { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 18px; padding: 10px 22px 22px; }
+.sm-hero-text { display: grid; gap: 14px; align-content: center; }
+.sm-hero-text > b { font-family: var(--display); font-weight: 800; font-size: clamp(2rem, 5vw, 3.6rem); line-height: .95; letter-spacing: -0.04em; color: var(--eb-navy); }
+.sm-search { display: flex; align-items: center; gap: 10px; background: #fff; border: 2px solid var(--eb-navy); border-radius: 999px; padding: 6px 6px 6px 16px; font-size: 0.82rem; flex-wrap: wrap; }
+.sm-search span { font-weight: 800; color: var(--eb-orange); }
+.sm-search em { font-style: normal; color: #6b6158; flex: 1; min-width: 0; }
+.sm-search u { text-decoration: none; background: var(--eb-orange); color: #fff; font-weight: 700; border-radius: 999px; padding: 7px 16px; }
+.sm-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.sm-chips span { border: 1.5px solid var(--eb-navy); border-radius: 999px; padding: 4px 12px; font-size: 0.75rem; font-weight: 600; background: #fff; }
+.sm-chips span:first-child { background: var(--eb-navy); color: #fff; }
+.sm-map { position: relative; border-radius: 16px; min-height: 170px; border: 2px solid var(--eb-navy); overflow: hidden;
+  background: repeating-linear-gradient(30deg, rgba(30,10,60,.08) 0 2px, transparent 2px 22px), repeating-linear-gradient(-60deg, rgba(30,10,60,.08) 0 2px, transparent 2px 30px), #e9f6ee; }
+.sm-map small { position: absolute; left: 10px; top: 8px; font-weight: 800; font-size: 0.75rem; background: #fff; border-radius: 999px; padding: 2px 10px; }
+.sm-map i { position: absolute; width: 18px; height: 18px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); background: var(--eb-orange); border: 2px solid #fff; box-shadow: 0 0 0 6px rgba(240,85,55,.2); animation: ping 2.4s ease-in-out infinite; }
+.sm-map i:nth-of-type(2) { animation-delay: .6s; } .sm-map i:nth-of-type(3) { animation-delay: 1.2s; } .sm-map i:nth-of-type(4) { animation-delay: 1.8s; }
+@keyframes ping { 50% { box-shadow: 0 0 0 12px rgba(240,85,55,0); } }
+.sm-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; padding: 0 22px 24px; }
+.sm-card { background: #fff; border-radius: 16px; overflow: hidden; border: 1.5px solid rgba(30,10,60,.15); display: grid; gap: 4px; padding-bottom: 12px; }
+.sm-card b, .sm-card small, .sm-going { padding: 0 12px; }
+.sm-card b { font-size: 0.95rem; margin-top: 6px; }
+.sm-card small { color: #6b6158; font-size: 0.78rem; }
+.sm-going { display: flex; align-items: center; font-size: 0.75rem; font-weight: 700; gap: 0; }
+.sm-going i { width: 16px; height: 16px; border-color: #fff; }
+.sm-going i:last-of-type { margin-right: 8px; }
+.sm-img { height: 110px; position: relative; }
+.sm-img-1 { background: radial-gradient(circle at 70% 30%, var(--eb-lime) 0 18%, transparent 19%), linear-gradient(135deg, var(--eb-orange), #ff2e63); }
+.sm-img-2 { background: radial-gradient(circle at 25% 65%, #fff3 0 22%, transparent 23%), linear-gradient(135deg, var(--eb-navy), #6b3fd4); }
+.sm-img-3 { background: repeating-linear-gradient(-45deg, #fff4 0 8px, transparent 8px 22px), linear-gradient(135deg, var(--eb-sky), #2bb673); }
+.sm-badge { position: absolute; left: 10px; top: 10px; background: #fff; color: var(--eb-navy); font-size: 0.68rem; font-weight: 800; border-radius: 999px; padding: 3px 10px; }
+@media (max-width: 760px) { .sm-hero { grid-template-columns: minmax(0, 1fr); } .sm-grid { grid-template-columns: minmax(0, 1fr); } .sm-grid .sm-card:nth-child(n+2) { display: none; } .sm-links { display: none; } }
+
 /* Cursor ring (fine pointers only) */
 .cursor { position: fixed; left: 0; top: 0; width: 34px; height: 34px; margin: -17px 0 0 -17px; border-radius: 50%; border: 2px solid var(--c2); pointer-events: none; z-index: 90; transition: width .2s, height .2s, margin .2s, background .2s; display: none; }
 .cursor.big { width: 64px; height: 64px; margin: -32px 0 0 -32px; background: color-mix(in srgb, var(--c2) 25%, transparent); }
@@ -823,8 +873,8 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12
       <a href="#brand">Brand</a>
       <a href="#journey">Journey</a>
       <a href="#experience">Experience</a>
-      <a href="#blog">Blog</a>
       <a href="#education">Education</a>
+      <a href="#blog">Blog</a>
       <a href="#about">About me</a>
       <a href="#contact">Contact</a>
     </div>
@@ -1050,33 +1100,6 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12
     </div>
   </section>
 
-  <section id="blog" class="gutter" style="padding-top: 0">
-    <div class="inner">
-      <div class="sec-head">
-        <p class="eyebrow">Brand blog</p>
-        <h2>Pitches and <span class="serif">points of view.</span></h2>
-        <p class="hint">Where I think out loud about brands I actually use.</p>
-      </div>
-      <div class="posts">
-        <button class="post-card" type="button" data-post="glow-up">
-          <span class="post-art" aria-hidden="true">
-            <span class="ticket">
-              <span class="ticket-main"><small>Admit one</small><b>The Glow Up</b><small>A pitch · 6 min read</small></span>
-              <span class="ticket-stub"><b>04</b><small>ideas</small></span>
-            </span>
-          </span>
-          <span class="post-body">
-            <span class="tag">Pitch · Product &amp; brand strategy · Oct 2026</span>
-            <h3>The Glow Up for Eventbrite</h3>
-            <p>A pitch for Bending Spoons' newest product: what isn't working, four ideas to fix it, and where I'd start.</p>
-            <span class="post-meta">6 min read · 5 problems · 4 ideas · 1 roadmap</span>
-            <span class="open"><i>→</i> Read the pitch</span>
-          </span>
-        </button>
-      </div>
-    </div>
-  </section>
-
   <section id="education" class="gutter" style="padding-top: 0">
     <div class="inner">
       <div class="sec-head">
@@ -1103,6 +1126,33 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12
       <div class="ib-card">
         <b>40<span>/45</span></b>
         <div><span class="d-tag">IB Diploma score</span><p>The International Baccalaureate Diploma, finished before starting at Bayes.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="blog" class="gutter" style="padding-top: 0">
+    <div class="inner">
+      <div class="sec-head">
+        <p class="eyebrow">Brand blog</p>
+        <h2>Pitches and <span class="serif">points of view.</span></h2>
+        <p class="hint">Where I think out loud about brands I actually use.</p>
+      </div>
+      <div class="posts">
+        <button class="post-card" type="button" data-post="glow-up">
+          <span class="post-art" aria-hidden="true">
+            <span class="ticket">
+              <span class="ticket-main"><small>Admit one</small><b>The Glow Up</b><small>A pitch · 6 min read</small></span>
+              <span class="ticket-stub"><b>04</b><small>ideas</small></span>
+            </span>
+          </span>
+          <span class="post-body">
+            <span class="tag">Pitch · Product &amp; brand strategy · Oct 2026</span>
+            <h3>The Glow Up for Eventbrite</h3>
+            <p>A pitch for Bending Spoons' newest product: what isn't working, four ideas to fix it, and where I'd start.</p>
+            <span class="post-meta">6 min read · 5 problems · 4 ideas · 1 roadmap</span>
+            <span class="open"><i>→</i> Read the pitch</span>
+          </span>
+        </button>
       </div>
     </div>
   </section>
@@ -1289,6 +1339,31 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12
       <h1 id="r-title">The Glow Up for Eventbrite</h1>
       <p class="post-dek">A pitch by Rea Shah for Bending Spoons' newest product</p>
     </header>
+    <figure class="site-mock">
+      <div class="sm-window" aria-hidden="true">
+        <div class="sm-chrome"><i></i><i></i><i></i><span>eventbrite.com</span></div>
+        <div class="sm-nav">
+          <span class="eb-logo">eventbrite</span>
+          <span class="sm-links"><b>Tonight</b><span>This weekend</span><span>For you</span><span>Map</span></span>
+          <span class="sm-friends"><i></i><i></i><i></i><small>5 friends out tonight</small></span>
+        </div>
+        <div class="sm-hero">
+          <div class="sm-hero-text">
+            <b>Your Friday, sorted.</b>
+            <div class="sm-search"><span>✦ Plan my night</span><em>fun and cheap in Hackney on Friday</em><u>Plan it</u></div>
+            <div class="sm-chips"><span>Comedy</span><span>Supper clubs</span><span>Run clubs</span><span>Live music</span><span>Under £10</span></div>
+          </div>
+          <div class="sm-map"><small>Live near you</small><i style="left: 22%; top: 30%"></i><i style="left: 62%; top: 55%"></i><i style="left: 45%; top: 20%"></i><i style="left: 75%; top: 25%"></i></div>
+        </div>
+        <div class="sm-grid">
+          <div class="sm-card"><div class="sm-img sm-img-1"><span class="sm-badge">✓ Verified</span></div><b>Late-night comedy</b><small>Fri · 8pm · £8</small><span class="sm-going"><i></i><i></i><i></i>3 friends going</span></div>
+          <div class="sm-card"><div class="sm-img sm-img-2"><span class="sm-badge">Swap available</span></div><b>Neighbourhood supper club</b><small>Fri · 7:30pm · £25</small><span class="sm-going"><i></i><i></i>2 friends going</span></div>
+          <div class="sm-card"><div class="sm-img sm-img-3"><span class="sm-badge">For you</span></div><b>Sunday 5k run club</b><small>Sun · 9am · Free</small><span class="sm-going"><i></i>1 friend going</span></div>
+        </div>
+      </div>
+      <figcaption>Concept mockup by Rea Shah of a glowed-up Eventbrite. Not the real Eventbrite website, and not real events.</figcaption>
+    </figure>
+
 
     <div class="post-layout">
       <nav class="post-toc" aria-label="In this pitch">
@@ -1415,16 +1490,11 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12
           <div class="idea" role="tabpanel" id="idea-3" aria-labelledby="tab-3" hidden>
             <div class="idea-text">
               <h3>Bring a friend</h3>
-              <p>This one comes from my own experience. When I surveyed clients of my mum's nutrition practice, 76% said they'd take part in a referral scheme if there was a reward. But 23% weren't interested in rewards at all. They came because a friend recommended her. I think going out works the same way: people go to things their friends are going to.</p>
+              <p>Going out is social: people go to things their friends are going to.</p>
               <p>So straight after you buy a ticket, the app would ask who's coming with you and give you a link to send them. Since organisers are <a href="https://www.roic.ai/quote/EB/transcripts/2025-year/2-quarter" target="_blank" rel="noopener">selling fewer tickets each</a>, this could help where it matters most.</p>
               <div class="test"><span>How I'd test it</span><p>Show the prompt to half of buyers and not the other half, then compare tickets sold per event. I'd also watch unsubscribe rates in case people find it pushy.</p></div>
             </div>
             <figure class="idea-visual">
-              <div class="survey">
-                <div class="sv"><div class="sv-top"><span>Would take part in a referral scheme with a reward</span><b>76%</b></div><span class="sv-bar"><i style="--w: 76%"></i></span></div>
-                <div class="sv"><div class="sv-top"><span>Weren't interested in rewards at all: they came because a friend recommended her</span><b>23%</b></div><span class="sv-bar"><i style="--w: 23%"></i></span></div>
-              </div>
-              <figcaption>From my survey of my mum's nutrition clients</figcaption>
               <div class="prompt-mock" aria-hidden="true"><b>You're going!</b><span>Who's coming with you?</span><em>Send your friends the link →</em></div>
             </figure>
           </div>
@@ -1831,8 +1901,8 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12
       c: ['var(--ink)', 'var(--bg)'], tag: 'Family business · Nutrition practice', title: 'Turning word of mouth into a referral programme', big: '10 new clients',
       s: 'My mum runs a nutrition practice. Many new clients already came through recommendations, but it happened by chance, with nothing in place to encourage or build on it.',
       t: 'Take something clients were already doing naturally and turn it into a referral programme that converts more of those conversations into new clients.',
-      a: 'Designed a referral programme around the way clients already talked about the practice, made it easy for them to refer someone or bring a friend along, and gathered client feedback on it.',
-      r: '10 new clients came through referrals in 2 months. Clients responded positively, and 1 in 2 said they were more likely to refer or bring friends, building a bigger client base.',
+      a: 'Surveyed clients, then designed a referral programme around the way they already talked about the practice, making it easy to refer someone or bring a friend along.',
+      r: '10 new clients came through referrals in 2 months. In the survey, 76% of clients said they would take part in a referral scheme if there was a reward, and 1 in 2 said they were more likely to refer or bring friends, building a bigger client base.',
       skills: ['Word-of-mouth marketing', 'Referral programme design', 'Client conversion', 'Small business growth']
     },
     competitors: {
