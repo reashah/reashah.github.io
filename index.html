@@ -590,6 +590,171 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12
   .pc-back .para { display: block; border-right: 0; padding-right: 0; }
 }
 
+/* Brand blog */
+.posts { display: grid; gap: 20px; }
+.post-card {
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); text-align: left; cursor: pointer; overflow: hidden;
+  border: 2px solid var(--on-light); border-radius: 28px; background: var(--surface); color: var(--ink); padding: 0;
+  transition: transform .25s cubic-bezier(.2,.8,.2,1.3), box-shadow .25s;
+}
+.post-card:hover { transform: translateY(-4px); box-shadow: 8px 10px 0 var(--on-light); }
+.post-art { background: var(--c1); display: grid; place-items: center; padding: 36px 24px; position: relative; overflow: hidden; }
+.post-art::before { content: ""; position: absolute; width: 260px; height: 260px; border-radius: 50%; background: var(--c2); filter: blur(50px); opacity: .7; right: -60px; top: -60px; }
+.ticket { position: relative; display: flex; transform: rotate(-6deg); filter: drop-shadow(6px 8px 0 rgba(0,0,0,.25)); transition: transform .4s cubic-bezier(.2,.8,.2,1.4); }
+.post-card:hover .ticket { transform: rotate(2deg) scale(1.04); }
+.ticket-main, .ticket-stub { background: var(--c3); color: var(--on-light); display: grid; align-content: center; gap: 2px; padding: 20px 22px; }
+.ticket-main { border-radius: 14px 0 0 14px; border-right: 3px dashed rgba(0,0,0,.35); min-width: 190px; }
+.ticket-stub { border-radius: 0 14px 14px 0; text-align: center; padding-inline: 16px; background: var(--c4); }
+.ticket b { font-family: var(--display); font-weight: 800; font-size: 1.7rem; line-height: 1; letter-spacing: -0.03em; }
+.ticket small { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; }
+.post-body { padding: clamp(24px, 3vw, 36px); display: grid; gap: 12px; align-content: center; }
+.post-body .tag { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.post-body h3 { font-family: var(--display); font-weight: 800; font-size: clamp(1.7rem, 3.4vw, 2.5rem); line-height: 1; letter-spacing: -0.03em; }
+.post-body p { color: var(--muted); max-width: 52ch; }
+.post-meta { font-size: 0.9rem; font-weight: 600; }
+.post-body .open { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; }
+.post-body .open i { font-style: normal; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--ink); color: var(--bg); transition: transform .2s; }
+.post-card:hover .open i { transform: rotate(-45deg); }
+
+/* Reader */
+.reader { position: fixed; inset: 0; z-index: 75; background: var(--bg); overflow-y: auto; overscroll-behavior: contain; opacity: 0; transform: translateY(24px); transition: opacity .3s, transform .35s cubic-bezier(.2,.8,.2,1); }
+.reader.show { opacity: 1; transform: none; }
+.reader-bar { position: sticky; top: 0; z-index: 2; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: calc(env(safe-area-inset-top, 0px) + 12px) clamp(16px, 4vw, 40px) 12px; background: color-mix(in srgb, var(--bg) 90%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.reader-progress { position: absolute; left: 0; right: 0; bottom: -1px; height: 4px; }
+.reader-progress i { display: block; height: 100%; background: linear-gradient(90deg, var(--c1), var(--c2), var(--c3)); transform-origin: left; transform: scaleX(0); }
+.reader-label { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.reader-actions { display: flex; gap: 8px; }
+.r-btn { border: 2px solid var(--ink); background: transparent; border-radius: 999px; padding: 6px 14px; font-weight: 600; font-size: 0.85rem; cursor: pointer; }
+.r-btn:hover { background: var(--ink); color: var(--bg); }
+.post { max-width: 1120px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px) calc(env(safe-area-inset-bottom, 0px) + 80px); }
+.post-hero { padding-block: clamp(40px, 7vw, 88px) clamp(28px, 4vw, 48px); display: grid; gap: 16px; border-bottom: 2px solid var(--ink); margin-bottom: 40px; }
+.post-hero .tag { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.post-hero h1 { font-family: var(--display); font-weight: 800; font-size: clamp(2.8rem, 8vw, 6rem); line-height: .92; letter-spacing: -0.045em; margin: 0; text-wrap: balance; }
+.post-dek { font-family: var(--serif); font-style: italic; font-size: clamp(1.25rem, 2.6vw, 1.7rem); color: var(--hl); }
+.post-layout { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+.post-toc { position: sticky; top: 90px; display: grid; gap: 2px; font-size: 0.9rem; }
+.post-toc > span { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+.post-toc a { color: var(--muted); text-decoration: none; padding: 5px 0 5px 12px; border-left: 2px solid var(--line); transition: color .2s, border-color .2s; }
+.post-toc a:hover { color: var(--ink); }
+.post-toc a.on { color: var(--ink); font-weight: 700; border-left-color: var(--c2); }
+.post-body-text { display: grid; gap: clamp(48px, 7vw, 80px); min-width: 0; }
+.post-sec { display: grid; gap: 18px; scroll-margin-top: 90px; }
+.post-sec h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); display: flex; align-items: baseline; gap: 14px; }
+.post-sec h2 span { font-family: var(--mono); font-size: 0.9rem; font-weight: 500; color: var(--bg); background: var(--ink); border-radius: 999px; padding: 3px 10px; letter-spacing: 0.05em; transform: translateY(-6px); }
+.post-sec p { max-width: 68ch; font-size: 1.06rem; }
+.post-sec a { color: var(--hl); font-weight: 600; text-decoration-thickness: 2px; text-decoration-color: color-mix(in srgb, var(--hl) 40%, transparent); }
+.post-sec a:hover { text-decoration-color: var(--hl); }
+.stat-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.stat { border: 2px solid var(--on-light); border-radius: 20px; padding: 18px; display: grid; gap: 6px; }
+.stat:nth-child(1) { background: var(--c1); color: var(--on-dark); }
+.stat:nth-child(2) { background: var(--c2); color: var(--on-light); }
+.stat:nth-child(3) { background: var(--c3); color: var(--on-light); }
+.stat:nth-child(4) { background: var(--c4); color: var(--on-light); }
+.stat b { font-family: var(--display); font-weight: 800; font-size: clamp(2rem, 4vw, 2.8rem); line-height: 1; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 0.9rem; line-height: 1.35; }
+.deal { display: flex; flex-wrap: wrap; gap: 12px; }
+.deal div { border: 2px solid var(--ink); border-radius: 999px; padding: 10px 20px; display: flex; align-items: baseline; gap: 10px; }
+.deal b { font-family: var(--display); font-weight: 800; font-size: 1.4rem; letter-spacing: -0.02em; }
+.deal span { color: var(--muted); font-size: 0.9rem; }
+.problems { display: grid; gap: 10px; }
+.problem { border: 2px solid var(--ink); border-radius: 18px; background: var(--surface); overflow: hidden; }
+.problem summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 14px; padding: 16px 20px; font-family: var(--display); font-weight: 800; font-size: clamp(1.05rem, 2vw, 1.3rem); letter-spacing: -0.02em; }
+.problem summary::-webkit-details-marker { display: none; }
+.problem summary::after { content: "+"; margin-left: auto; font-size: 1.6rem; line-height: 1; transition: transform .3s; }
+.problem[open] summary::after { transform: rotate(45deg); }
+.problem summary i { font-style: normal; flex: none; width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: var(--c2); color: var(--on-light); font-size: 0.95rem; border: 2px solid var(--on-light); }
+.problem[open] { box-shadow: 6px 6px 0 var(--c2); }
+.problem-body { padding: 0 20px 20px 66px; display: grid; gap: 16px; }
+.mini-chart { margin: 0; display: grid; gap: 10px; max-width: 320px; }
+.mini-chart figcaption { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.bars { display: flex; gap: 28px; align-items: flex-start; height: 130px; border-top: 2px solid var(--ink); padding-top: 0; }
+.bar-col { display: grid; justify-items: center; gap: 4px; width: 80px; height: 100%; grid-template-rows: 1fr auto auto; }
+.bar { width: 48px; align-self: start; height: var(--h); background: var(--c1); border: 2px solid var(--on-light); border-top: 0; border-radius: 0 0 10px 10px; transform-origin: top; animation: drop .9s cubic-bezier(.2,.8,.2,1) both; }
+@keyframes drop { from { transform: scaleY(0); } }
+.bar-col b { font-family: var(--display); font-weight: 800; font-size: 1.2rem; }
+.bar-col small { color: var(--muted); font-size: 0.8rem; }
+.idea-tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+.idea-tab { display: inline-flex; align-items: center; gap: 8px; border: 2px solid var(--ink); background: transparent; border-radius: 999px; padding: 8px 16px 8px 8px; font-weight: 700; cursor: pointer; transition: background .2s, color .2s, transform .2s; }
+.idea-tab i { font-style: normal; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--ink); color: var(--bg); font-size: 0.85rem; }
+.idea-tab:hover { transform: translateY(-2px); }
+.idea-tab[aria-selected="true"] { background: var(--c3); color: var(--on-light); border-color: var(--on-light); }
+.idea-tab[aria-selected="true"] i { background: var(--on-light); color: var(--c3); }
+.idea { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: clamp(20px, 4vw, 40px); align-items: start; border: 2px solid var(--on-light); border-radius: 28px; padding: clamp(22px, 3.5vw, 36px); background: var(--surface); animation: rise .35s ease both; }
+@keyframes rise { from { opacity: 0; transform: translateY(10px); } }
+.idea-text { display: grid; gap: 14px; min-width: 0; }
+.idea-text h3 { font-family: var(--display); font-weight: 800; font-size: clamp(1.4rem, 2.6vw, 1.9rem); letter-spacing: -0.02em; line-height: 1.1; }
+.idea-text ul { margin: 0; padding-left: 20px; display: grid; gap: 8px; max-width: 64ch; }
+.why, .test { border-radius: 16px; padding: 14px 18px; display: grid; gap: 6px; }
+.why { background: color-mix(in srgb, var(--c4) 55%, var(--surface)); }
+.test { background: color-mix(in srgb, var(--c3) 45%, var(--surface)); }
+.why > span, .test > span { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; }
+.why p, .test p { font-size: 1rem; }
+.idea-visual { margin: 0; display: grid; gap: 12px; justify-items: center; }
+.idea-visual figcaption { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); text-align: center; }
+.phone { width: 230px; max-width: 100%; border: 9px solid var(--on-light); border-radius: 34px; background: var(--bg); padding: 16px 12px; display: grid; gap: 9px; box-shadow: 8px 10px 0 var(--c2); }
+.ph-search { font-size: 0.75rem; border: 1.5px solid var(--ink); border-radius: 999px; padding: 7px 10px; font-weight: 600; }
+.ph-label { font-family: var(--display); font-weight: 800; font-size: 1.05rem; margin-top: 4px; }
+.ph-card { background: var(--pc); color: var(--on-light); border-radius: 12px; padding: 10px 12px; display: grid; gap: 4px; border: 1.5px solid var(--on-light); }
+.ph-card b { font-size: 0.9rem; }
+.ph-friends { display: flex; align-items: center; gap: 0; font-size: 0.7rem; font-weight: 600; }
+.ph-friends i { width: 16px; height: 16px; border-radius: 50%; background: var(--on-light); border: 2px solid var(--pc); margin-right: -5px; }
+.ph-friends i:last-of-type { margin-right: 6px; }
+.ph-map { height: 70px; border-radius: 12px; border: 1.5px solid var(--on-light); position: relative; overflow: hidden;
+  background: radial-gradient(circle at 30% 40%, var(--c2) 0 5px, transparent 6px), radial-gradient(circle at 70% 60%, var(--c1) 0 5px, transparent 6px), radial-gradient(circle at 55% 25%, var(--c3) 0 5px, transparent 6px), repeating-linear-gradient(35deg, var(--line) 0 2px, transparent 2px 18px), var(--surface); }
+.ph-map span { position: absolute; left: 8px; bottom: 6px; font-size: 0.65rem; font-weight: 700; }
+.mini-stats { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.mini-stats div { background: var(--c1); color: var(--on-dark); border-radius: 14px; padding: 10px 14px; display: grid; max-width: 140px; }
+.mini-stats b { font-family: var(--display); font-weight: 800; font-size: 1.5rem; line-height: 1; }
+.mini-stats span { font-size: 0.75rem; }
+.flow { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; width: 100%; counter-reset: f; }
+.flow li { counter-increment: f; border: 2px solid var(--on-light); border-radius: 16px; padding: 12px 14px 12px 52px; position: relative; display: grid; gap: 2px; background: var(--bg); }
+.flow li::before { content: counter(f); position: absolute; left: 12px; top: 50%; transform: translateY(-50%); width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--c2); color: var(--on-light); font-weight: 800; border: 2px solid var(--on-light); }
+.flow li + li::after { content: "↓"; position: absolute; left: 50%; top: -17px; font-weight: 800; }
+.flow span { font-size: 0.88rem; color: var(--muted); }
+.survey { display: grid; gap: 14px; width: 100%; }
+.sv { display: grid; gap: 6px; }
+.sv-top { display: flex; justify-content: space-between; gap: 12px; align-items: flex-end; }
+.sv-top span { font-size: 0.88rem; line-height: 1.35; }
+.sv-top b { font-family: var(--display); font-weight: 800; font-size: 1.8rem; line-height: 1; }
+.sv-bar { height: 14px; border-radius: 999px; background: var(--line); overflow: hidden; display: block; }
+.sv-bar i { display: block; height: 100%; width: var(--w); background: linear-gradient(90deg, var(--c1), var(--c2)); border-radius: 999px; animation: grow 1s cubic-bezier(.2,.8,.2,1) both; transform-origin: left; }
+@keyframes grow { from { transform: scaleX(0); } }
+.prompt-mock { width: 100%; max-width: 260px; border: 2px solid var(--on-light); border-radius: 18px; padding: 14px 16px; display: grid; gap: 4px; background: var(--c3); color: var(--on-light); box-shadow: 6px 6px 0 var(--on-light); }
+.prompt-mock em { font-style: normal; font-weight: 700; text-decoration: underline; }
+.checks { list-style: none; padding: 0 !important; }
+.checks li { padding-left: 34px; position: relative; }
+.checks li::before { content: "✓"; position: absolute; left: 0; top: 0; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: var(--c4); color: var(--on-light); font-weight: 800; font-size: 0.8rem; border: 2px solid var(--on-light); }
+.badge-mock { width: 100%; max-width: 260px; border: 2px solid var(--on-light); border-radius: 18px; padding: 18px; display: grid; gap: 4px; justify-items: start; background: var(--bg); box-shadow: 6px 6px 0 var(--c4); }
+.bm-tick { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--c1); color: var(--on-dark); font-weight: 800; margin-bottom: 6px; }
+.badge-mock small { color: var(--muted); }
+.roadmap { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; position: relative; }
+.roadmap li { display: grid; gap: 8px; align-content: start; }
+.rm { text-align: left; border: 2px solid var(--on-light); border-radius: 20px; padding: 16px 18px; display: grid; gap: 4px; cursor: pointer; background: var(--surface); transition: background .2s, transform .2s, box-shadow .2s; }
+.rm i { font-style: normal; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; }
+.rm b { font-family: var(--display); font-weight: 800; font-size: 1.1rem; letter-spacing: -0.02em; line-height: 1.2; }
+.rm:hover { transform: translateY(-2px); }
+.rm[aria-expanded="true"] { background: var(--c2); color: var(--on-light); box-shadow: 5px 5px 0 var(--on-light); }
+.roadmap li > p { padding: 0 6px; font-size: 0.98rem; }
+.pull { margin: 0; font-family: var(--display); font-weight: 800; font-size: clamp(1.6rem, 3.6vw, 2.6rem); line-height: 1.15; letter-spacing: -0.03em; padding: clamp(24px, 4vw, 40px); border-radius: 28px; background: var(--c1); color: var(--on-dark); border: 2px solid var(--on-light); text-wrap: balance; }
+.post-end { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; border-top: 2px solid var(--ink); padding-top: 22px; }
+.post-end span { font-family: var(--serif); font-style: italic; font-size: 1.2rem; }
+@media (max-width: 900px) {
+  .post-card { grid-template-columns: minmax(0, 1fr); }
+  .post-layout { grid-template-columns: minmax(0, 1fr); }
+  .post-toc { position: static; display: flex; flex-wrap: wrap; gap: 6px; }
+  .post-toc > span { width: 100%; }
+  .post-toc a { border: 1.5px solid var(--line); border-radius: 999px; padding: 4px 10px; font-size: 0.82rem; }
+  .post-toc a.on { border-color: var(--c2); }
+  .idea { grid-template-columns: minmax(0, 1fr); }
+  .stat-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  .roadmap { grid-template-columns: minmax(0, 1fr); }
+  .problem-body { padding-left: 20px; }
+  .reader-label { display: none; }
+}
+
 /* Cursor ring (fine pointers only) */
 .cursor { position: fixed; left: 0; top: 0; width: 34px; height: 34px; margin: -17px 0 0 -17px; border-radius: 50%; border: 2px solid var(--c2); pointer-events: none; z-index: 90; transition: width .2s, height .2s, margin .2s, background .2s; display: none; }
 .cursor.big { width: 64px; height: 64px; margin: -32px 0 0 -32px; background: color-mix(in srgb, var(--c2) 25%, transparent); }
@@ -639,6 +804,7 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12
       <a href="#brand">Brand</a>
       <a href="#journey">Journey</a>
       <a href="#experience">Experience</a>
+      <a href="#blog">Blog</a>
       <a href="#education">Education</a>
       <a href="#about">About me</a>
       <a href="#contact">Contact</a>
@@ -865,6 +1031,33 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12
     </div>
   </section>
 
+  <section id="blog" class="gutter" style="padding-top: 0">
+    <div class="inner">
+      <div class="sec-head">
+        <p class="eyebrow">Brand blog</p>
+        <h2>Pitches and <span class="serif">points of view.</span></h2>
+        <p class="hint">Where I think out loud about brands I actually use.</p>
+      </div>
+      <div class="posts">
+        <button class="post-card" type="button" data-post="glow-up">
+          <span class="post-art" aria-hidden="true">
+            <span class="ticket">
+              <span class="ticket-main"><small>Admit one</small><b>The Glow Up</b><small>A pitch · 6 min read</small></span>
+              <span class="ticket-stub"><b>04</b><small>ideas</small></span>
+            </span>
+          </span>
+          <span class="post-body">
+            <span class="tag">Pitch · Product &amp; brand strategy · Oct 2026</span>
+            <h3>The Glow Up for Eventbrite</h3>
+            <p>A pitch for Bending Spoons' newest product: what isn't working, four ideas to fix it, and where I'd start.</p>
+            <span class="post-meta">6 min read · 5 problems · 4 ideas · 1 roadmap</span>
+            <span class="open"><i>→</i> Read the pitch</span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </section>
+
   <section id="education" class="gutter" style="padding-top: 0">
     <div class="inner">
       <div class="sec-head">
@@ -1061,6 +1254,207 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12
   </section>
 </main>
 
+<div class="reader" id="reader" role="dialog" aria-modal="true" aria-labelledby="r-title" hidden>
+  <div class="reader-bar">
+    <span class="reader-progress" aria-hidden="true"><i id="r-progress"></i></span>
+    <span class="reader-label">Brand blog</span>
+    <div class="reader-actions">
+      <button class="r-btn" type="button" id="r-copy">Copy link</button>
+      <button class="r-btn" type="button" id="r-close">Close ✕</button>
+    </div>
+  </div>
+
+  <article class="post" id="post-glow-up">
+    <header class="post-hero">
+      <span class="tag">Pitch · Product &amp; brand strategy · Oct 2026 · 6 min read</span>
+      <h1 id="r-title">The Glow Up for Eventbrite</h1>
+      <p class="post-dek">A pitch by Rea Shah for Bending Spoons' newest product</p>
+    </header>
+
+    <div class="post-layout">
+      <nav class="post-toc" aria-label="In this pitch">
+        <span>In this pitch</span>
+        <a href="#ev-01" data-toc>01 · Eventbrite in numbers</a>
+        <a href="#ev-02" data-toc>02 · The acquisition</a>
+        <a href="#ev-03" data-toc>03 · What isn't working</a>
+        <a href="#ev-04" data-toc>04 · My four ideas</a>
+        <a href="#ev-05" data-toc>05 · Where I'd start</a>
+        <a href="#ev-06" data-toc>06 · To sum up</a>
+      </nav>
+
+      <div class="post-body-text">
+        <section class="post-sec" id="ev-01">
+          <h2><span>01</span> Eventbrite in numbers</h2>
+          <p>If you've been to a comedy night, supper club or run club in the last few years, there's a good chance you booked it on Eventbrite. In 2024 it sold 83 million paid tickets to 4.7 million events, across almost 180 countries, with 89 million people using it every month. (<a href="https://www.businesswire.com/news/home/20250508115428/en" target="_blank" rel="noopener">Eventbrite Q1 2025 results</a>)</p>
+          <div class="stat-row">
+            <div class="stat"><b data-count="83" data-suffix="M">83M</b><span>paid tickets in 2024</span></div>
+            <div class="stat"><b data-count="4.7" data-suffix="M" data-dec="1">4.7M</b><span>events</span></div>
+            <div class="stat"><b data-count="180" data-prefix="~">~180</b><span>countries</span></div>
+            <div class="stat"><b data-count="89" data-suffix="M">89M</b><span>people using it every month</span></div>
+          </div>
+        </section>
+
+        <section class="post-sec" id="ev-02">
+          <h2><span>02</span> The acquisition</h2>
+          <p>Bending Spoons agreed to buy Eventbrite for <a href="https://en.ilsole24ore.com/art/bending-spoons-targets-live-events-500-million-eventbrite-AIMhnaC" target="_blank" rel="noopener">about $500M in cash, or $4.50 a share</a>, and the deal <a href="https://www.quantisnow.com/insight/sec-form-15-12g-filed-by-eventbrite-inc-6462535" target="_blank" rel="noopener">closed on 10 March 2026</a>. <a href="https://bendingspoons.com" target="_blank" rel="noopener">Bending Spoons' website</a> says it's still working on its first improvements, so I had a go at making a list.</p>
+          <div class="deal">
+            <div><b>~$500M</b><span>in cash</span></div>
+            <div><b>$4.50</b><span>a share</span></div>
+            <div><b>10 Mar 2026</b><span>deal closed</span></div>
+          </div>
+        </section>
+
+        <section class="post-sec" id="ev-03">
+          <h2><span>03</span> What I think isn't working</h2>
+          <p class="hint">Tap a problem to open it.</p>
+          <div class="problems">
+            <details class="problem" open>
+              <summary><i>1</i> Organisers are selling fewer tickets</summary>
+              <div class="problem-body">
+                <p>Revenue dropped <a href="https://www.businesswire.com/news/home/20250806500850/en" target="_blank" rel="noopener">14% in Q2 2025</a> and <a href="https://www.businesswire.com/news/home/20251106323681/en" target="_blank" rel="noopener">8% in Q3</a> compared with the year before. On an earnings call, management said <a href="https://www.roic.ai/quote/EB/transcripts/2025-year/2-quarter" target="_blank" rel="noopener">organisers were selling fewer tickets each than they'd expected</a>. If organisers sell less, they have less reason to stay.</p>
+                <figure class="mini-chart" aria-label="Revenue change compared with the same quarter a year earlier: Q2 2025 down 14%, Q3 2025 down 8%">
+                  <figcaption>Revenue vs the same quarter a year earlier</figcaption>
+                  <div class="bars">
+                    <div class="bar-col"><span class="bar" style="--h: 93%"></span><b>−14%</b><small>Q2 2025</small></div>
+                    <div class="bar-col"><span class="bar" style="--h: 53%"></span><b>−8%</b><small>Q3 2025</small></div>
+                  </div>
+                </figure>
+              </div>
+            </details>
+            <details class="problem">
+              <summary><i>2</i> It's hard to reach a real person</summary>
+              <div class="problem-body"><p>Reviewers say <a href="https://au.trustpilot.com/review/eventbrite.ie" target="_blank" rel="noopener">they can only get through to an AI chatbot</a>, usually when they need help most. <a href="https://www.elliott.org/problem-solved/ms-pat-fan-faces-an-eventbrite-fee-fiasco-can-she-get-a-refund/" target="_blank" rel="noopener">A consumer journalist had the same problem</a> when he tried to contact them.</p></div>
+            </details>
+            <details class="problem">
+              <summary><i>3</i> People lose trust when events are cancelled</summary>
+              <div class="problem-body"><p>Some buyers say <a href="https://au.trustpilot.com/review/eventbrite.ie" target="_blank" rel="noopener">organisers cancelled and never refunded them, and Eventbrite said it couldn't do anything</a>. One reviewer suggested Eventbrite should <a href="https://www.capterra.com/p/114949/Eventbrite/reviews/?page=66" target="_blank" rel="noopener">hold the money until the event actually happens</a>. I think they're onto something.</p></div>
+            </details>
+            <details class="problem">
+              <summary><i>4</i> The app is useful, but it isn't fun</summary>
+              <div class="problem-body"><p>Eventbrite <a href="https://www.marketbeat.com/earnings/reports/2025-5-8-eventbrite-inc-stock" target="_blank" rel="noopener">relaunched its app in 2025</a> and it does look cleaner. But it still feels like scrolling through listings. When I use Partiful or DICE, I can see who's going and it feels like part of the night out. I don't get that on Eventbrite.</p></div>
+            </details>
+            <details class="problem">
+              <summary><i>5</i> Reselling a ticket means leaving the app</summary>
+              <div class="problem-body"><p>Eventbrite <a href="https://www.eventbrite.com/blog/?p=244518" target="_blank" rel="noopener">works with partners like Tixel</a> and <a href="https://musicweek.com/live/read/twickets-links-up-with-eventbrite/070684" target="_blank" rel="noopener">Twickets</a> for resale, but only if the organiser signs up, and there's <a href="https://help.theatr-app.com/en/articles/16767899-how-to-resell-and-transfer-eventbrite-tickets" target="_blank" rel="noopener">no simple way to transfer a ticket to a friend's account</a>.</p></div>
+            </details>
+          </div>
+        </section>
+
+        <section class="post-sec" id="ev-04">
+          <h2><span>04</span> My four ideas</h2>
+          <div class="idea-tabs" role="tablist" aria-label="My four ideas">
+            <button class="idea-tab" role="tab" type="button" id="tab-1" aria-controls="idea-1" aria-selected="true"><i>1</i>A smarter, more fun app</button>
+            <button class="idea-tab" role="tab" type="button" id="tab-2" aria-controls="idea-2" aria-selected="false" tabindex="-1"><i>2</i>Swap tickets in the app</button>
+            <button class="idea-tab" role="tab" type="button" id="tab-3" aria-controls="idea-3" aria-selected="false" tabindex="-1"><i>3</i>Bring a friend</button>
+            <button class="idea-tab" role="tab" type="button" id="tab-4" aria-controls="idea-4" aria-selected="false" tabindex="-1"><i>4</i>Build in trust</button>
+          </div>
+
+          <div class="idea" role="tabpanel" id="idea-1" aria-labelledby="tab-1">
+            <div class="idea-text">
+              <h3>Make the app more fun and a lot smarter</h3>
+              <p><strong>The look:</strong> bigger type, bolder colours and better event photos. You'd be able to see which friends are going before you buy, and share your ticket to your Instagram Story or group chat.</p>
+              <p><strong>The features:</strong></p>
+              <ul>
+                <li><strong>Plan my night.</strong> Type something like "fun and cheap in Hackney on Friday" and an AI assistant puts together a plan for you.</li>
+                <li>A "For you" page based on the events you've booked before.</li>
+                <li>A live map of what's happening near you tonight.</li>
+                <li>Wallet tickets that update by themselves if the time or venue changes.</li>
+              </ul>
+              <div class="why"><span>Why I think it's worth it</span><p>After the 2025 relaunch, <a href="https://www.marketbeat.com/earnings/reports/2025-5-8-eventbrite-inc-stock" target="_blank" rel="noopener">paid tickets bought in the app went up 11% and monthly app users went up 13%</a>. People are already moving to the app. And Bending Spoons <a href="https://bendingspoons.com" target="_blank" rel="noopener">uses AI across everything it does</a>, so the assistant is a natural fit.</p></div>
+              <div class="test"><span>How I'd test it</span><p>Release one feature at a time to a group of users, and check whether more of them buy a first ticket and come back to book again. I'd also keep an eye on existing users, to make sure the changes don't put them off buying.</p></div>
+            </div>
+            <figure class="idea-visual">
+              <div class="phone" aria-hidden="true">
+                <div class="ph-search">✦ fun and cheap in Hackney on Friday</div>
+                <div class="ph-label">For you</div>
+                <div class="ph-card" style="--pc: var(--c2)"><b>Comedy night</b><span class="ph-friends"><i></i><i></i><i></i> 3 friends going</span></div>
+                <div class="ph-card" style="--pc: var(--c3)"><b>Supper club</b><span class="ph-friends"><i></i><i></i> 2 friends going</span></div>
+                <div class="ph-card" style="--pc: var(--c4)"><b>Run club</b><span class="ph-friends"><i></i> 1 friend going</span></div>
+                <div class="ph-map"><span>Live near you tonight</span></div>
+              </div>
+              <figcaption>Concept sketch, not real events</figcaption>
+              <div class="mini-stats"><div><b>+11%</b><span>paid tickets bought in the app</span></div><div><b>+13%</b><span>monthly app users</span></div></div>
+            </figure>
+          </div>
+
+          <div class="idea" role="tabpanel" id="idea-2" aria-labelledby="tab-2" hidden>
+            <div class="idea-text">
+              <h3>Let people swap tickets inside the app</h3>
+              <p>If you can't go, you list your ticket at the price you paid. Whoever buys it gets a new ticket, so there's no risk of a fake or a screenshot. The UK government is planning to <a href="https://www.dlapiper.com/en/insights/publications/2025/11/government-cracks-down-on-ticket-touting" target="_blank" rel="noopener">make reselling above face value illegal and make platforms responsible for enforcing it</a>, so building this now means Eventbrite is ready before the law arrives. It should also mean fewer refund requests and fewer empty seats, and Eventbrite still earns a fee on each swap.</p>
+              <div class="test"><span>How I'd test it</span><p>Start with a group of UK organisers and track how many listed tickets sell and whether refund requests drop. I'd also check it doesn't eat into normal ticket sales.</p></div>
+            </div>
+            <figure class="idea-visual">
+              <ol class="flow">
+                <li><b>Can't go?</b><span>List your ticket at the price you paid</span></li>
+                <li><b>Someone buys it</b><span>Inside the app, no leaving for a resale site</span></li>
+                <li><b>A fresh ticket</b><span>Issued to the buyer, so no fakes or screenshots</span></li>
+              </ol>
+              <figcaption>How a swap would work</figcaption>
+            </figure>
+          </div>
+
+          <div class="idea" role="tabpanel" id="idea-3" aria-labelledby="tab-3" hidden>
+            <div class="idea-text">
+              <h3>Bring a friend</h3>
+              <p>This one comes from my own experience. When I surveyed clients of my mum's nutrition practice, 76% said they'd take part in a referral scheme if there was a reward. But 23% weren't interested in rewards at all. They came because a friend recommended her. I think going out works the same way: people go to things their friends are going to.</p>
+              <p>So straight after you buy a ticket, the app would ask who's coming with you and give you a link to send them. Since organisers are <a href="https://www.roic.ai/quote/EB/transcripts/2025-year/2-quarter" target="_blank" rel="noopener">selling fewer tickets each</a>, this could help where it matters most.</p>
+              <div class="test"><span>How I'd test it</span><p>Show the prompt to half of buyers and not the other half, then compare tickets sold per event. I'd also watch unsubscribe rates in case people find it pushy.</p></div>
+            </div>
+            <figure class="idea-visual">
+              <div class="survey">
+                <div class="sv"><div class="sv-top"><span>Would take part in a referral scheme with a reward</span><b>76%</b></div><span class="sv-bar"><i style="--w: 76%"></i></span></div>
+                <div class="sv"><div class="sv-top"><span>Weren't interested in rewards at all: they came because a friend recommended her</span><b>23%</b></div><span class="sv-bar"><i style="--w: 23%"></i></span></div>
+              </div>
+              <figcaption>From my survey of my mum's nutrition clients</figcaption>
+              <div class="prompt-mock" aria-hidden="true"><b>You're going!</b><span>Who's coming with you?</span><em>Send your friends the link →</em></div>
+            </figure>
+          </div>
+
+          <div class="idea" role="tabpanel" id="idea-4" aria-labelledby="tab-4" hidden>
+            <div class="idea-text">
+              <h3>Build trust into the platform</h3>
+              <ul class="checks">
+                <li>Verified badges and quicker payouts for organisers with a good track record</li>
+                <li>New organisers get paid after their event happens, not before</li>
+                <li>Buyers get refunded automatically if an event is cancelled</li>
+                <li>An easy way to talk to a real person when something goes wrong</li>
+              </ul>
+              <div class="test"><span>How I'd test it</span><p>Add a verified badge to some new events and not others, and see if more people complete their purchase. The risk is that new organisers might not like waiting to be paid, so I'd track how many of them stop using Eventbrite.</p></div>
+            </div>
+            <figure class="idea-visual">
+              <div class="badge-mock" aria-hidden="true"><span class="bm-tick">✓</span><b>Verified organiser</b><small>Refunded automatically if this event is cancelled</small></div>
+              <figcaption>Concept sketch of a verified listing</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section class="post-sec" id="ev-05">
+          <h2><span>05</span> Where I'd start</h2>
+          <ol class="roadmap">
+            <li><button type="button" class="rm" aria-expanded="true"><i>First week</i><b>The bring-a-friend prompt</b></button><p>It's quick to build and easy to test.</p></li>
+            <li><button type="button" class="rm" aria-expanded="false"><i>First three months</i><b>Trust changes and a UK ticket-swap pilot</b></button><p hidden>The trust changes, plus a UK pilot for ticket swaps.</p></li>
+            <li><button type="button" class="rm" aria-expanded="false"><i>After that</i><b>The app redesign</b></button><p hidden>One feature at a time, starting with the "For you" page.</p></li>
+          </ol>
+          <p>Eventbrite Ads are already doing well. They <a href="https://www.businesswire.com/news/home/20251106323681/en" target="_blank" rel="noopener">grew 38% in Q3 2025</a> and <a href="https://fintool.com/app/research/companies/EB/earnings/Q1%202025" target="_blank" rel="noopener">organisers who use them sell 4x more tickets</a>. A more personal app would give those ads more people to reach.</p>
+          <div class="deal">
+            <div><b>+38%</b><span>Eventbrite Ads growth, Q3 2025</span></div>
+            <div><b>4x</b><span>more tickets for organisers using Ads</span></div>
+          </div>
+        </section>
+
+        <section class="post-sec" id="ev-06">
+          <h2><span>06</span> To sum up</h2>
+          <blockquote class="pull">Eventbrite has millions of events and users. I think the next step is making the app something people enjoy opening, not just somewhere they go to buy a ticket.</blockquote>
+          <div class="post-end">
+            <span>Thanks for reading. I'd love to hear what you think.</span>
+            <a class="btn primary" href="#contact" id="r-contact">Get in touch →</a>
+          </div>
+        </section>
+      </div>
+    </div>
+  </article>
+</div>
+
 <div class="scrim" id="scrim" hidden></div>
 <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="d-title" hidden>
   <div class="d-band" id="d-band">
@@ -1172,6 +1566,103 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12
       i++; setTimeout(tick, 70 + i * 12);
     })();
   });
+
+  /* Brand blog reader */
+  var reader = document.getElementById('reader'), rProg = document.getElementById('r-progress');
+  var postOpen = false, postLastFocus = null, counted = false;
+  function countUp() {
+    if (counted) return; counted = true;
+    reader.querySelectorAll('[data-count]').forEach(function (el) {
+      var target = parseFloat(el.dataset.count), dec = +(el.dataset.dec || 0), pre = el.dataset.prefix || '', suf = el.dataset.suffix || '';
+      if (reduce) return;
+      var t0 = null;
+      (function step(t) {
+        if (!t0) t0 = t;
+        var p = Math.min(1, (t - t0) / 1100), e = 1 - Math.pow(1 - p, 3);
+        el.textContent = pre + (target * e).toFixed(dec) + suf;
+        if (p < 1) requestAnimationFrame(step);
+      })(performance.now());
+    });
+  }
+  function openPost() {
+    postLastFocus = document.activeElement; postOpen = true;
+    reader.hidden = false; body.classList.add('locked'); reader.scrollTop = 0;
+    requestAnimationFrame(function () { reader.classList.add('show'); });
+    document.getElementById('r-close').focus();
+    setTimeout(countUp, 250);
+  }
+  function closePost() {
+    postOpen = false; reader.classList.remove('show'); body.classList.remove('locked');
+    setTimeout(function () { reader.hidden = true; }, reduce ? 0 : 300);
+    if (location.hash === '#glow-up') { try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {} }
+    if (postLastFocus) postLastFocus.focus();
+  }
+  document.querySelectorAll('[data-post]').forEach(function (b) { b.addEventListener('click', openPost); });
+  document.getElementById('r-close').addEventListener('click', closePost);
+  document.getElementById('r-contact').addEventListener('click', function (e) {
+    e.preventDefault(); closePost(); setTimeout(function () { document.getElementById('contact').scrollIntoView(); }, 320);
+  });
+  var rCopy = document.getElementById('r-copy');
+  rCopy.addEventListener('click', function () {
+    var url = location.href.split('#')[0] + '#glow-up';
+    var done = function (t) { rCopy.textContent = t; setTimeout(function () { rCopy.textContent = 'Copy link'; }, 1800); };
+    try { navigator.clipboard.writeText(url).then(function () { done('Copied'); }, function () { done('Copy failed'); }); } catch (e) { done('Copy failed'); }
+  });
+  reader.addEventListener('scroll', function () {
+    var h = reader.scrollHeight - reader.clientHeight;
+    rProg.style.transform = 'scaleX(' + (h > 0 ? reader.scrollTop / h : 0) + ')';
+  }, { passive: true });
+  reader.querySelectorAll('[data-toc]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      var t = document.getElementById(a.getAttribute('href').slice(1));
+      t.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    });
+  });
+  if ('IntersectionObserver' in window) {
+    var tocLinks = reader.querySelectorAll('[data-toc]');
+    var tocSpy = new IntersectionObserver(function (es) {
+      es.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        tocLinks.forEach(function (l) { l.classList.toggle('on', l.getAttribute('href') === '#' + en.target.id); });
+      });
+    }, { root: reader, rootMargin: '-30% 0px -60% 0px' });
+    reader.querySelectorAll('.post-sec').forEach(function (s) { tocSpy.observe(s); });
+  }
+  var ideaTabs = Array.prototype.slice.call(reader.querySelectorAll('.idea-tab'));
+  function pickIdea(tab, focus) {
+    ideaTabs.forEach(function (t) {
+      var on = t === tab;
+      t.setAttribute('aria-selected', String(on)); t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    });
+    if (focus) tab.focus();
+  }
+  ideaTabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { pickIdea(t); });
+    t.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); pickIdea(ideaTabs[(i + 1) % ideaTabs.length], true); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); pickIdea(ideaTabs[(i - 1 + ideaTabs.length) % ideaTabs.length], true); }
+    });
+  });
+  reader.querySelectorAll('.rm').forEach(function (b) {
+    b.addEventListener('click', function () {
+      reader.querySelectorAll('.rm').forEach(function (x) {
+        var on = x === b; x.setAttribute('aria-expanded', String(on)); x.nextElementSibling.hidden = !on;
+      });
+    });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (!postOpen) return;
+    if (e.key === 'Escape') closePost();
+    if (e.key === 'Tab') {
+      var f = reader.querySelectorAll('a[href], button:not([disabled]), summary');
+      var first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+  if (location.hash === '#glow-up') openPost();
 
   /* Rotating phrase */
   var phrases = ['messy research', 'social chatter', 'competitor data', 'consumer behaviour'];
