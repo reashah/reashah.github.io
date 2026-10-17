@@ -774,6 +774,14 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12
 }
 
 
+.logo-pair { display: inline-flex; align-items: center; gap: 12px; width: fit-content; background: #ffffff; border: 2px solid var(--on-light); border-radius: 999px; padding: 8px 18px; }
+.logo-pair img { height: 18px; width: auto; display: block; }
+.logo-pair img + i + img { height: 14px; }
+.logo-pair i { font-style: normal; font-weight: 800; color: #121118; }
+.post-hero .logo-pair { padding: 10px 22px; }
+.post-hero .logo-pair img { height: 24px; }
+.post-hero .logo-pair img + i + img { height: 19px; }
+
 /* Concept mockup of a redesigned Eventbrite site (fixed illustration colours) */
 :root { --eb-orange: #f05537; --eb-navy: #1e0a3c; --eb-cream: #fff7f2; --eb-pink: #ff8fb1; --eb-lime: #d4f56a; --eb-sky: #8fd3ff; }
 .site-mock { margin: 0 0 48px; display: grid; gap: 12px; }
@@ -1146,6 +1154,7 @@ img.eb-logo { height: 24px; width: auto; }
             </span>
           </span>
           <span class="post-body">
+            <span class="logo-pair"><img src="logo-eventbrite.svg" alt="Eventbrite"><i>×</i><img src="logo-bendingspoons.svg" alt="Bending Spoons"></span>
             <span class="tag">Pitch · Product &amp; brand strategy · Oct 2026</span>
             <h3>The Glow Up for Eventbrite</h3>
             <p>A pitch for Bending Spoons' newest product: what isn't working, four ideas to fix it, and where I'd start.</p>
@@ -1335,6 +1344,7 @@ img.eb-logo { height: 24px; width: auto; }
 
   <article class="post" id="post-glow-up">
     <header class="post-hero">
+      <span class="logo-pair"><img src="logo-eventbrite.svg" alt="Eventbrite"><i>×</i><img src="logo-bendingspoons.svg" alt="Bending Spoons"></span>
       <span class="tag">Pitch · Product &amp; brand strategy · Oct 2026 · 6 min read</span>
       <h1 id="r-title">The Glow Up for Eventbrite</h1>
       <p class="post-dek">A pitch by Rea Shah for Bending Spoons' newest product</p>
@@ -1343,7 +1353,7 @@ img.eb-logo { height: 24px; width: auto; }
       <div class="sm-window" aria-hidden="true">
         <div class="sm-chrome"><i></i><i></i><i></i><span>eventbrite.com</span></div>
         <div class="sm-nav">
-          <span class="eb-logo">eventbrite</span>
+          <img class="eb-logo" src="logo-eventbrite.svg" alt="">
           <span class="sm-links"><b>Tonight</b><span>This weekend</span><span>For you</span><span>Map</span></span>
           <span class="sm-friends"><i></i><i></i><i></i><small>5 friends out tonight</small></span>
         </div>
