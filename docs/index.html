@@ -848,6 +848,77 @@ img.eb-logo { height: 24px; width: auto; }
 .sm-badge { position: absolute; left: 10px; top: 10px; background: #fff; color: var(--eb-navy); font-size: 0.68rem; font-weight: 800; border-radius: 999px; padding: 3px 10px; }
 @media (max-width: 760px) { .sm-hero { grid-template-columns: minmax(0, 1fr); } .sm-grid { grid-template-columns: minmax(0, 1fr); } .sm-grid .sm-card:nth-child(n+2) { display: none; } .sm-links { display: none; } }
 
+/* Gravis post */
+.post-note { font-size: 0.85rem; color: var(--muted); }
+.post-card-2 .post-art { background: var(--ink); }
+.post-card-2 .post-art::before { background: var(--c4); }
+.mini-board { position: relative; width: min(100%, 320px); border: 2px solid var(--on-light); border-radius: 14px; background: #10121c; color: #f4f2ee; padding: 16px 18px 18px; display: grid; gap: 8px; transform: rotate(-3deg); box-shadow: 6px 8px 0 rgba(0,0,0,.3); transition: transform .4s cubic-bezier(.2,.8,.2,1.3); }
+.post-card-2:hover .mini-board { transform: rotate(0) scale(1.03); }
+.mini-board small { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; color: #ff6b6b; }
+.mini-board b { font-family: var(--display); font-weight: 800; font-size: 1.3rem; line-height: 1.1; letter-spacing: -0.02em; }
+.mini-board em { font-style: normal; font-family: var(--mono); font-size: 0.7rem; color: var(--c4); letter-spacing: 0.08em; text-transform: uppercase; }
+.gv-hero { margin: 0 0 48px; display: grid; gap: 12px; }
+.gv-hero figcaption, .ns-note { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); text-align: center; }
+.gv-screen { position: relative; border: 2px solid var(--on-light); border-radius: 22px; background: #10121c; color: #f4f2ee; padding: clamp(24px, 4vw, 44px); display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 12px 28px; align-items: center; box-shadow: 10px 12px 0 var(--c4); overflow: hidden; }
+.gv-live { grid-column: 1 / -1; width: fit-content; font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; background: var(--c4); color: var(--on-light); border-radius: 6px; padding: 4px 10px; display: inline-flex; gap: 8px; align-items: center; }
+.gv-live::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #1f8f4e; animation: pulse 2.4s ease-in-out infinite; }
+.tortoise { width: clamp(110px, 18vw, 170px); color: #f4f2ee; animation: plod 6s ease-in-out infinite; }
+@keyframes plod { 50% { transform: translateX(6px); } }
+.gv-headline { font-family: var(--display); font-weight: 800; font-size: clamp(1.4rem, 3.4vw, 2.4rem); line-height: 1.1; letter-spacing: -0.02em; margin: 0; transition: opacity .3s; }
+.gv-headline.out { opacity: 0; }
+.gv-sign { grid-column: 1 / -1; font-family: var(--serif); font-style: italic; font-size: 1.2rem; color: var(--c4); }
+.news-switch { display: grid; gap: 12px; }
+.ns-toggle, .market-toggle { display: inline-flex; width: fit-content; border: 2px solid var(--ink); border-radius: 999px; padding: 4px; gap: 4px; flex-wrap: wrap; }
+.ns-btn, .mk-btn { border: 0; background: transparent; border-radius: 999px; padding: 7px 16px; font-weight: 700; cursor: pointer; transition: background .2s, color .2s; }
+.ns-btn[aria-pressed="true"], .mk-btn[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+.ns-panel { border: 2px solid var(--on-light); border-radius: 18px; padding: 16px 20px; display: grid; gap: 8px; animation: rise .3s ease both; }
+.ns-panel ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-family: var(--display); font-weight: 800; font-size: clamp(1.05rem, 2.2vw, 1.35rem); letter-spacing: -0.01em; }
+.ns-label { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; width: fit-content; border-radius: 6px; padding: 3px 9px; }
+.ns-breaking { background: #2a0d10; color: #ffd9d9; }
+.ns-breaking .ns-label { background: #e5383b; color: #fff; animation: blink 1s steps(2) infinite; }
+.ns-breaking li { color: #ff8a8a; }
+@keyframes blink { 50% { opacity: .55; } }
+.ns-unbreaking { background: color-mix(in srgb, var(--c4) 40%, var(--surface)); color: var(--ink); }
+.ns-unbreaking .ns-label { background: var(--ink); color: var(--bg); }
+.ns-note { text-align: left; }
+.pull-sm { font-size: clamp(1.3rem, 2.8vw, 2rem); }
+.bulletins { display: grid; gap: 10px; }
+.bulletin { text-align: left; border: 2px solid var(--on-light); border-radius: 16px; padding: 14px 18px; background: var(--surface); font-family: var(--display); font-weight: 800; font-size: clamp(1.05rem, 2vw, 1.3rem); letter-spacing: -0.01em; cursor: pointer; transition: transform .2s, box-shadow .2s, background .2s; }
+.bulletin:hover { transform: translateX(4px); }
+.bulletin[aria-pressed="true"] { background: var(--c4); color: var(--on-light); box-shadow: 5px 5px 0 var(--on-light); }
+.nl-mock { width: 100%; max-width: 280px; border: 2px solid var(--on-light); border-radius: 16px; background: var(--bg); overflow: hidden; display: grid; gap: 10px; padding-bottom: 14px; box-shadow: 6px 6px 0 var(--c4); }
+.nl-top { background: var(--ink); color: var(--bg); font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 8px 12px; }
+.nl-mock b { padding: 0 14px; font-family: var(--display); font-size: 1.15rem; }
+.nl-row { display: grid; gap: 6px; padding: 0 14px; }
+.nl-row i { font-style: normal; font-size: 0.8rem; border-left: 3px solid var(--c4); padding-left: 8px; }
+.market-toggle { justify-self: center; }
+.billboard { width: 100%; max-width: 320px; aspect-ratio: 16 / 9; border: 8px solid #2b2b33; border-radius: 10px; background: #10121c; color: #f4f2ee; display: grid; align-content: center; gap: 8px; padding: 16px 18px; position: relative; transition: background .4s; }
+.billboard[data-mood="down"] { background: #12251c; }
+.bb-ticker { position: absolute; top: 8px; right: 10px; font-family: var(--mono); font-size: 0.7rem; color: #5fd38d; }
+.billboard[data-mood="down"] .bb-ticker { color: #ff6b6b; }
+.bb-copy { margin: 0; font-family: var(--display); font-weight: 800; font-size: 1.2rem; line-height: 1.15; letter-spacing: -0.02em; animation: rise .35s ease both; }
+.timelapse { position: relative; width: 100%; max-width: 280px; aspect-ratio: 4 / 3; border: 2px solid var(--on-light); border-radius: 16px; overflow: hidden; background: linear-gradient(var(--c3) 0 62%, #7ccf8a 62%); }
+.tl-sun { position: absolute; width: 44px; height: 44px; border-radius: 50%; background: #ffd84a; left: 14%; top: 14%; animation: sunarc 6s ease-in-out infinite; }
+@keyframes sunarc { 50% { transform: translate(140px, -6px); } }
+.tl-turbine { position: absolute; left: 58%; bottom: 38%; width: 4px; height: 70px; background: #f4f2ee; }
+.tl-turbine i { position: absolute; left: 50%; top: 0; width: 70px; height: 70px; margin: -35px 0 0 -35px; background: conic-gradient(from 0deg, #f4f2ee 0 4deg, transparent 4deg 120deg, #f4f2ee 120deg 124deg, transparent 124deg 240deg, #f4f2ee 240deg 244deg, transparent 244deg); border-radius: 50%; animation: spin 3s linear infinite; }
+.tl-years { position: absolute; left: 8px; right: 8px; bottom: 8px; display: flex; justify-content: space-between; }
+.tl-years b { font-family: var(--mono); font-size: 0.65rem; background: rgba(0,0,0,.55); color: #fff; border-radius: 4px; padding: 2px 6px; }
+.desk-mock { width: 100%; max-width: 280px; border: 2px solid var(--on-light); border-radius: 16px; background: var(--surface); display: grid; gap: 14px; padding: 16px; box-shadow: 6px 6px 0 var(--c4); }
+.dm-sign { font-family: var(--display); font-weight: 800; font-size: 1.1rem; border-bottom: 3px solid var(--c4); padding-bottom: 6px; }
+.dm-items { display: flex; gap: 10px; flex-wrap: wrap; }
+.dm-items i { font-style: normal; font-size: 0.8rem; font-weight: 700; border: 1.5px solid var(--ink); border-radius: 10px; padding: 8px 10px; }
+.dm-pin { border-radius: 999px !important; background: var(--c4); color: var(--on-light); }
+.guard li::before { content: "✓"; }
+.metrics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.metrics div { border: 2px solid var(--on-light); border-radius: 18px; padding: 16px 18px; display: grid; gap: 4px; background: var(--surface); }
+.metrics b { font-family: var(--display); font-weight: 800; font-size: 1.1rem; letter-spacing: -0.01em; }
+.metrics span { color: var(--muted); font-size: 0.95rem; }
+.metrics .metric-guard { grid-column: 1 / -1; background: var(--ink); color: var(--bg); }
+.metrics .metric-guard span { color: inherit; opacity: .8; }
+.sources { font-size: 0.9rem !important; color: var(--muted); }
+@media (max-width: 760px) { .gv-screen { grid-template-columns: minmax(0, 1fr); } .metrics { grid-template-columns: minmax(0, 1fr); } }
+
 /* Cursor ring (fine pointers only) */
 .cursor { position: fixed; left: 0; top: 0; width: 34px; height: 34px; margin: -17px 0 0 -17px; border-radius: 50%; border: 2px solid var(--c2); pointer-events: none; z-index: 90; transition: width .2s, height .2s, margin .2s, background .2s; display: none; }
 .cursor.big { width: 64px; height: 64px; margin: -32px 0 0 -32px; background: color-mix(in srgb, var(--c2) 25%, transparent); }
@@ -1166,6 +1237,19 @@ img.eb-logo { height: 24px; width: auto; }
         <p class="hint">Where I think out loud about brands I actually use.</p>
       </div>
       <div class="posts">
+        <button class="post-card post-card-2" type="button" data-post="unbreaking-news">
+          <span class="post-art" aria-hidden="true">
+            <span class="mini-board"><small>● Markets down</small><b>Wind still blowing. Radically steady since 2008.</b><em>Unbreaking News</em></span>
+            <span class="post-art-label">Campaign concept</span>
+          </span>
+          <span class="post-body">
+            <span class="tag">Campaign idea · Brand &amp; marketing · Oct 2026</span>
+            <h3>Gravis: Unbreaking News</h3>
+            <p>A campaign idea building on That Thing's "Radically steady" brand: when markets panic, report the news that never breaks.</p>
+            <span class="post-meta">4 min read · The insight · 4 executions · How I'd measure it</span>
+            <span class="open"><i>→</i> Read the pitch</span>
+          </span>
+        </button>
         <button class="post-card" type="button" data-post="glow-up">
           <span class="post-art" aria-hidden="true">
             <span class="mini-mock">
@@ -1570,7 +1654,168 @@ img.eb-logo { height: 24px; width: auto; }
           <blockquote class="pull">Eventbrite has millions of events and users. I think the next step is making the app something people enjoy opening, not just somewhere they go to buy a ticket.</blockquote>
           <div class="post-end">
             <span>Thanks for reading. I'd love to hear what you think.</span>
-            <a class="btn primary" href="#contact" id="r-contact">Get in touch →</a>
+            <a class="btn primary r-contact" href="#contact">Get in touch →</a>
+          </div>
+        </section>
+      </div>
+    </div>
+  </article>
+  <article class="post" id="post-unbreaking-news" hidden>
+    <header class="post-hero">
+      <span class="tag">Campaign idea · Brand &amp; marketing · Oct 2026 · 4 min read</span>
+      <h1 id="r-title-2">Gravis: Unbreaking News</h1>
+      <p class="post-dek">A campaign idea by Rea Shah, building on That Thing's "Radically steady" brand</p>
+      <p class="post-note">My own concept. Not affiliated with or endorsed by Gravis or That Thing.</p>
+    </header>
+
+    <figure class="gv-hero">
+      <div class="gv-screen" aria-hidden="true">
+        <span class="gv-live">Unbreaking news</span>
+        <svg class="tortoise" viewBox="0 0 120 70"><ellipse cx="58" cy="44" rx="40" ry="24" fill="var(--c4)" stroke="currentColor" stroke-width="3"/><path d="M30 40 L58 26 L86 40 L72 58 L44 58 Z" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M58 26 V58 M30 40 L44 58 M86 40 L72 58" stroke="currentColor" stroke-width="2"/><circle cx="104" cy="40" r="11" fill="var(--c4)" stroke="currentColor" stroke-width="3"/><circle cx="108" cy="37" r="2" fill="currentColor"/><rect x="26" y="60" width="10" height="9" rx="4" fill="var(--c4)" stroke="currentColor" stroke-width="2.5"/><rect x="78" y="60" width="10" height="9" rx="4" fill="var(--c4)" stroke="currentColor" stroke-width="2.5"/></svg>
+        <p class="gv-headline" id="gv-headline">Wind farm in Scotland: still turning.</p>
+        <span class="gv-sign">Radically steady</span>
+      </div>
+      <figcaption>Concept sketch of the tortoise presenting Unbreaking News</figcaption>
+    </figure>
+
+    <div class="post-layout">
+      <nav class="post-toc" aria-label="In this pitch">
+        <span>In this pitch</span>
+        <a href="#gv-01" data-toc>01 · Where the brand is today</a>
+        <a href="#gv-02" data-toc>02 · The insight</a>
+        <a href="#gv-03" data-toc>03 · The idea</a>
+        <a href="#gv-04" data-toc>04 · Bringing it to life</a>
+        <a href="#gv-05" data-toc>05 · Built for a regulated audience</a>
+        <a href="#gv-06" data-toc>06 · How I'd measure it</a>
+        <a href="#gv-07" data-toc>07 · The bottom line</a>
+      </nav>
+
+      <div class="post-body-text">
+        <section class="post-sec" id="gv-01">
+          <h2><span>01</span> Where the brand is today</h2>
+          <p>That Thing gave Gravis something rare in finance: a personality. "Radically steady" turns being long-term into something to be proud of, and the tortoise makes it memorable. The next step is putting that personality to work, at the moments when steadiness matters most.</p>
+        </section>
+
+        <section class="post-sec" id="gv-02">
+          <h2><span>02</span> The insight</h2>
+          <p>Financial news is built on drama. Every day brings "breaking news," red arrows and talk of crashes. But the assets Gravis invests in don't care. Wind turbines keep turning. Data centres keep running. Schools and hospitals keep their doors open.</p>
+          <div class="news-switch">
+            <div class="ns-toggle" role="group" aria-label="Switch the news">
+              <button type="button" class="ns-btn" data-news="breaking" aria-pressed="true">Breaking news</button>
+              <button type="button" class="ns-btn" data-news="unbreaking" aria-pressed="false">Unbreaking news</button>
+            </div>
+            <div class="ns-panel ns-breaking" id="ns-breaking">
+              <span class="ns-label">Breaking</span>
+              <ul><li>▼ Markets slide on rate fears</li><li>▼ Crash talk is back</li><li>▼ Another red day for stocks</li></ul>
+            </div>
+            <div class="ns-panel ns-unbreaking" id="ns-unbreaking" hidden>
+              <span class="ns-label">Unbreaking</span>
+              <ul><li>Wind turbines: still turning</li><li>Data centres: still running</li><li>Schools and hospitals: doors still open</li></ul>
+            </div>
+            <p class="ns-note">Illustrative headlines, not real news</p>
+          </div>
+          <blockquote class="pull pull-sm">When everything feels urgent, steady becomes the most interesting story in the room.</blockquote>
+        </section>
+
+        <section class="post-sec" id="gv-03">
+          <h2><span>03</span> The idea: Unbreaking News</h2>
+          <p>While the markets shout breaking news, Gravis reports the news that never breaks: calm, regular updates from the real-world assets behind its funds, presented by the tortoise.</p>
+          <div class="bulletins">
+            <button type="button" class="bulletin" data-line="Wind farm in Scotland: still turning.">"Wind farm in Scotland: still turning."</button>
+            <button type="button" class="bulletin" data-line="Data centre in London: still humming.">"Data centre in London: still humming."</button>
+            <button type="button" class="bulletin" data-line="Markets had a wobble today. The sun still came up over our solar farms.">"Markets had a wobble today. The sun still came up over our solar farms."</button>
+          </div>
+          <p class="hint">Tap a bulletin to send it to the tortoise's screen at the top.</p>
+          <p>It's the "Radically steady" brand, told as a story that runs alongside the news people already follow.</p>
+        </section>
+
+        <section class="post-sec" id="gv-04">
+          <h2><span>04</span> Bringing it to life</h2>
+          <div class="idea-tabs" role="tablist" aria-label="Bringing it to life">
+            <button class="idea-tab" role="tab" type="button" id="gtab-1" aria-controls="gidea-1" aria-selected="true"><i>1</i>The bulletin</button>
+            <button class="idea-tab" role="tab" type="button" id="gtab-2" aria-controls="gidea-2" aria-selected="false" tabindex="-1"><i>2</i>Volatility billboards</button>
+            <button class="idea-tab" role="tab" type="button" id="gtab-3" aria-controls="gidea-3" aria-selected="false" tabindex="-1"><i>3</i>The long view</button>
+            <button class="idea-tab" role="tab" type="button" id="gtab-4" aria-controls="gidea-4" aria-selected="false" tabindex="-1"><i>4</i>The newsroom</button>
+          </div>
+          <div class="idea" role="tabpanel" id="gidea-1" aria-labelledby="gtab-1">
+            <div class="idea-text">
+              <h3>The Unbreaking News bulletin</h3>
+              <p>A short weekly LinkedIn video and newsletter for advisers and wealth managers. The tortoise "presents" one real asset each week: what it does, why it's needed and how long it's built to last.</p>
+            </div>
+            <figure class="idea-visual">
+              <div class="nl-mock" aria-hidden="true"><span class="nl-top">Unbreaking News · Weekly</span><b>This week: a wind farm</b><span class="nl-row"><i>What it does</i><i>Why it's needed</i><i>Built to last</i></span></div>
+              <figcaption>Concept sketch of the weekly bulletin</figcaption>
+            </figure>
+          </div>
+          <div class="idea" role="tabpanel" id="gidea-2" aria-labelledby="gtab-2" hidden>
+            <div class="idea-text">
+              <h3>Volatility-triggered billboards</h3>
+              <p>Digital screens near Bank and in the City that change when markets have a bad day. When the FTSE drops, the screen switches to: "Markets down. Wind still blowing. Radically steady since 2008."</p>
+              <div class="test"><span>Try it</span><p>Switch the market below and watch the screen change.</p></div>
+            </div>
+            <figure class="idea-visual">
+              <div class="market-toggle" role="group" aria-label="Market mood">
+                <button type="button" class="mk-btn" data-mood="calm" aria-pressed="true">Normal day</button>
+                <button type="button" class="mk-btn" data-mood="down" aria-pressed="false">Markets have a bad day</button>
+              </div>
+              <div class="billboard" id="billboard" data-mood="calm" aria-live="polite">
+                <span class="bb-ticker" id="bb-ticker">FTSE 100 ▲</span>
+                <p class="bb-copy" id="bb-copy">Gravis. Radically steady.</p>
+              </div>
+              <figcaption>Concept sketch of a City billboard</figcaption>
+            </figure>
+          </div>
+          <div class="idea" role="tabpanel" id="gidea-3" aria-labelledby="gtab-3" hidden>
+            <div class="idea-text">
+              <h3>The long view</h3>
+              <p>Time-lapse films of Gravis assets over years, not seconds. The longer you watch, the less changes, and that's the point.</p>
+            </div>
+            <figure class="idea-visual">
+              <div class="timelapse" aria-hidden="true"><span class="tl-sun"></span><span class="tl-turbine"><i></i></span><span class="tl-years"><b>Year 1</b><b>Year 5</b><b>Year 10</b></span></div>
+              <figcaption>Years pass, the turbine keeps turning</figcaption>
+            </figure>
+          </div>
+          <div class="idea" role="tabpanel" id="gidea-4" aria-labelledby="gtab-4" hidden>
+            <div class="idea-text">
+              <h3>The tortoise in the newsroom</h3>
+              <p>A press and events stunt: a calm "Unbreaking News" desk at investor events, where visitors pick up a printed bulletin and a tortoise pin instead of another tote bag.</p>
+            </div>
+            <figure class="idea-visual">
+              <div class="desk-mock" aria-hidden="true"><span class="dm-sign">Unbreaking News desk</span><span class="dm-items"><i class="dm-paper">Bulletin</i><i class="dm-pin">Tortoise pin</i></span></div>
+              <figcaption>Concept sketch of the event desk</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section class="post-sec" id="gv-05">
+          <h2><span>05</span> Built for a regulated audience</h2>
+          <p>Gravis's updates are aimed at professional investors, and financial promotions must be fair, clear and not misleading. So the campaign never promises returns or says Gravis funds can't fall. It celebrates the real assets and the long-term approach, and every piece would go through compliance with the right risk warnings.</p>
+          <ul class="checks guard">
+            <li>Never promises returns</li>
+            <li>Never says Gravis funds can't fall</li>
+            <li>Celebrates the real assets and the long-term approach</li>
+            <li>Every piece goes through compliance, with the right risk warnings</li>
+          </ul>
+        </section>
+
+        <section class="post-sec" id="gv-06">
+          <h2><span>06</span> How I'd measure it</h2>
+          <div class="metrics">
+            <div><b>Brand awareness</b><span>Among advisers and wealth managers: a simple survey before and after</span></div>
+            <div><b>LinkedIn and newsletter growth</b><span>Followers, views and sign-ups to the bulletin</span></div>
+            <div><b>Share of voice in volatile weeks</b><span>Is Gravis part of the conversation when markets are shaky?</span></div>
+            <div><b>Fund page visits</b><span>Visits to fund pages from professional investors</span></div>
+            <div class="metric-guard"><b>Guardrail</b><span>Compliance sign-off on every asset before publishing</span></div>
+          </div>
+        </section>
+
+        <section class="post-sec" id="gv-07">
+          <h2><span>07</span> The bottom line</h2>
+          <blockquote class="pull">That Thing made Gravis proud to be steady. Unbreaking News makes that steadiness worth paying attention to, especially on the days everyone else is panicking.</blockquote>
+          <p class="sources">Sources: That Thing case study; <a href="https://www.graviscapital.com" target="_blank" rel="noopener">graviscapital.com</a>.</p>
+          <div class="post-end">
+            <span>Thanks for reading. I'd love to hear what you think.</span>
+            <a class="btn primary r-contact" href="#contact">Get in touch →</a>
           </div>
         </section>
       </div>
@@ -1708,7 +1953,12 @@ img.eb-logo { height: 24px; width: auto; }
       })(performance.now());
     });
   }
-  function openPost() {
+  var POSTS = ['glow-up', 'unbreaking-news'], currentPost = null;
+  function openPost(id) {
+    if (POSTS.indexOf(id) < 0) id = 'glow-up';
+    currentPost = id;
+    POSTS.forEach(function (p) { document.getElementById('post-' + p).hidden = p !== id; });
+    var h1 = document.querySelector('#post-' + id + ' h1'); if (h1) reader.setAttribute('aria-labelledby', h1.id);
     postLastFocus = document.activeElement; postOpen = true;
     reader.hidden = false; body.classList.add('locked'); reader.scrollTop = 0;
     requestAnimationFrame(function () { reader.classList.add('show'); });
@@ -1718,17 +1968,17 @@ img.eb-logo { height: 24px; width: auto; }
   function closePost() {
     postOpen = false; reader.classList.remove('show'); body.classList.remove('locked');
     setTimeout(function () { reader.hidden = true; }, reduce ? 0 : 300);
-    if (location.hash === '#glow-up') { try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {} }
+    if (POSTS.indexOf(location.hash.slice(1)) >= 0) { try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {} }
     if (postLastFocus) postLastFocus.focus();
   }
-  document.querySelectorAll('[data-post]').forEach(function (b) { b.addEventListener('click', openPost); });
+  document.querySelectorAll('[data-post]').forEach(function (b) { b.addEventListener('click', function (e) { if (b.tagName === 'A') e.preventDefault(); openPost(b.dataset.post); }); });
   document.getElementById('r-close').addEventListener('click', closePost);
-  document.getElementById('r-contact').addEventListener('click', function (e) {
+  document.querySelectorAll('.r-contact').forEach(function (a) { a.addEventListener('click', function (e) {
     e.preventDefault(); closePost(); setTimeout(function () { document.getElementById('contact').scrollIntoView(); }, 320);
-  });
+  }); });
   var rCopy = document.getElementById('r-copy');
   rCopy.addEventListener('click', function () {
-    var url = location.href.split('#')[0] + '#glow-up';
+    var url = location.href.split('#')[0] + '#' + (currentPost || 'glow-up');
     var done = function (t) { rCopy.textContent = t; setTimeout(function () { rCopy.textContent = 'Copy link'; }, 1800); };
     try { navigator.clipboard.writeText(url).then(function () { done('Copied'); }, function () { done('Copy failed'); }); } catch (e) { done('Copy failed'); }
   });
@@ -1753,20 +2003,22 @@ img.eb-logo { height: 24px; width: auto; }
     }, { root: reader, rootMargin: '-30% 0px -60% 0px' });
     reader.querySelectorAll('.post-sec').forEach(function (s) { tocSpy.observe(s); });
   }
-  var ideaTabs = Array.prototype.slice.call(reader.querySelectorAll('.idea-tab'));
-  function pickIdea(tab, focus) {
-    ideaTabs.forEach(function (t) {
-      var on = t === tab;
-      t.setAttribute('aria-selected', String(on)); t.tabIndex = on ? 0 : -1;
-      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
-    });
-    if (focus) tab.focus();
-  }
-  ideaTabs.forEach(function (t, i) {
-    t.addEventListener('click', function () { pickIdea(t); });
-    t.addEventListener('keydown', function (e) {
-      if (e.key === 'ArrowRight') { e.preventDefault(); pickIdea(ideaTabs[(i + 1) % ideaTabs.length], true); }
-      if (e.key === 'ArrowLeft') { e.preventDefault(); pickIdea(ideaTabs[(i - 1 + ideaTabs.length) % ideaTabs.length], true); }
+  reader.querySelectorAll('[role="tablist"]').forEach(function (list) {
+    var tabs = Array.prototype.slice.call(list.querySelectorAll('[role="tab"]'));
+    function pick(tab, focus) {
+      tabs.forEach(function (t) {
+        var on = t === tab;
+        t.setAttribute('aria-selected', String(on)); t.tabIndex = on ? 0 : -1;
+        document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+      });
+      if (focus) tab.focus();
+    }
+    tabs.forEach(function (t, i) {
+      t.addEventListener('click', function () { pick(t); });
+      t.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowRight') { e.preventDefault(); pick(tabs[(i + 1) % tabs.length], true); }
+        if (e.key === 'ArrowLeft') { e.preventDefault(); pick(tabs[(i - 1 + tabs.length) % tabs.length], true); }
+      });
     });
   });
   reader.querySelectorAll('.rm').forEach(function (b) {
@@ -1780,13 +2032,52 @@ img.eb-logo { height: 24px; width: auto; }
     if (!postOpen) return;
     if (e.key === 'Escape') closePost();
     if (e.key === 'Tab') {
-      var f = reader.querySelectorAll('a[href], button:not([disabled]), summary');
+      var f = Array.prototype.filter.call(reader.querySelectorAll('a[href], button:not([disabled]), summary'), function (x) { return x.offsetParent !== null; });
       var first = f[0], last = f[f.length - 1];
       if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
       else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     }
   });
-  if (location.hash === '#glow-up') openPost();
+  /* Gravis post interactions */
+  document.querySelectorAll('.ns-btn').forEach(function (b) {
+    b.addEventListener('click', function () {
+      document.querySelectorAll('.ns-btn').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      document.getElementById('ns-breaking').hidden = b.dataset.news !== 'breaking';
+      document.getElementById('ns-unbreaking').hidden = b.dataset.news !== 'unbreaking';
+    });
+  });
+  var gvHead = document.getElementById('gv-headline');
+  var gvLines = Array.prototype.map.call(document.querySelectorAll('.bulletin'), function (b) { return b.dataset.line; });
+  var gvI = 0, gvTimer = null;
+  function showLine(i) {
+    gvI = i;
+    document.querySelectorAll('.bulletin').forEach(function (b, k) { b.setAttribute('aria-pressed', String(k === i)); });
+    if (reduce) { gvHead.textContent = gvLines[i]; return; }
+    gvHead.classList.add('out');
+    setTimeout(function () { gvHead.textContent = gvLines[i]; gvHead.classList.remove('out'); }, 300);
+  }
+  document.querySelectorAll('.bulletin').forEach(function (b, k) {
+    b.addEventListener('click', function () {
+      clearInterval(gvTimer); showLine(k);
+      document.getElementById('gv-headline').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
+    });
+  });
+  document.querySelectorAll('.bulletin')[0].setAttribute('aria-pressed', 'true');
+  if (!reduce) gvTimer = setInterval(function () { showLine((gvI + 1) % gvLines.length); }, 4000);
+  var board = document.getElementById('billboard');
+  document.querySelectorAll('.mk-btn').forEach(function (b) {
+    b.addEventListener('click', function () {
+      document.querySelectorAll('.mk-btn').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      var down = b.dataset.mood === 'down';
+      board.dataset.mood = down ? 'down' : 'calm';
+      document.getElementById('bb-ticker').textContent = down ? 'FTSE 100 ▼' : 'FTSE 100 ▲';
+      var copy = document.getElementById('bb-copy');
+      copy.textContent = down ? 'Markets down. Wind still blowing. Radically steady since 2008.' : 'Gravis. Radically steady.';
+      copy.style.animation = 'none'; void copy.offsetWidth; copy.style.animation = '';
+    });
+  });
+
+  if (POSTS.indexOf(location.hash.slice(1)) >= 0) openPost(location.hash.slice(1));
 
   /* Rotating phrase */
   var phrases = ['messy research', 'social chatter', 'competitor data', 'consumer behaviour'];
