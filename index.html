@@ -115,6 +115,13 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--c2); outline-of
 .btn.primary { background: var(--ink); color: var(--bg); }
 .btn.ghost { background: transparent; color: var(--ink); }
 .btn:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--c2); }
+.kicker { flex-wrap: wrap; row-gap: 4px; }
+.kicker::before { display: none; }
+.kicker > span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--c2); margin-right: 10px; vertical-align: 1px; animation: pulse 2s ease-in-out infinite; }
+.kicker small { flex-basis: 100%; padding-left: 20px; font-size: 0.72rem; opacity: .8; letter-spacing: 0.1em; }
+.latest { display: inline-flex; align-items: center; gap: 10px; width: fit-content; text-decoration: none; color: var(--ink); font-weight: 600; font-size: 0.95rem; border-bottom: 2px solid var(--c2); padding-bottom: 2px; transition: gap .2s; }
+.latest b { font-family: var(--mono); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; background: var(--c2); color: var(--on-light); border-radius: 999px; padding: 3px 9px; }
+.latest:hover { gap: 14px; }
 .drag-hint { font-family: var(--serif); font-style: italic; font-size: 1.15rem; color: var(--muted); }
 
 .stickers { position: absolute; inset: 0; pointer-events: none; }
@@ -885,15 +892,16 @@ img.eb-logo { height: 24px; width: auto; }
 
 <header class="hero gutter" id="top">
   <div class="inner">
-    <p class="kicker">Strategy · London · Eligible to work in the UK</p>
+    <p class="kicker"><span>Strategy · Product · Consumer · Fintech · Brand</span><small>London · Eligible to work in the UK</small></p>
     <h1 class="name"><span class="r">Rea</span><span>Shah<span class="dot">.</span></span></h1>
-    <p class="lede">I turn <span class="swap" id="swap">messy research</span> into one clear brand idea.</p>
+    <p class="lede">I turn <span class="swap" id="swap">messy research</span> into one clear idea, then help build it.</p>
     <div class="hero-actions">
       <a class="btn primary" href="#experience">See my work →</a>
       <a class="btn ghost" href="https://www.linkedin.com/in/reashah/" target="_blank" rel="noopener">LinkedIn ↗</a>
       <a class="btn ghost" href="#contact">Say hello</a>
       <span class="drag-hint">psst, the stickers move</span>
     </div>
+    <a class="latest" href="#glow-up" data-post="glow-up"><b>Latest</b> My product pitch for Eventbrite →</a>
     <div class="stickers" id="stickers">
       <div class="sticker photo" style="--r: 0deg; left: 55%; top: 17%"><img src="rea.jpg" alt="Rea Shah" draggable="false">that's me ✦</div>
       <div class="sticker" style="--bgc: var(--c1); --fg: var(--on-dark); --r: -6deg; left: 55%; top: 1%">Unilever<small>Portfolio strategy placement</small></div>
@@ -904,7 +912,7 @@ img.eb-logo { height: 24px; width: auto; }
       <div class="sticker" style="--bgc: var(--ink); --fg: var(--bg); --r: -4deg; left: 58%; top: 86%">10 new clients<small>in 2 months, via referrals</small></div>
     </div>
     <div class="badge" aria-hidden="true">
-      <svg viewBox="0 0 150 150"><defs><path id="circ" d="M75,75 m-58,0 a58,58 0 1,1 116,0 a58,58 0 1,1 -116,0"/></defs><text><textPath href="#circ" textLength="362" lengthAdjust="spacing">Open to 2027 grad schemes ✦ Strategy ✦ London ✦</textPath></text></svg>
+      <svg viewBox="0 0 150 150"><defs><path id="circ" d="M75,75 m-58,0 a58,58 0 1,1 116,0 a58,58 0 1,1 -116,0"/></defs><text><textPath href="#circ" textLength="362" lengthAdjust="spacing">Open to 2027 grad schemes ✦ Eligible to work in the UK ✦</textPath></text></svg>
       <b>✦</b>
     </div>
   </div>
@@ -922,7 +930,7 @@ img.eb-logo { height: 24px; width: auto; }
       <div class="book">
         <div class="tile t-pos">
           <span class="label">Positioning statement</span>
-          <p>For brands that want to get closer to people, Rea Shah is the <b>2027 strategy graduate</b> who turns messy research into one clear idea. Unlike a pure analyst, Rea gets ideas adopted: a social lens now <b>standard at Unilever</b> and a tool 200+ people use.</p>
+          <p>For teams that want to understand people better, Rea Shah is the <b>2027 strategy graduate</b> who turns messy research into one clear idea, and gets it built and adopted: a social lens now <b>standard at Unilever</b> and a tool 200+ people use.</p>
         </div>
         <div class="tile t-logo">
           <span class="label">Primary mark · tap to rebrand</span>
@@ -948,6 +956,7 @@ img.eb-logo { height: 24px; width: auto; }
             <button type="button" data-voice="1" aria-pressed="false">Commercial.</button>
             <button type="button" data-voice="2" aria-pressed="false">Cut-through.</button>
             <button type="button" data-voice="3" aria-pressed="false">Compelling.</button>
+            <button type="button" data-voice="4" aria-pressed="false">Hands-on.</button>
           </div>
           <p class="voice-note" id="voice-note" aria-live="polite"></p>
         </div>
@@ -995,6 +1004,7 @@ img.eb-logo { height: 24px; width: auto; }
         <button class="pill" type="button" data-tag="automation" aria-pressed="false">Automation</button>
         <button class="pill" type="button" data-tag="content" aria-pressed="false">Writing &amp; storytelling</button>
         <button class="pill" type="button" data-tag="growth" aria-pressed="false">Brand &amp; growth</button>
+        <button class="pill" type="button" data-tag="product" aria-pressed="false">Product &amp; experiments</button>
       </div>
       <p class="match-count" id="match-count" aria-live="polite"></p>
 
@@ -1007,7 +1017,7 @@ img.eb-logo { height: 24px; width: auto; }
         <div>
           <h3>Associate Portfolio Transformation Strategy Manager</h3>
           <span class="org">Placement year, Portfolio Transformation Strategy</span>
-          <p class="job-summary">I briefed senior leaders, analysed competitors for the Home Care category and owned the performance tracker for <strong>50+ innovation projects across 15+ countries</strong>.</p>
+          <p class="job-summary">I worked on senior leaders' country-visit briefings, analysed competitors for the Home Care category and owned the performance tracker for <strong>50+ innovation projects across 15+ countries</strong>.</p>
           <div class="role-cases">
           <button class="case" type="button" data-case="prereads" data-tags="content stakeholders growth" style="--bgc: var(--c4); --fg: var(--on-light)">
             <span class="tag">Social &amp; consumer insight</span>
@@ -1021,14 +1031,14 @@ img.eb-logo { height: 24px; width: auto; }
             <span><h3>Competitor analysis for category prioritisation</h3></span>
             <span class="open"><i>→</i> Read the case</span>
           </button>
-          <button class="case" type="button" data-case="tool" data-tags="data stakeholders" style="--bgc: var(--c2); --fg: var(--on-light)">
-            <span class="tag">Governance</span>
+          <button class="case" type="button" data-case="tool" data-tags="data stakeholders product" style="--bgc: var(--c2); --fg: var(--on-light)">
+            <span class="tag">Internal product · rollout</span>
             <span class="big">200+ users</span>
             <span><h3>A board-level project tracking tool</h3></span>
             <span class="open"><i>→</i> Read the case</span>
           </button>
-          <button class="case" type="button" data-case="data" data-tags="data automation" style="--bgc: var(--c3); --fg: var(--on-light)">
-            <span class="tag">Data &amp; reporting</span>
+          <button class="case" type="button" data-case="data" data-tags="data automation product" style="--bgc: var(--c3); --fg: var(--on-light)">
+            <span class="tag">Product ownership · data</span>
             <span class="big">−95% errors</span>
             <span><h3>Rebuilding innovation data standards</h3></span>
             <span class="open"><i>→</i> Read the case</span>
@@ -1087,7 +1097,7 @@ img.eb-logo { height: 24px; width: auto; }
           <span class="org">Growth project for my mum's nutritionist business</span>
           <p class="job-summary">I turned word-of-mouth recommendations into a referral programme, bringing in <strong>10 new clients in 2 months</strong>.</p>
           <div class="role-cases">
-          <button class="case" type="button" data-case="referral" data-tags="growth research content" style="--bgc: var(--ink); --fg: var(--bg)">
+          <button class="case" type="button" data-case="referral" data-tags="growth research content product" style="--bgc: var(--ink); --fg: var(--bg)">
             <span class="tag">Word-of-mouth marketing</span>
             <span class="big">10 new clients</span>
             <span><h3>Turning word of mouth into a referral programme</h3></span>
@@ -1132,7 +1142,7 @@ img.eb-logo { height: 24px; width: auto; }
   <section id="blog" class="gutter" style="padding-top: 0">
     <div class="inner">
       <div class="sec-head">
-        <p class="eyebrow">Brand blog</p>
+        <p class="eyebrow">Blog</p>
         <h2>Pitches and <span class="serif">points of view.</span></h2>
         <p class="hint">Where I think out loud about brands I actually use.</p>
       </div>
@@ -1150,7 +1160,7 @@ img.eb-logo { height: 24px; width: auto; }
           </span>
           <span class="post-body">
             <span class="logo-pair"><img src="logo-eventbrite.svg" alt="Eventbrite"><i>×</i><img src="logo-bendingspoons.svg" alt="Bending Spoons"></span>
-            <span class="tag">Pitch · Product &amp; brand strategy · Oct 2026</span>
+            <span class="tag">Pitch · Product strategy · Oct 2026</span>
             <h3>The Glow Up for Eventbrite</h3>
             <p>A pitch for Bending Spoons' newest product: what isn't working, four ideas to fix it, and where I'd start.</p>
             <span class="post-meta">6 min read · What isn't working · 4 ideas · Where I'd start</span>
@@ -1317,7 +1327,7 @@ img.eb-logo { height: 24px; width: auto; }
         <span class="blob a"></span><span class="blob b"></span>
         <p class="eyebrow" style="color: var(--bg)">Contact</p>
         <div class="contact-head"><img class="avatar" src="rea.jpg" alt="Rea Shah"><h2>Let's talk <span class="serif">brands.</span></h2></div>
-        <p>I'm applying for brand strategy roles at consultancies and 2027 graduate strategy schemes in London, especially across beauty, fashion, food and tech. If you're hiring, I'd love to hear from you.</p>
+        <p>I'm applying for strategy and product roles in London, including 2027 graduate schemes, across consumer, fintech and brand. If you're hiring, I'd love to hear from you.</p>
         <p class="rtw">✦ Eligible to work in the UK on a Graduate visa</p>
         <div class="row"><span class="email" id="email">reashahcareers@gmail.com</span><button class="copy" type="button" id="copy">Copy email</button></div>
         <div class="row"><a class="li-link" href="https://www.linkedin.com/in/reashah/" target="_blank" rel="noopener">Connect on LinkedIn ↗</a><span class="li-url">linkedin.com/in/reashah</span></div>
@@ -1330,7 +1340,7 @@ img.eb-logo { height: 24px; width: auto; }
 <div class="reader" id="reader" role="dialog" aria-modal="true" aria-labelledby="r-title" hidden>
   <div class="reader-bar">
     <span class="reader-progress" aria-hidden="true"><i id="r-progress"></i></span>
-    <span class="reader-label">Brand blog</span>
+    <span class="reader-label">Blog</span>
     <div class="reader-actions">
       <button class="r-btn" type="button" id="r-copy">Copy link</button>
       <button class="r-btn" type="button" id="r-close">Close ✕</button>
@@ -1340,7 +1350,7 @@ img.eb-logo { height: 24px; width: auto; }
   <article class="post" id="post-glow-up">
     <header class="post-hero">
       <span class="logo-pair"><img src="logo-eventbrite.svg" alt="Eventbrite"><i>×</i><img src="logo-bendingspoons.svg" alt="Bending Spoons"></span>
-      <span class="tag">Pitch · Product &amp; brand strategy · Oct 2026 · 6 min read</span>
+      <span class="tag">Pitch · Product strategy · Oct 2026 · 6 min read</span>
       <h1 id="r-title">The Glow Up for Eventbrite</h1>
       <p class="post-dek">A pitch by Rea Shah for Bending Spoons' newest product</p>
     </header>
@@ -1606,7 +1616,8 @@ img.eb-logo { height: 24px; width: auto; }
     "Curious: Unilever's country-visit pre-reads said nothing about what consumers were saying online, so I added a social media lens. Senior leaders made it standard practice.",
     'Commercial: portfolio strategy at Unilever taught me that every insight has to end in a business choice, like which part of the Home Care category to prioritise.',
     'Cut-through: three competitor deep-dives became one set of recommendations for president-level leaders. Most of the job is deciding what to leave out.',
-    "Compelling: from Rediffusion's newsletter to board-level pre-reads, I write so busy people get the point on the first read."
+    "Compelling: from Rediffusion's newsletter to board-level pre-reads, I write so busy people get the point on the first read.",
+    'Hands-on: I co-built a strategy tool now used by 200+ people, owned a tracker for 50+ projects, and helped automate its monthly KPI process through working sessions with tech teams.'
   ];
   var note = document.getElementById('voice-note');
   document.querySelectorAll('[data-voice]').forEach(function (b) {
@@ -1618,8 +1629,8 @@ img.eb-logo { height: 24px; width: auto; }
   note.textContent = VOICE[0];
 
   /* Marquees */
-  var m1 = ['Brand strategy', 'Consumer insight', 'Social & culture', 'Portfolio strategy', 'Competitor analysis', 'One clear idea'];
-  var m2 = ['Fashion', 'Beauty', 'Food', 'Tech', 'Home care', 'Consulting', 'London'];
+  var m1 = ['Strategy', 'Product', 'Consumer insight', 'Portfolio strategy', 'Competitor analysis', 'One clear idea'];
+  var m2 = ['Consumer', 'Fintech', 'Brand', 'Beauty', 'Fashion', 'Food', 'Tech', 'London'];
   function fillTrack(id, words) { var h = words.map(function (w) { return '<span>' + w + '</span>'; }).join(''); document.getElementById(id).innerHTML = h + h; }
   fillTrack('m1', m1); fillTrack('m2', m2);
 
@@ -1835,7 +1846,7 @@ img.eb-logo { height: 24px; width: auto; }
     { id: 'bayes', label: 'Bayes Business School', c: 'var(--c4)', s: [2023, 9], e: [2027, 6], when: 'Sept 2023 – 2027', title: 'BSc Business Management with Year in Industry', text: 'First-class average (73%) so far. Strongest in Quantitative Methods & Analytics (89%) and Business Economics (83%).' },
     { id: 'hillspring', label: 'Hill Spring Intl School', c: 'var(--c4)', s: [2021, 6], e: [2023, 5], when: 'Jun 2021 – 2023', title: 'Hill Spring International School · IB Diploma Programme', text: 'International Baccalaureate Diploma: 40/45.' },
     { id: 'unilever', label: 'Unilever', c: 'var(--c1)', s: [2025, 6], e: [2026, 6], when: 'Jun 2025 – 2026', title: 'Associate Portfolio Transformation Strategy Manager · London', text: 'Competitor analyses for Home Care, a board-level tracking tool used by 200+ people, and new data standards that cut reporting errors by 95%.', caseId: 'tool' },
-    { id: 'marsh', label: 'Marsh McLennan', c: 'var(--c1)', s: [2024, 7], e: [2024, 8], when: 'Jul – Aug 2024', title: 'Marketing Strategy Intern · Mumbai', text: 'Built an oil-sector B2B campaign strategy from 30+ reports and 20+ interviews, plus a content plan used for 8 months afterwards.', caseId: 'marsh' },
+    { id: 'marsh', label: 'Marsh McLennan', c: 'var(--c1)', s: [2024, 7], e: [2024, 8], when: 'Jul – Aug 2024', title: 'Marketing Strategy Intern · Mumbai', text: 'Built an oil-sector B2B campaign strategy from 30+ reports and 20+ sales-team interviews, plus a content plan used for 8 months afterwards.', caseId: 'marsh' },
     { id: 'rediffusion', label: 'Rediffusion', c: 'var(--c1)', s: [2023, 7], e: [2023, 8], when: 'Jul – Aug 2023', title: 'Brand & Research Intern · Rediffusion, Mumbai', text: 'My first role, at 18, at an advertising agency: supporting the team with consumer and competitor research for brands including Nerolac Paints and Taj Hotels, and writing for the agency newsletter.', caseId: 'rediffusion' },
     { id: 'enactus', label: 'Enactus UK', c: 'var(--c2)', s: [2026, 1], e: [2026, 3], when: 'Jan – Mar 2026', title: 'Guest Panelist and Top 20 Judge · Enactus UK', text: 'Spoke on a panel about moving from university into industry, then judged the top 20 student-led entrepreneurial projects.' },
     { id: 'lfw', label: 'London Fashion Week', c: 'var(--c2)', s: [2024, 2], e: [2024, 2], when: 'Feb 2024', title: 'Volunteer · Black PR, London Fashion Week', text: 'A week of fast-paced event delivery behind the scenes.' },
@@ -1902,7 +1913,7 @@ img.eb-logo { height: 24px; width: auto; }
       skills: ['Consumer insight', 'Competitor analysis', 'Brand strategy', 'Writing']
     },
     referral: {
-      shows: ['Commercial sense', 'Behaviour into one idea'],
+      shows: ['Commercial sense', 'Growth experiment', 'Behaviour into one idea'],
       c: ['var(--ink)', 'var(--bg)'], tag: 'Family business · Nutrition practice', title: 'Turning word of mouth into a referral programme', big: '10 new clients',
       s: 'My mum runs a nutrition practice. Many new clients already came through recommendations, but it happened by chance, with nothing in place to encourage or build on it.',
       t: 'Take something clients were already doing naturally and turn it into a referral programme that converts more of those conversations into new clients.',
@@ -1920,7 +1931,7 @@ img.eb-logo { height: 24px; width: auto; }
       skills: ['Competitor analysis', 'Market insight', 'Executive storytelling', 'PowerPoint']
     },
     tool: {
-      shows: ['Getting ideas adopted', 'Stakeholder buy-in'],
+      shows: ['Product thinking', 'Getting ideas adopted', 'Stakeholder buy-in'],
       c: ['var(--c2)', 'var(--on-light)'], tag: 'Unilever · Governance', title: 'A board-level project tracking tool', big: '200+ users',
       s: 'Monthly investor board meetings needed a reliable, shared view of where each project stood.',
       t: 'Help build a strategy tool for tracking project status and get people across the business using it.',
@@ -1938,12 +1949,12 @@ img.eb-logo { height: 24px; width: auto; }
       skills: ['Social media insight', 'Consumer insight', 'Executive briefing', 'Stakeholder buy-in']
     },
     data: {
-      shows: ['Simplifying the complex', 'Rigour'],
+      shows: ['Product thinking', 'Simplifying the complex'],
       c: ['var(--c3)', 'var(--on-light)'], tag: 'Unilever · Data & reporting', title: 'Rebuilding innovation data standards', big: '−95% errors',
       s: 'A newly launched innovation-performance tracker covered 50+ projects across 15+ countries, and inconsistent data made company-wide reporting hard to trust.',
       t: 'Take ownership of the tracker, make its data reliable and reduce the manual monthly work behind it.',
-      a: 'Redesigned the data standards across 75+ projects, expanded the tracker with cross-functional teams, and ran working sessions with tech teams to automate the monthly KPI process.',
-      r: 'Data errors fell by 95%, making project performance reporting reliable across the company.',
+      a: 'Redesigned the data standards across 75+ projects, expanded the tracker with cross-functional teams, and ran working sessions with tech teams to help automate the monthly KPI process.',
+      r: 'Data errors fell by 95%, making company-wide project performance reporting more reliable.',
       skills: ['Data governance', 'Process automation', 'Cross-functional leadership', 'Data visualisation']
     },
     marsh: {
@@ -1952,7 +1963,7 @@ img.eb-logo { height: 24px; width: auto; }
       s: 'The team wanted to grow its oil-sector client base but lacked a clear view of where the retention and acquisition opportunities were.',
       t: 'Research the segment and turn the findings into a B2B campaign strategy.',
       a: "Analysed 30+ reports and 20+ sales-team interviews, wrote a marketing thesis with strategic recommendations, and built a 20+ post LinkedIn and email plan that tied seasonal moments to Marsh McLennan's brand values.",
-      r: 'The recommendations shaped client outreach priorities, and the content plan was still in use 8 months after the internship.',
+      r: 'The recommendations informed client outreach priorities, and the content plan was still in use 8 months after the internship.',
       skills: ['Primary research', 'B2B marketing', 'Content strategy', 'Presenting']
     }
   };
